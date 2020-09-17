@@ -127,27 +127,27 @@ router.post('/', auth.optional, function(req, res, next) {
   // console.log("ME cago en sus muertos pisaos");
   
   //Añadir videojuego
-  User.findById(req.payload.id).then(function(user){
-    // console.log("user:");
-    // console.log(user);
+  User.findById(req.body.videojuego.id).then(function(user){
+    
     if (!user) { return res.sendStatus(401); }
 
     var videojuego = new Videojuego(req.body.videojuego);
-    // console.log(videojuego);
-    console.log("HOLA1");
+    console.log("VIDEOJUEGO: ");
+    console.log(videojuego);
+
+    // console.log(videojuego.id);
+   
 
     videojuego.author = user;
-    // console.log("HOLA2");
-    // console.log("author: "+videojuego.author);
-    console.log(videojuego.save());  //En esta linea hago un console.log y está todo vacio
-    console.log("DESPUES DEL .SAVE()");
 
-    // return videojuego.save().then(function(){
-    //   // console.log(videojuego.author);
-    //   console.log("HOLAAAAA");
-    //   // console.log(res.json({videojuego : videojuego.toJSONFor(user)}));
-    //   // return res.json({videojuego : videojuego.toJSONFor(user)});
-    // });
+    videojuego.save().exec;
+      // console.log("ole los caracoles");
+      let hola=videojuego.save().then(function(){
+        // console.log(videojuego.author);
+        // console.log("HOLAAAAA");
+        console.log(res.json({videojuego : videojuego.toJSONFor(user)}));
+        return res.json({videojuego : videojuego.toJSONFor()}); //toJSONFor(user)
+      });
   }).catch(next);
 
 

@@ -13,6 +13,7 @@ import './components';
 import './home';
 import './profile';
 import './article';
+import './videojuegos';
 //Import videojuego??
 import './services';
 import './auth';
@@ -28,6 +29,7 @@ const requires = [
   'app.components',
   'app.home',
   'app.profile',
+  'app.videojuegos',
   'app.article',
   'app.services',
   'app.auth',

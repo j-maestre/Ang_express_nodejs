@@ -5,6 +5,7 @@ var User = mongoose.model('User');
 
 var VideojuegoSchema = new mongoose.Schema({
   slug: {type: String, lowercase: true, unique: true},
+  id:String,
   title: String,
   description: String,
   plataform: String,
