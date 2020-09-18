@@ -8,7 +8,7 @@ function VideojuegosConfig($stateProvider) {
       url: "/videojuegos",
       controller: "VideojuegosCtrl",
       controllerAs: "$ctrl",
-      templateUrl: "Videojuegos/videojuegos.html",
+      templateUrl: "videojuegos/videojuegos.html",
       title: "Videojuegos",
       resolve: {
         videojuegos: function(Videojuegos) {
@@ -17,20 +17,20 @@ function VideojuegosConfig($stateProvider) {
       }
     })
   
-    .state('app.videojuegosDetails', {
-      url: "/videojuegos/:id",
-      controller: 'VideojuegosDetailsCtrl',
-      controllerAs: '$ctrl',
-      templateUrl: 'videojuegos/videojuegosDetails.html',
-      title: 'videojuegos Details',
-      resolve: {
-        videojuegos: function(Videojuegos, $state, $stateParams) {
-          return Videojuegos.getVideojuegos($stateParams.id).then(
-           (data) => data.videojuegos
-          )
-        }
-      }
-    })
+    // .state('app.videojuegosDetails', {
+    //   url: "/videojuegos/:id",
+    //   controller: 'VideojuegosDetailsCtrl',
+    //   controllerAs: '$ctrl',
+    //   templateUrl: 'videojuegos/videojuegosDetails.html',
+    //   title: 'videojuegos Details',
+    //   resolve: {
+    //     videojuegos: function(Videojuegos, $state, $stateParams) {
+    //       return Videojuegos.getVideojuegos($stateParams.id).then(
+    //        (data) => data.videojuegos
+    //       )
+    //     }
+    //   }
+    // })
   
   
   };

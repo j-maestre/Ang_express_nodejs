@@ -14,7 +14,6 @@ import './home';
 import './profile';
 import './article';
 import './videojuegos';
-//Import videojuego??
 import './services';
 import './auth';
 import './settings';
@@ -29,7 +28,7 @@ const requires = [
   'app.components',
   'app.home',
   'app.profile',
-  'app.videojuegos',
+  'app.videojuegos',  //Que significa estoooo
   'app.article',
   'app.services',
   'app.auth',

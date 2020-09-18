@@ -1,5 +1,5 @@
 import angular from 'angular';
-let videojeugosModule = angular.module('app.videojuegos',[]);
+let videojuegosModule = angular.module('app.videojuegos',[]);
 
 import VideojuegosConfig from './videojuegos.config';
 videojuegosModule.config(VideojuegosConfig);
