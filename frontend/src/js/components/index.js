@@ -18,11 +18,21 @@ componentsModule.component('articleMeta', ArticleMeta);
 import FavoriteBtn from './buttons/favorite-btn.component';
 componentsModule.component('favoriteBtn', FavoriteBtn);
 
+//Videojuegos
+import VideojuegosList from './videojuegos-helpers/videojuegos-list.component';
+componentsModule.component('videojuegosList',VideojuegosList); 
+
+import VideojuegosDetail from './videojuegos-helpers/videojuegos-detail.component';
+componentsModule.component('videojuegosDetail',VideojuegosDetail);
+
+/////
+
+
 import ArticlePreview from './article-helpers/article-preview.component';
 componentsModule.component('articlePreview', ArticlePreview);
 
 import ArticleList from './article-helpers/article-list.component';
-componentsModule.component('articleList', ArticleList);
+componentsModule.component('articleList', ArticleList);  
 
 import ListPagination from './article-helpers/list-pagination.component';
 componentsModule.component('listPagination', ListPagination);

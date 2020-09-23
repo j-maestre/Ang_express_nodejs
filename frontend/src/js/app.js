@@ -28,7 +28,8 @@ const requires = [
   'app.components',
   'app.home',
   'app.profile',
-  'app.videojuegos',  //Que significa estoooo
+  'app.videojuegos',  
+  // 'app.videojuegosDetails',
   'app.article',
   'app.services',
   'app.auth',

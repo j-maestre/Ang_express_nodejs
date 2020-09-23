@@ -13,24 +13,25 @@ function VideojuegosConfig($stateProvider) {
       resolve: {
         videojuegos: function(Videojuegos) {
           return Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
+
         }
+
       }
     })
   
-    // .state('app.videojuegosDetails', {
-    //   url: "/videojuegos/:id",
-    //   controller: 'VideojuegosDetailsCtrl',
-    //   controllerAs: '$ctrl',
-    //   templateUrl: 'videojuegos/videojuegosDetails.html',
-    //   title: 'videojuegos Details',
-    //   resolve: {
-    //     videojuegos: function(Videojuegos, $state, $stateParams) {
-    //       return Videojuegos.getVideojuegos($stateParams.id).then(
-    //        (data) => data.videojuegos
-    //       )
-    //     }
-    //   }
-    // })
+    .state('app.videojuegosDetails', {
+      url: "/videojuegos/:slug",
+      controller: 'VideojuegosDetailsCtrl',
+      controllerAs: '$ctrl',
+      templateUrl: 'videojuegos/videojuegosDetails.html',
+      title: 'Videojuegos Details',
+      resolve: {
+        videojuego: function(Videojuegos, $stateParams) {
+          // console.log(Videojuegos.getVideojuego($stateParams.slug));
+          return Videojuegos.getVideojuego($stateParams.slug).then(videojuego => videojuego)
+        }
+      }
+    })
   
   
   };

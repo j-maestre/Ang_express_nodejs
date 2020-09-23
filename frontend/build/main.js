@@ -42624,7 +42624,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Create and bootstrap application
 
 // Import our app functionaity
-var requires = ['ui.router', 'templates', 'app.layout', 'app.components', 'app.home', 'app.profile', 'app.videojuegos', //Que significa estoooo
+var requires = ['ui.router', 'templates', 'app.layout', 'app.components', 'app.home', 'app.profile', 'app.videojuegos',
+// 'app.videojuegosDetails',
 'app.article', 'app.services', 'app.auth', 'app.settings', 'app.editor'];
 
 // Mount on window for testing
@@ -42645,7 +42646,7 @@ _angular2.default.bootstrap(document, ['app'], {
   strictDi: true
 });
 
-},{"./article":10,"./auth":13,"./components":20,"./config/app.config":23,"./config/app.constants":24,"./config/app.run":25,"./config/app.templates":26,"./editor":30,"./home":33,"./layout":36,"./profile":37,"./services":43,"./settings":48,"./videojuegos":51,"angular":3,"angular-ui-router":1}],6:[function(require,module,exports){
+},{"./article":10,"./auth":13,"./components":20,"./config/app.config":25,"./config/app.constants":26,"./config/app.run":27,"./config/app.templates":28,"./editor":32,"./home":35,"./layout":38,"./profile":39,"./services":45,"./settings":51,"./videojuegos":54,"angular":3,"angular-ui-router":1}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43355,6 +43356,14 @@ var _favoriteBtn = require('./buttons/favorite-btn.component');
 
 var _favoriteBtn2 = _interopRequireDefault(_favoriteBtn);
 
+var _videojuegosList = require('./videojuegos-helpers/videojuegos-list.component');
+
+var _videojuegosList2 = _interopRequireDefault(_videojuegosList);
+
+var _videojuegosDetail = require('./videojuegos-helpers/videojuegos-detail.component');
+
+var _videojuegosDetail2 = _interopRequireDefault(_videojuegosDetail);
+
 var _articlePreview = require('./article-helpers/article-preview.component');
 
 var _articlePreview2 = _interopRequireDefault(_articlePreview);
@@ -43381,6 +43390,15 @@ componentsModule.component('articleMeta', _articleMeta2.default);
 
 componentsModule.component('favoriteBtn', _favoriteBtn2.default);
 
+//Videojuegos
+
+componentsModule.component('videojuegosList', _videojuegosList2.default);
+
+componentsModule.component('videojuegosDetail', _videojuegosDetail2.default);
+
+/////
+
+
 componentsModule.component('articlePreview', _articlePreview2.default);
 
 componentsModule.component('articleList', _articleList2.default);
@@ -43389,7 +43407,7 @@ componentsModule.component('listPagination', _listPagination2.default);
 
 exports.default = componentsModule;
 
-},{"./article-helpers/article-list.component":14,"./article-helpers/article-meta.component":15,"./article-helpers/article-preview.component":16,"./article-helpers/list-pagination.component":17,"./buttons/favorite-btn.component":18,"./buttons/follow-btn.component":19,"./list-errors.component":21,"./show-authed.directive":22,"angular":3}],21:[function(require,module,exports){
+},{"./article-helpers/article-list.component":14,"./article-helpers/article-meta.component":15,"./article-helpers/article-preview.component":16,"./article-helpers/list-pagination.component":17,"./buttons/favorite-btn.component":18,"./buttons/follow-btn.component":19,"./list-errors.component":21,"./show-authed.directive":22,"./videojuegos-helpers/videojuegos-detail.component":23,"./videojuegos-helpers/videojuegos-list.component":24,"angular":3}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43446,6 +43464,48 @@ exports.default = ShowAuthed;
 },{}],23:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var VideojuegosDetail = {
+  bindings: {
+    videojuego: '='
+  },
+  templateUrl: 'components/videojuegos-helpers/videojuegos-detail.html'
+};
+
+exports.default = VideojuegosDetail;
+
+},{}],24:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var VideojuegosListCtrl = function VideojuegosListCtrl(Videojuegos, $scope) {
+    'ngInject';
+
+    _classCallCheck(this, VideojuegosListCtrl);
+
+    this._$scope = $scope;
+};
+VideojuegosListCtrl.$inject = ["Videojuegos", "$scope"];
+
+var VideojuegosList = {
+    bindings: {
+        videojuegos: '='
+    },
+    controller: VideojuegosListCtrl,
+    templateUrl: 'components/videojuegos-helpers/videojuegos-list.html'
+};
+exports.default = VideojuegosList;
+
+},{}],25:[function(require,module,exports){
+'use strict';
+
 AppConfig.$inject = ["$httpProvider", "$stateProvider", "$locationProvider", "$urlRouterProvider"];
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -43483,7 +43543,7 @@ function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterP
 
 exports.default = AppConfig;
 
-},{"./auth.interceptor":27}],24:[function(require,module,exports){
+},{"./auth.interceptor":29}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43502,7 +43562,7 @@ var AppConstants = {
 
 exports.default = AppConstants;
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 AppRun.$inject = ["AppConstants", "$rootScope"];
@@ -43531,7 +43591,7 @@ function AppRun(AppConstants, $rootScope) {
 
 exports.default = AppRun;
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
@@ -43548,7 +43608,7 @@ angular.module("templates", []).run(["$templateCache", function ($templateCache)
   $templateCache.put("profile/profile-articles.html", "<article-list limit=\"5\" list-config=\"$ctrl.listConfig\"></article-list>\n");
   $templateCache.put("profile/profile.html", "<div class=\"profile-page\">\n\n  <!-- User\'s basic info & action buttons -->\n  <div class=\"user-info\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-xs-12 col-md-10 offset-md-1\">\n\n          <img ng-src=\"{{::$ctrl.profile.image}}\" class=\"user-img\" />\n          <h4 ng-bind=\"::$ctrl.profile.username\"></h4>\n          <p ng-bind=\"::$ctrl.profile.bio\"></p>\n\n          <a ui-sref=\"app.settings\"\n            class=\"btn btn-sm btn-outline-secondary action-btn\"\n            ng-show=\"$ctrl.isUser\">\n            <i class=\"ion-gear-a\"></i> Edit Profile Settings\n          </a>\n\n          <follow-btn user=\"$ctrl.profile\" ng-hide=\"$ctrl.isUser\"></follow-btn>\n\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- Container where User\'s posts & favs are list w/ toggle tabs -->\n  <div class=\"container\">\n    <div class=\"row\">\n\n      <div class=\"col-xs-12 col-md-10 offset-md-1\">\n\n        <!-- Tabs for switching between author articles & favorites -->\n        <div class=\"articles-toggle\">\n          <ul class=\"nav nav-pills outline-active\">\n\n            <li class=\"nav-item\">\n              <a class=\"nav-link active\"\n                ui-sref-active=\"active\"\n                ui-sref=\"app.profile.main({username: $ctrl.profile.username})\">\n                My Articles\n              </a>\n            </li>\n\n            <li class=\"nav-item\">\n              <a class=\"nav-link\"\n                ui-sref-active=\"active\"\n                ui-sref=\"app.profile.favorites({username: $ctrl.profile.username})\">\n                Favorited Articles\n              </a>\n            </li>\n\n          </ul>\n        </div>\n\n        <!-- List of articles -->\n        <div ui-view></div>\n\n\n      </div>\n\n    <!-- End row & container divs -->\n    </div>\n  </div>\n\n</div>\n");
   $templateCache.put("settings/settings.html", "<div class=\"settings-page\">\n  <div class=\"container page\">\n    <div class=\"row\">\n      <div class=\"col-md-6 offset-md-3 col-xs-12\">\n\n        <h1 class=\"text-xs-center\">Configuraxione</h1>\n\n        <list-errors errors=\"$ctrl.errors\"></list-errors>\n\n        <form ng-submit=\"$ctrl.submitForm()\">\n          <fieldset ng-disabled=\"$ctrl.isSubmitting\">\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control\"\n                type=\"text\"\n                placeholder=\"URL of profile picture\"\n                ng-model=\"$ctrl.formData.image\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control form-control-lg\"\n                type=\"text\"\n                placeholder=\"Username\"\n                ng-model=\"$ctrl.formData.username\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <textarea class=\"form-control form-control-lg\"\n                rows=\"8\"\n                placeholder=\"Short bio about you\"\n                ng-model=\"$ctrl.formData.bio\">\n              </textarea>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control form-control-lg\"\n                type=\"email\"\n                placeholder=\"Email\"\n                ng-model=\"$ctrl.formData.email\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control form-control-lg\"\n                type=\"password\"\n                placeholder=\"New Password\"\n                ng-model=\"$ctrl.formData.password\" />\n            </fieldset>\n\n            <button class=\"btn btn-lg btn-primary pull-xs-right\"\n              type=\"submit\">\n              Update Settings\n            </button>\n\n          </fieldset>\n        </form>\n\n        <!-- Line break for logout button -->\n        <hr />\n\n        <button class=\"btn btn-outline-danger\"\n          ng-click=\"$ctrl.logout()\">\n          Or click here to logout.\n        </button>\n\n      </div>\n    </div>\n  </div>\n</div>\n");
-  $templateCache.put("videojuegos/videojuegos.html", "\n<p>HOLAAAAAAA</p>\n\n\n<videojuegos-list videojuegos=\"$ctrl.videojuegos\"></videojuegos-list>");
+  $templateCache.put("videojuegos/videojuegos.html", "<videojuegos-list videojuegos=\"$ctrl.videojuegos\"></videojuegos-list>\n\n\n\n\n\n\n<!-- Splash banner that only shows when not logged in -->\n<!-- <div class=\"banner\" show-authed=\"false\">\n    <div class=\"container\">\n      <h1 class=\"logo-font\" ng-bind=\"::$ctrl.appName | lowercase\"></h1>\n      <p>Videojuegos</p>\n    </div>\n  </div>\n\n  <div class=\"container page\">\n    <div class=\"row\"> -->\n\n        <!-- DATOS -->\n\n            <!-- <div class=\"videojuego\" ng-repeat=\"videojuego in $ctrl.videojuegos\">\n                <li class=\"nav-item\">{{videojuego.title}}</li>\n                <button ng-click=\"openDetails()\">Detalles</button> \n            </div>\n        -->\n\n\n\n\n\n\n\n<!-- <videojuegos-list videojuegos=\"$ctrl.videojuegos\"></videojuegos-list> -->");
   $templateCache.put("videojuegos/videojuegosDetails.html", "<videojuegos-detail videojuego=\"$ctrl.videojuego\"></videojuegos-detail>");
   $templateCache.put("components/article-helpers/article-list.html", "<article-preview\n  article=\"article\"\n  ng-repeat=\"article in $ctrl.list\">\n</article-preview>\n\n<div class=\"article-preview\"\n  ng-hide=\"!$ctrl.loading\">\n  Loading articles...\n</div>\n\n<div class=\"article-preview\"\n  ng-show=\"!$ctrl.loading && !$ctrl.list.length\">\n  No articles are here... yet.\n</div>\n\n<list-pagination\n total-pages=\"$ctrl.listConfig.totalPages\"\n current-page=\"$ctrl.listConfig.currentPage\"\n ng-hide=\"$ctrl.listConfig.totalPages <= 1\">\n</list-pagination>\n");
   $templateCache.put("components/article-helpers/article-meta.html", "<div class=\"article-meta\">\n  <a ui-sref=\"app.profile.main({ username:$ctrl.article.author.username })\">\n    <img ng-src=\"{{$ctrl.article.author.image}}\" />\n  </a>\n\n  <div class=\"info\">\n    <a class=\"author\"\n      ui-sref=\"app.profile.main({ username:$ctrl.article.author.username })\"\n      ng-bind=\"$ctrl.article.author.username\">\n    </a>\n    <span class=\"date\"\n      ng-bind=\"$ctrl.article.createdAt | date: \'longDate\' \">\n    </span>\n  </div>\n\n  <ng-transclude></ng-transclude>\n</div>\n");
@@ -43556,9 +43616,11 @@ angular.module("templates", []).run(["$templateCache", function ($templateCache)
   $templateCache.put("components/article-helpers/list-pagination.html", "<nav>\n  <ul class=\"pagination\">\n\n    <li class=\"page-item\"\n      ng-class=\"{active: pageNumber === $ctrl.currentPage }\"\n      ng-repeat=\"pageNumber in $ctrl.pageRange($ctrl.totalPages)\"\n      ng-click=\"$ctrl.changePage(pageNumber)\">\n\n      <a class=\"page-link\" href=\"\">{{ pageNumber }}</a>\n\n    </li>\n\n  </ul>\n</nav>\n");
   $templateCache.put("components/buttons/favorite-btn.html", "<button class=\"btn btn-sm\"\n  ng-class=\"{ \'disabled\' : $ctrl.isSubmitting,\n              \'btn-outline-primary\': !$ctrl.article.favorited,\n              \'btn-primary\': $ctrl.article.favorited }\"\n  ng-click=\"$ctrl.submit()\">\n  <i class=\"ion-heart\"></i> <ng-transclude></ng-transclude>\n</button>\n");
   $templateCache.put("components/buttons/follow-btn.html", "<button\n  class=\"btn btn-sm action-btn\"\n  ng-class=\"{ \'disabled\': $ctrl.isSubmitting,\n              \'btn-outline-secondary\': !$ctrl.user.following,\n              \'btn-secondary\': $ctrl.user.following }\"\n  ng-click=\"$ctrl.submit()\">\n  <i class=\"ion-plus-round\"></i>\n  &nbsp;\n  {{ $ctrl.user.following ? \'Unfollow\' : \'Follow\' }} {{ $ctrl.user.username }}\n</button>\n");
+  $templateCache.put("components/videojuegos-helpers/videojuegos-detail.html", "\n<div class=\"videojuego\">\n    <h2 ng-bind=\"$ctrl.videojuego.title\"> </h2>\n    <p ng-bind=\"$ctrl.videojuego.description\"> </p>\n    <p ng-bind=\"\'Plataforma: \'$ctrl.videojuego.plataform\"></p>\n</div>");
+  $templateCache.put("components/videojuegos-helpers/videojuegos-list.html", "<div class=\"videojuego\" ng-repeat=\"videojuego in $ctrl.videojuegos\">\n    <h3>{{videojuego.title}}</h3>\n    <p>Plataforma: {{videojuego.plataform}}</p>\n     <button ui-sref=\"app.videojuegosDetails({slug:videojuego.slug})\">See more </button>\n</div>\n");
 }]);
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 authInterceptor.$inject = ["JWT", "AppConstants", "$window", "$q"];
@@ -43593,7 +43655,7 @@ function authInterceptor(JWT, AppConstants, $window, $q) {
 
 exports.default = authInterceptor;
 
-},{}],28:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 EditorConfig.$inject = ["$stateProvider"];
@@ -43636,7 +43698,7 @@ function EditorConfig($stateProvider) {
 
 exports.default = EditorConfig;
 
-},{}],29:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43705,7 +43767,7 @@ var EditorCtrl = function () {
 
 exports.default = EditorCtrl;
 
-},{}],30:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43739,7 +43801,7 @@ editorModule.controller('EditorCtrl', _editor4.default);
 
 exports.default = editorModule;
 
-},{"./editor.config":28,"./editor.controller":29,"angular":3}],31:[function(require,module,exports){
+},{"./editor.config":30,"./editor.controller":31,"angular":3}],33:[function(require,module,exports){
 'use strict';
 
 HomeConfig.$inject = ["$stateProvider"];
@@ -43760,7 +43822,7 @@ function HomeConfig($stateProvider) {
 
 exports.default = HomeConfig;
 
-},{}],32:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43807,7 +43869,7 @@ var HomeCtrl = function () {
 
 exports.default = HomeCtrl;
 
-},{}],33:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43841,7 +43903,7 @@ homeModule.controller('HomeCtrl', _home4.default);
 
 exports.default = homeModule;
 
-},{"./home.config":31,"./home.controller":32,"angular":3}],34:[function(require,module,exports){
+},{"./home.config":33,"./home.controller":34,"angular":3}],36:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43869,7 +43931,7 @@ var AppFooter = {
 
 exports.default = AppFooter;
 
-},{}],35:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43901,7 +43963,7 @@ var AppHeader = {
 
 exports.default = AppHeader;
 
-},{}],36:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43933,7 +43995,7 @@ layoutModule.component('appFooter', _footer2.default);
 
 exports.default = layoutModule;
 
-},{"./footer.component":34,"./header.component":35,"angular":3}],37:[function(require,module,exports){
+},{"./footer.component":36,"./header.component":37,"angular":3}],39:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43973,7 +44035,7 @@ profileModule.controller('ProfileArticlesCtrl', _profileArticles2.default);
 
 exports.default = profileModule;
 
-},{"./profile-articles.controller":38,"./profile.config":39,"./profile.controller":40,"angular":3}],38:[function(require,module,exports){
+},{"./profile-articles.controller":40,"./profile.config":41,"./profile.controller":42,"angular":3}],40:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44011,7 +44073,7 @@ ProfileArticlesCtrl.$inject = ["profile", "$state", "$rootScope"];
 
 exports.default = ProfileArticlesCtrl;
 
-},{}],39:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
 ProfileConfig.$inject = ["$stateProvider"];
@@ -44054,7 +44116,7 @@ function ProfileConfig($stateProvider) {
 
 exports.default = ProfileConfig;
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44081,7 +44143,7 @@ ProfileCtrl.$inject = ["profile", "User"];
 
 exports.default = ProfileCtrl;
 
-},{}],41:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44198,7 +44260,7 @@ var Articles = function () {
 
 exports.default = Articles;
 
-},{}],42:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44259,7 +44321,7 @@ var Comments = function () {
 
 exports.default = Comments;
 
-},{}],43:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44294,6 +44356,10 @@ var _tags = require('./tags.service');
 
 var _tags2 = _interopRequireDefault(_tags);
 
+var _videojuegos = require('./videojuegos.service');
+
+var _videojuegos2 = _interopRequireDefault(_videojuegos);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Create the module where our functionality can attach to
@@ -44311,9 +44377,11 @@ servicesModule.service('Comments', _comments2.default);
 
 servicesModule.service('Tags', _tags2.default);
 
+servicesModule.service('Videojuegos', _videojuegos2.default);
+
 exports.default = servicesModule;
 
-},{"./articles.service":41,"./comments.service":42,"./jwt.service":44,"./profile.service":45,"./tags.service":46,"./user.service":47,"angular":3}],44:[function(require,module,exports){
+},{"./articles.service":43,"./comments.service":44,"./jwt.service":46,"./profile.service":47,"./tags.service":48,"./user.service":49,"./videojuegos.service":50,"angular":3}],46:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44357,7 +44425,7 @@ var JWT = function () {
 
 exports.default = JWT;
 
-},{}],45:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44416,7 +44484,7 @@ var Profile = function () {
 
 exports.default = Profile;
 
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44456,7 +44524,7 @@ var Tags = function () {
 
 exports.default = Tags;
 
-},{}],47:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44581,7 +44649,70 @@ var User = function () {
 
 exports.default = User;
 
-},{}],48:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Videojuegos = function () {
+  Videojuegos.$inject = ["JWT", "AppConstants", "$http", "$state", "$q"];
+  function Videojuegos(JWT, AppConstants, $http, $state, $q) {
+    'ngInject';
+
+    _classCallCheck(this, Videojuegos);
+
+    this._JWT = JWT;
+    this._AppConstants = AppConstants;
+    this._$http = $http;
+    this._$state = $state;
+    this._$q = $q;
+
+    this.current = null;
+  }
+
+  _createClass(Videojuegos, [{
+    key: "getVideojuegos",
+    value: function getVideojuegos() {
+      // console.log("VWE");
+
+
+      return this._$http({
+        url: this._AppConstants.api + "/videojuegos", //  /videojuegos/
+        // url: 'localhost:4000/api/videojuegos',
+        method: "GET"
+      }).then(function (res) {
+        // console.log("HOLA");
+        // console.log(res.data.videojuegos);
+        return res.data.videojuegos;
+      });
+    }
+  }, {
+    key: "getVideojuego",
+    value: function getVideojuego(slug) {
+      return this._$http({
+        url: this._AppConstants.api + "/videojuegos/" + slug,
+        method: "GET"
+      }) //.then(res => res.data.hotel); //recibo 1 hotel
+      .then(function (res) {
+        console.log(slug);
+        console.log(res.data.videojuego);
+        return res.data.videojuego;
+      });
+    }
+  }]);
+
+  return Videojuegos;
+}();
+
+exports.default = Videojuegos;
+
+},{}],51:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44614,7 +44745,7 @@ settingsModule.controller('SettingsCtrl', _settings4.default);
 
 exports.default = settingsModule;
 
-},{"./settings.config":49,"./settings.controller":50,"angular":3}],49:[function(require,module,exports){
+},{"./settings.config":52,"./settings.controller":53,"angular":3}],52:[function(require,module,exports){
 'use strict';
 
 SettingsConfig.$inject = ["$stateProvider"];
@@ -44640,7 +44771,7 @@ function SettingsConfig($stateProvider) {
 
 exports.default = SettingsConfig;
 
-},{}],50:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44691,7 +44822,7 @@ var SettingsCtrl = function () {
 
 exports.default = SettingsCtrl;
 
-},{}],51:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44718,15 +44849,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var videojuegosModule = _angular2.default.module('app.videojuegos', []);
 
+var videojuegosDetails = _angular2.default.module('app.videojuegosDetails', []);
+
 videojuegosModule.config(_videojuegos2.default);
 
 videojuegosModule.controller('VideojuegosCtrl', _videojuegos4.default);
 
-videojuegosModule.controller('VideojuegosDetailsCtrl', _videojuegosDetails2.default);
+videojuegosDetails.controller('VideojuegosDetailsCtrl', _videojuegosDetails2.default);
 
 exports.default = videojuegosModule;
 
-},{"./videojuegos.config":52,"./videojuegos.controller":53,"./videojuegosDetails.controller":54,"angular":3}],52:[function(require,module,exports){
+},{"./videojuegos.config":55,"./videojuegos.controller":56,"./videojuegosDetails.controller":57,"angular":3}],55:[function(require,module,exports){
 "use strict";
 
 VideojuegosConfig.$inject = ["$stateProvider"];
@@ -44749,29 +44882,28 @@ function VideojuegosConfig($stateProvider) {
           return videojuegos;
         });
       }]
+
+    }
+  }).state('app.videojuegosDetails', {
+    url: "/videojuegos/:slug",
+    controller: 'VideojuegosDetailsCtrl',
+    controllerAs: '$ctrl',
+    templateUrl: 'videojuegos/videojuegosDetails.html',
+    title: 'Videojuegos Details',
+    resolve: {
+      videojuego: ["Videojuegos", "$stateParams", function videojuego(Videojuegos, $stateParams) {
+        // console.log(Videojuegos.getVideojuego($stateParams.slug));
+        return Videojuegos.getVideojuego($stateParams.slug).then(function (videojuego) {
+          return videojuego;
+        });
+      }]
     }
   });
-
-  // .state('app.videojuegosDetails', {
-  //   url: "/videojuegos/:id",
-  //   controller: 'VideojuegosDetailsCtrl',
-  //   controllerAs: '$ctrl',
-  //   templateUrl: 'videojuegos/videojuegosDetails.html',
-  //   title: 'videojuegos Details',
-  //   resolve: {
-  //     videojuegos: function(Videojuegos, $state, $stateParams) {
-  //       return Videojuegos.getVideojuegos($stateParams.id).then(
-  //        (data) => data.videojuegos
-  //       )
-  //     }
-  //   }
-  // })
-
 };
 
 exports.default = VideojuegosConfig;
 
-},{}],53:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44789,15 +44921,27 @@ var VideojuegosCtrl = function VideojuegosCtrl(videojuegos, $state, $scope, $sta
   this.$state = $state;
   ////
   this._$scope = $scope;
-  this.videojuegos = videojuegos.videojuegos;
+  this.videojuegos = videojuegos;
   this.filter = $stateParams.filter;
   $scope.videojuegos = this.videojuegos;
+
+  // videojuegos.getVideojuegos().then(
+  //   (videojuegos) => {
+  //     this.videojuegos = videojuegos
+
+  //     let AllVideojuegos = new Array();
+
+  //     this.videojuegos.forEach(videojuegos => {
+  //       AllVideojuegos.push(videojuegos);
+  //     });
+  //     $scope.AllVideojuegos = AllVideojuegos;
+  //   });
 };
 VideojuegosCtrl.$inject = ["videojuegos", "$state", "$scope", "$stateParams"];
 
 exports.default = VideojuegosCtrl;
 
-},{}],54:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44807,14 +44951,16 @@ Object.defineProperty(exports, "__esModule", {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var VideojuegosDetailsCtrl = function VideojuegosDetailsCtrl(videojuego) {
-  "ngInject";
-
   _classCallCheck(this, VideojuegosDetailsCtrl);
 
+  console.log("HOLA");
+  "ngInject";
   this.videojuego = videojuego;
+  // $this.scope= $scope;
   //console.log(event);
+
+  //Vovler al listVideojuegos
 };
-VideojuegosDetailsCtrl.$inject = ["videojuego"];
 
 exports.default = VideojuegosDetailsCtrl;
 

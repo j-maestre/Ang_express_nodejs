@@ -8,7 +8,7 @@ var http = require('http'),
     passport = require('passport'),
     errorhandler = require('errorhandler'),
     mongoose = require('mongoose'),
-
+    // slug =require('slug'),  Esto lo he puesto yo
     swaggerUi = require('swagger-ui-express');
 
     //// Swagger ////

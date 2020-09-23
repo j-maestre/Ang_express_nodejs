@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
-var slug = require('slug');
+let slug = require('slug');
 var User = mongoose.model('User');
 
 var VideojuegoSchema = new mongoose.Schema({
@@ -10,8 +10,8 @@ var VideojuegoSchema = new mongoose.Schema({
   description: String,
   plataform: String,
   body: String,
-  favoritesCount: {type: Number, default: 0},
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+  // favoritesCount: {type: Number, default: 0},
+  // comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   tagList: [{ type: String }]
   // author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, {timestamps: true});
@@ -21,10 +21,10 @@ VideojuegoSchema.plugin(uniqueValidator, {message: 'is already taken'});
 VideojuegoSchema.pre('validate', function(next){//next
   if(!this.slug)  {
     this.slugify();
-  }else{
+  }
     next();
 
-  }
+  
 
   
 });
@@ -43,10 +43,12 @@ VideojuegoSchema.methods.updateFavoriteCount = function() {
   });
 };
 
-VideojuegoSchema.methods.toJSONFor = function(user){
+VideojuegoSchema.methods.toJSONFor = function(){ //user
   // if(!user){
   //   user="anonimo";
   // }
+  console.log("HELLOOO");
+  console.log(this.slug);
   return {
     slug: this.slug,
     title: this.title,
@@ -56,8 +58,8 @@ VideojuegoSchema.methods.toJSONFor = function(user){
     createdAt: this.createdAt,
     updatedAt: this.updatedAt,
     tagList: this.tagList,
-    favorited: user ? user.isFavorite(this._id) : false,
-    favoritesCount: this.favoritesCount
+    // favorited: user ? user.isFavorite(this._id) : false,
+    // favoritesCount: this.favoritesCount
     // author: this.author.toProfileJSONFor(user)
   };
 };
