@@ -22,8 +22,8 @@ componentsModule.component('favoriteBtn', FavoriteBtn);
 import VideojuegosList from './videojuegos-helpers/videojuegos-list.component';
 componentsModule.component('videojuegosList',VideojuegosList); 
 
-import VideojuegosDetail from './videojuegos-helpers/videojuegos-detail.component';
-componentsModule.component('videojuegosDetail',VideojuegosDetail);
+import VideojuegosDetails from './videojuegos-helpers/videojuegos-detail.component';
+componentsModule.component('videojuegosDetails',VideojuegosDetails);
 
 /////
 

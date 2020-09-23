@@ -14,3 +14,4 @@ import VideojuegosDetailsCtrl from './videojuegosDetails.controller';
 videojuegosDetails.controller('VideojuegosDetailsCtrl', VideojuegosDetailsCtrl);
 
 export default videojuegosModule;
+export default videojuegosDetails;

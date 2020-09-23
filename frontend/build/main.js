@@ -43394,7 +43394,7 @@ componentsModule.component('favoriteBtn', _favoriteBtn2.default);
 
 componentsModule.component('videojuegosList', _videojuegosList2.default);
 
-componentsModule.component('videojuegosDetail', _videojuegosDetail2.default);
+componentsModule.component('videojuegosDetails', _videojuegosDetail2.default);
 
 /////
 
@@ -43467,10 +43467,23 @@ exports.default = ShowAuthed;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var VideojuegosDetailsCtrl = function VideojuegosDetailsCtrl(Videojuegos, $scope) {
+  'ngInject';
+
+  _classCallCheck(this, VideojuegosDetailsCtrl);
+
+  this._$scope = $scope;
+};
+VideojuegosDetailsCtrl.$inject = ["Videojuegos", "$scope"];
+
 var VideojuegosDetail = {
   bindings: {
     videojuego: '='
   },
+  controller: VideojuegosDetailsCtrl,
   templateUrl: 'components/videojuegos-helpers/videojuegos-detail.html'
 };
 

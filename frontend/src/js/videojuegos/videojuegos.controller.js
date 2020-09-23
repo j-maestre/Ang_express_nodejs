@@ -8,16 +8,15 @@ class VideojuegosCtrl {
       this.videojuegos = videojuegos;
       this.filter = $stateParams.filter;
       $scope.videojuegos = this.videojuegos;
-    
-    
 
-    
+  }
 
-
-
-
+}
+  export default VideojuegosCtrl;
   
-  // videojuegos.getVideojuegos().then(
+
+
+    // videojuegos.getVideojuegos().then(
   //   (videojuegos) => {
   //     this.videojuegos = videojuegos
 
@@ -28,9 +27,3 @@ class VideojuegosCtrl {
   //     });
   //     $scope.AllVideojuegos = AllVideojuegos;
   //   });
-
-  }
-
-}
-  export default VideojuegosCtrl;
-  
