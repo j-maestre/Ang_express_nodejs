@@ -1,5 +1,5 @@
 class VideojuegosListCtrl{
-    constructor(Videojuegos, $scope){
+    constructor($scope){
         'ngInject';
         this._$scope = $scope;
     }

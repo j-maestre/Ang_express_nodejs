@@ -1,16 +1,8 @@
-
 class VideojuegosDetailsCtrl {
-  
-    constructor(videojuego,$state, $scope, $stateParams) {
-      "ngInject";
-      ////
-      this.$state=$state;
-      ////
-      this._$scope = $scope;
-      this.videojuego = videojuego;
-      this.filter = $stateParams.filter;
-      $scope.videojuego = this.videojuego;
-
+  constructor(videojuego) {
+    "ngInject";
+    this.videojuego=videojuego;
+    //console.log(event);
   }
-  }
-  export default VideojuegosDetailsCtrl;
+}
+export default VideojuegosDetailsCtrl;

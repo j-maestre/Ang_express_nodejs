@@ -1,18 +1,8 @@
-class VideojuegosDetailsCtrl{
-  constructor(Videojuegos, $scope){
-      'ngInject';
-      this._$scope = $scope;
-  }
-}
-
-
-
-let VideojuegosDetails = {
+let VideojuegosDetail = {
   bindings: {
     videojuego: '='
   },
-  controller: VideojuegosDetailsCtrl,
   templateUrl: 'components/videojuegos-helpers/videojuegos-detail.html'
 };
 
-export default VideojuegosDetails;
+export default VideojuegosDetail;
