@@ -45,7 +45,7 @@ router.put('/user', auth.required, function(req, res, next){  //Update user
 
 //////////////////////////////////////////
 
-router.post('/users/login', function(req, res, next){  //Cambiar contraseña
+router.post('/users/login', function(req, res, next){  //LOGIN LOCAL
   if(!req.body.user.email){
     return res.status(422).json({errors: {email: "can't be blank"}});
   }
@@ -72,7 +72,7 @@ router.post('/users/login', function(req, res, next){  //Cambiar contraseña
 
 
 
-router.post('/users', function(req, res, next){ //Insert user
+router.post('/users', function(req, res, next){ 
   var user = new User();
 
   user.username = req.body.user.username;
@@ -86,5 +86,14 @@ router.post('/users', function(req, res, next){ //Insert user
 
 
 //////////////////////////////////////////////
+
+router.get("/auth/github", passport.authenticate("github"));
+console.log("USers get github passport autenticate");
+router.get("/auth/github/callback",
+  passport.authenticate("github", {
+    successRedirect: "http://localhost:4000/#!/auth/sociallogin",  //El puerto estaba en 3001 antes
+    failureRedirect: "/"
+  })
+);
 
 module.exports = router;

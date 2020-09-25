@@ -1,7 +1,8 @@
 <div class="videojuego" ng-repeat="videojuego in $ctrl.videojuegos">
     <h3>{{videojuego.title}}</h3>
     <p>Plataforma: {{videojuego.plataform}}</p>
-     <button ui-sref="app.videojuegosDetails({slug:videojuego.slug})">See more </button>
+     <!-- <button ui-sref="app.videojuegosDetails({slug:videojuego.slug})">See more </button> -->
+     <button ui-sref="app.videojuegosDetails">See more </button>
 </div>
 
 

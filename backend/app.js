@@ -47,8 +47,10 @@ require('./models/User');
 require('./models/Article');
 require('./models/Comment');
 require('./config/passport');
-
 require('./models/Videojuego');
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(require('./routes'));
 

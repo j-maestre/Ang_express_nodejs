@@ -2,7 +2,7 @@ class VideojuegosDetailsCtrl {
   constructor(videojuego) {
     "ngInject";
     this.videojuego=videojuego;
-    //console.log(event);
+    // console.log(videojuego);
   }
 }
 export default VideojuegosDetailsCtrl;

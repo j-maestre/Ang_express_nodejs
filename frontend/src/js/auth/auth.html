@@ -6,14 +6,18 @@
         <h1 class="text-xs-center" ng-bind="::$ctrl.title"></h1>
         <p class="text-xs-center">
           <a ui-sref="app.login"
-            ng-show="$ctrl.authType === 'register'">
+            ng-show="$ctrl.authType === 'login'"><!--register-->
             Have an account?
           </a>
+         
+
           <a ui-sref="app.register"
             ng-show="$ctrl.authType === 'login'">
             Need an account?
           </a>
         </p>
+         
+        <!-- Href a google o github -->
 
         <list-errors errors="$ctrl.errors"></list-errors>
 
@@ -45,6 +49,8 @@
               type="submit"
               ng-bind="::$ctrl.title">
             </button>
+            <!-- El puerto estaba antes en 3002 -->
+            <a href="http://localhost:3000/api/auth/github" style="font-size: 25px; color:black"><i class="ion-social-github"></i>&nbsp;Github</a>
 
           </fieldset>
         </form>

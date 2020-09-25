@@ -19,19 +19,19 @@ function VideojuegosConfig($stateProvider) {
       }
     })
   
-    .state('app.videojuegoDetails', {
-      url: "/videojuegos/:id",
-      controller: 'VideojuegoDetailsCtrl',
+    .state('app.videojuegosDetails', {
+      url: "/videojuegos/:slug",
+      controller: 'VideojuegosDetailsCtrl',
       controllerAs: '$ctrl',
       templateUrl: 'videojuegos/videojuegosDetails.html',
       title: 'Videojuego Details',
-      resolve: {
-        videojuego: function(Videojuegos, $state, $stateParams) {
-          return Videojuego.getVideojuego($stateParams.id).then(
-           (data) => data.videojuego
-          )
-        }
-      }
+      // resolve: {
+      //   videojuego: function(Videojuegos, $state, $stateParams) {
+      //     return Videojuego.getVideojuego($stateParams.slug).then(
+      //      (data) => data.videojuego
+      //     )
+      //   }
+      // }
     })
   
   
