@@ -21,11 +21,13 @@ passport.use(new LocalStrategy({
 
 ///Serializer
 passport.serializeUser((user, done) => {
+  console.log("SERIALIZE");
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
   // console.log(`id: ${id}`);
+  console.log("DESERIALIZE");
   User.findById(id)
     .then(user => {
       done(null, user);
@@ -42,20 +44,20 @@ passport.deserializeUser((id, done) => {
     clientID: socialKeys.GITHUB_CLIENT_ID,
     clientSecret: socialKeys.GITHUB_CLIENT_SECRET,
     callbackURL: socialKeys.GITHUB_CALLBACK,
-    scope: 'user:email',
+    // scope: 'user:email',
     passReqToCallback: true
     },
     function(request, accessToken, refreshToken, profile, done) { 
 
-      console.log("profile email:");
-      console.log(profile.email);
+      
 
       //CONSOLE LOG DEL PROFILE PARA VER QUE ESTA TODO
 
 
       User.findOne({idsocial:profile.id.toString()}, function(err, user) {
 
-        console.log("USER FINDONE");
+        profile.emails=profile.username+'@gmail.com';
+       
           if (err){
 
             console.log("if err");
@@ -69,7 +71,7 @@ passport.deserializeUser((id, done) => {
               return done(null, user);
           } else {
             console.log("else");
-            if(!profile.email[0].value){ //ME PETA AQUI  //Ponia emails[], pero en el json pone email[]
+            if(!profile.emails){ 
               console.log("if hola");
               return done("The email is private");
             }else{
@@ -78,13 +80,20 @@ passport.deserializeUser((id, done) => {
                   idsocial: profile.id,
                   username: profile.username,
                   type: "client",
-                  email: profile.emails[0].value,
+                  email: profile.emails,
                   image: profile.photos[0].value,
               });
+
+              // console.log("USUARIO GUARDADO:");
+              console.log(user);
               user.save(function(err) {
                   //if(err){
-                    console.log("save user");
-                    console.log(err);
+                    console.log("SAVE USER");
+
+                    if(err)
+                    console.log("ERROR",err);
+                    
+                    // console.log(err);
                       return done(null, user);
                   //}
               });

@@ -71,6 +71,39 @@ router.post('/users/login', function(req, res, next){  //LOGIN LOCAL
 ////////////////////////////////////////////
 
 
+router.post('/users/sociallogin', function (req, res, next){
+  let memorystore = req.sessionStore;
+  let sessions = memorystore.sessions;
+  let sessionUser;
+  for(var key in sessions){
+    sessionUser = (JSON.parse(sessions[key]).passport.user);
+  }
+
+
+  User.findOne({'_id' : sessionUser},function(err,user){
+    console.log("social login findOne");
+    console.log(err);
+    console.log(user);
+    if(err){
+      return done(err);
+    }
+
+    //Si hemos encontrao al usuario lo logueamos
+
+    if(user){
+      console.log("Usuario encontrado");
+      console.log(user);
+      user.token = user.generateJWT();
+      return res.json({user: user.toAuthJSON()}); //Usuario encontrado, return user
+      
+    }else{
+      console.log("Usuario NO encontrado");
+      return res.status(422).json(err);
+    }
+  });
+});
+
+
 
 router.post('/users', function(req, res, next){ 
   var user = new User();
@@ -88,7 +121,7 @@ router.post('/users', function(req, res, next){
 //////////////////////////////////////////////
 
 router.get("/auth/github", passport.authenticate("github"));
-console.log("USers get github passport autenticate");
+console.log("Users get github passport autenticate");
 router.get("/auth/github/callback",
   passport.authenticate("github", {
     successRedirect: "http://localhost:4000/#!/auth/sociallogin",  //El puerto estaba en 3001 antes

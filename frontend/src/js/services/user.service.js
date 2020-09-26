@@ -12,24 +12,37 @@ export default class User {
 
   }
 
-
   attemptAuth(type, credentials) {
-    let route = (type === 'login') ? '/login' : '';
     return this._$http({
-      url: this._AppConstants.api + '/users' + route,
+      url: this._AppConstants.api + '/users/'+type,
       method: 'POST',
-      data: {
-        user: credentials
-      }
-    }).then(
-      (res) => {
-        this._JWT.save(res.data.user.token);
-        this.current = res.data.user;
+      data: { user : credentials}
+    }).then((res)=>{
+      this._JWT.save(res.data.user.token);
+      this.current = res.data.user;
+      return res;
+    });
 
-        return res;
-      }
-    );
   }
+  
+
+  // attemptAuth(type, credentials) {
+  //   let route = (type === 'login') ? '/login' : '';
+  //   return this._$http({
+  //     url: this._AppConstants.api + '/users' + route,
+  //     method: 'POST',
+  //     data: {
+  //       user: credentials
+  //     }
+  //   }).then(
+  //     (res) => {
+  //       this._JWT.save(res.data.user.token);
+  //       this.current = res.data.user;
+
+  //       return res;
+  //     }
+  //   );
+  // }
 
   update(fields) {
     return this._$http({
