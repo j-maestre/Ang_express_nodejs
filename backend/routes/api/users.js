@@ -103,6 +103,31 @@ router.post('/users/sociallogin', function (req, res, next){
   });
 });
 
+///Register
+router.post("/users/register", function(req, res, next) {
+  User.find({
+    $or: [{ email: req.body.user.email }, { username: req.body.user.username }],
+    idsocial: null
+  }).then(function(user) {
+    if (user[0]) {
+      return res.status(422).json("The email or username are already created");
+    } else {
+      var user = new User();
+      user.username = req.body.user.username;
+      user.email = req.body.user.email;
+      user.type = "client";
+      user.setPassword(req.body.user.password);
+      user
+        .save()
+        .then(function() {
+          return res.json({ user: user.toAuthJSON() });
+        })
+        .catch(next);
+    }
+  });
+});
+//////
+
 
 
 router.post('/users', function(req, res, next){ 

@@ -21,6 +21,12 @@
     "marked": "^0.3.5",
     "merge-stream": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "toastr": "2.1.4"
+    "angular-messages": "^1.7.5",
+    
+    "angular-aria": "^1.7.4",
+    "angular-sanitize": "^1.7.5",
+    "angular-stripe": "^5.0.0",
+    "angular-toastr":"^2.1.1",
+    "angular-touch":"^1.7.4"
   }
 }

@@ -1,5 +1,5 @@
 class AuthCtrl {
-  constructor(User, $state) {
+  constructor(User, $state) {//,Toastr
     'ngInject';
 
     this._User = User;
