@@ -194,7 +194,7 @@ router.delete('/:article', auth.required, function(req, res, next) {
 });
 
 // Favorite an article
-router.post('/:article/favorite', auth.required, function(req, res, next) {
+router.post('/:article/favorite', auth.required, function(req, res, next) { //Favorito article
   var articleId = req.article._id;
 
   User.findById(req.payload.id).then(function(user){

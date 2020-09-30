@@ -25,5 +25,8 @@ servicesModule.service('Tags', TagsService);
 import VideojuegosService from './videojuegos.service';
 servicesModule.service('Videojuegos', VideojuegosService);
 
+import ToastrService from './toastr.service';
+servicesModule.service('Toastr',ToastrService);
+
 
 export default servicesModule;

@@ -1,7 +1,10 @@
 import angular from 'angular';
+import ngInfiniteScroll from 'ng-infinite-scroll';
+
+let homeModule = angular.module('app.home', [ngInfiniteScroll]);
 
 // Create the module where our functionality can attach to
-let homeModule = angular.module('app.home', []);
+// let homeModule = angular.module('app.home', []);
 
 // Include our UI-Router config settings
 import HomeConfig from './home.config';

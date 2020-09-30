@@ -131,22 +131,22 @@ passport.deserializeUser((id, done) => {
        
           if (err){
 
-            console.log("if err");
+            // console.log("if err");
             return done(err);
             
 
           }
           // if the user is found then log them in
           if (user) {
-            console.log("if user");
+            // console.log("if user");
               return done(null, user);
           } else {
-            console.log("else");
+            // console.log("else");
             if(!profile.emails){ 
-              console.log("if hola");
+              // console.log("if hola");
               return done("The email is private");
             }else{
-              console.log("else hola");
+              // console.log("else hola");
               var user = new User({
                   idsocial: profile.id,
                   username: profile.username,

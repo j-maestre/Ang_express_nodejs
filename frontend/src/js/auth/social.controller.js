@@ -1,5 +1,5 @@
 class SocialCtrl {
-    constructor(User, $state, $scope, Toastr) {
+    constructor(User, $state, $scope, Toastr) { 
       'ngInject';
  
       this._User = User;
@@ -14,15 +14,16 @@ class SocialCtrl {
 
       this._User.attemptAuth(this.authType, null).then(
         (res) => {
-          // this._toaster.showToastr('success','Successfully Logged In');
-          Toastr.showToastr('success','Successfully Logged In');
+          console.log("Justo antes del toastr");
+          this._toaster.showToastr('success','Successfully Logged In');
+          // Toastr.showToastr('success','Successfully Logged In');
           // alert("Successfully Logged In");
           if(res.data.user.type == "admin"){
             alert("saludos mi admin");
             this._$state.go('app.adminpanel');
           }else {
             location.reload(); //Ojo con esta linea
-            this._$state.go('app.home');
+            this._$state.go('app.home'); 
           }
         },
         (err) => {

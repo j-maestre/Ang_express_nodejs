@@ -26,10 +26,10 @@ router.get('/:username', auth.optional, function(req, res, next){
   }
 });
 
-router.post('/:username/follow', auth.required, function(req, res, next){
-  var profileId = req.profile._id;
+router.post('/:username/follow', auth.required, function(req, res, next){  //Follow
+  var profileId = req.profile._id;  //Profile id es paco que le he seguido 
 
-  User.findById(req.payload.id).then(function(user){
+  User.findById(req.payload.id).then(function(user){ //User soy yo que estoy logeado
     if (!user) { return res.sendStatus(401); }
 
     return user.follow(profileId).then(function(){
@@ -38,7 +38,7 @@ router.post('/:username/follow', auth.required, function(req, res, next){
   }).catch(next);
 });
 
-router.delete('/:username/follow', auth.required, function(req, res, next){
+router.delete('/:username/follow', auth.required, function(req, res, next){  //Unfllow
   var profileId = req.profile._id;
 
   User.findById(req.payload.id).then(function(user){

@@ -14,6 +14,9 @@ import './config/app.templates';
 import toastr from 'angular-toastr';
 import 'angular-messages';
 import 'angular-stripe';
+import 'angular-ui-bootstrap';
+// import 'angular-ui-router';
+// import 'angular-ui-animate';
 import './layout';
 import './components';
 import './home';
@@ -44,7 +47,7 @@ const requires = [
   'ngMessages',
   'angular-stripe',
   toastr
-];
+]; 
 
 // Mount on window for testing
 window.app = angular.module('app', requires);

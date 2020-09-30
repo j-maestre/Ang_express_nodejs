@@ -13,6 +13,8 @@ var merge         = require('merge-stream');
 // Where our files are located
 var jsFiles   = "src/js/**/*.js";
 var viewFiles = "src/js/**/*.html";
+// var imagenes = "src/js/**/*.png";
+//Poner las imagenes aqui???
 
 var interceptErrors = function(error) {
   var args = Array.prototype.slice.call(arguments);
@@ -83,4 +85,5 @@ gulp.task('default', ['html', 'browserify'], function() {
   gulp.watch("src/index.html", ['html']);
   gulp.watch(viewFiles, ['views']);
   gulp.watch(jsFiles, ['browserify']);
-});
+  // gulp.watch(imagenes, ['images']);
+}); 
