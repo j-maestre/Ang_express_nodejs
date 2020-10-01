@@ -12,7 +12,23 @@ router.get('/user', auth.required, function(req, res, next){  //Select User UNIC
   }).catch(next);
 });
 
-//////////////////////////////////////7
+//////////////////////////////////////ç
+
+
+
+
+///Devolver todos los usuarios
+// router.get('/users', auth.optional, function(req, res, next){  //Select Users
+//   // User.findById(req.payload.id).then(function(user){
+//     // if(!user){ return res.sendStatus(401); }
+//     uss=[];
+//     for(user in users){
+//       uss.push(user);
+//     }
+
+//     return res.json({user: user.toAuthJSON()});
+//   // }).catch(next);
+// });
 
 
 router.put('/user', auth.required, function(req, res, next){  //Update user

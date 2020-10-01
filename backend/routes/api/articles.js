@@ -200,7 +200,7 @@ router.post('/:article/favorite', auth.required, function(req, res, next) { //Fa
   User.findById(req.payload.id).then(function(user){
     if (!user) { return res.sendStatus(401); }
 
-    return user.favorite(articleId).then(function(){
+    return user.favorite(articleId).then(function(){ //La linea mas importante
       return req.article.updateFavoriteCount().then(function(article){
         return res.json({article: article.toJSONFor(user)});
       });
@@ -209,13 +209,13 @@ router.post('/:article/favorite', auth.required, function(req, res, next) { //Fa
 });
 
 // Unfavorite an article
-router.delete('/:article/favorite', auth.required, function(req, res, next) {
+router.delete('/:article/favorite', auth.required, function(req, res, next) {//Borrar favorito article
   var articleId = req.article._id;
 
-  User.findById(req.payload.id).then(function (user){
+  User.findById(req.payload.id).then(function (user){ 
     if (!user) { return res.sendStatus(401); }
 
-    return user.unfavorite(articleId).then(function(){
+    return user.unfavorite(articleId).then(function(){//Linea mas importante
       return req.article.updateFavoriteCount().then(function(article){
         return res.json({article: article.toJSONFor(user)});
       });
@@ -245,7 +245,7 @@ router.get('/:article/comments', auth.optional, function(req, res, next){
 });
 
 // create a new comment
-router.post('/:article/comments', auth.required, function(req, res, next) {
+router.post('/:article/comments', auth.required, function(req, res, next) {//Poner comentario
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
 
@@ -253,17 +253,18 @@ router.post('/:article/comments', auth.required, function(req, res, next) {
     comment.article = req.article;
     comment.author = user;
 
-    return comment.save().then(function(){
-      req.article.comments.push(comment);
+    return comment.save().then(function(){//Guardamos el comentario
+      // req.article.comments.push(comment);
+      req.article.comment=req.article.comment.concat([comment]);
 
-      return req.article.save().then(function(article) {
+      return req.article.save().then(function(article) {//Guardamos el article porque el comentario sismpre va asociado a un article
         res.json({comment: comment.toJSONFor(user)});
       });
     });
   }).catch(next);
 });
 
-router.delete('/:article/comments/:comment', auth.required, function(req, res, next) {
+router.delete('/:article/comments/:comment', auth.required, function(req, res, next) { //Borrar comentario
   if(req.comment.author.toString() === req.payload.id.toString()){
     req.article.comments.remove(req.comment._id);
     req.article.save()

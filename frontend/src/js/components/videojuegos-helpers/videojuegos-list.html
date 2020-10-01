@@ -2,6 +2,13 @@
     <h3>{{videojuego.title}}</h3>
     <p>Plataforma: {{videojuego.plataform}}</p>
      <!-- <button ui-sref="app.videojuegosDetails({slug:videojuego.slug})">See more </button> -->
+
+     <div class="videojuego-actions">
+
+        <!-- Show author info + favorite & follow buttons -->
+        <article-actions article="$ctrl.videojuego"></article-actions>
+  
+      </div>
      <button ui-sref="app.videojuegosDetails">See more </button>
 </div>
 

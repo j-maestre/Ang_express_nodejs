@@ -193,6 +193,39 @@ router.delete('/:videojuego', auth.required, function(req, res, next) {
 });
 
 
+// Favorite an videojuego
+router.post('/:videojuego/favorite', auth.required, function(req, res, next) { //Favorito videojuego
+  
+  console.log("HOLAAAA");
+  
+  // var videojuegoId = req.videojuego._id;
+
+  // User.findById(req.payload.id).then(function(user){
+  //   if (!user) { return res.sendStatus(401); }
+
+  //   return user.favoriteV(videojuegoId).then(function(){ //La linea mas importante
+  //     return req.videojuego.updateFavoriteCount().then(function(videojuego){
+  //       return res.json({videojuego: videojuego.toJSONFor(user)});
+  //     });
+  //   });
+  // }).catch(next);
+});
+
+// Unfavorite an videojuego
+router.delete('/:videojuego/favorite', auth.required, function(req, res, next) {//Borrar favorito videojuego
+  var videojuegoId = req.videojuego._id;
+
+  User.findById(req.payload.id).then(function (user){ 
+    if (!user) { return res.sendStatus(401); }
+
+    return user.unfavoriteV(videojuegoId).then(function(){//Linea mas importante
+      return req.videojuego.updateFavoriteCount().then(function(videojuego){
+        return res.json({videojuego: videojuego.toJSONFor(user)});
+      });
+    });
+  }).catch(next);
+});
+
 
 
 
