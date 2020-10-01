@@ -1,9 +1,23 @@
 class HomeCtrl {
-  constructor(User, Tags, AppConstants, $scope) {
+  constructor(User, Tags, AppConstants, $scope) { //sectors
     'ngInject';
 
     this.appName = AppConstants.appName;
     this._$scope = $scope;
+
+    // if(sectors){
+    //   $scope.infoSect = sectors.slice(0,3);
+    // }else{
+    //   $scope.infoSect = "Error";
+    // }
+
+    // $scope.load = function(){
+    //   $scope.infoSect = sectors.slice(0, sectors.lenght + 3);
+    // }
+
+
+
+
 
     // Get list of all tags
     Tags

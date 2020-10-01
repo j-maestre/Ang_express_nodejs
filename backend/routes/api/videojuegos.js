@@ -194,7 +194,7 @@ router.delete('/:videojuego', auth.required, function(req, res, next) {
 
 
 // Favorite an videojuego
-router.post('/:videojuego/favorite', auth.required, function(req, res, next) { //Favorito videojuego
+router.post('/videojuego/favorite', auth.required, function(req, res, next) { //Favorito videojuego
   
   console.log("HOLAAAA");
   

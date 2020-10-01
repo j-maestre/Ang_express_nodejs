@@ -13,7 +13,7 @@ var merge         = require('merge-stream');
 // Where our files are located
 var jsFiles   = "src/js/**/*.js";
 var viewFiles = "src/js/**/*.html";
-// var imagenes = "src/js/**/*.png";
+// var images = "src/js/images/*.*";
 //Poner las imagenes aqui???
 
 var interceptErrors = function(error) {
@@ -48,6 +48,13 @@ gulp.task('html', function() {
       .pipe(gulp.dest('./build/'));
 });
 
+gulp.task('images', function() {
+  return gulp.src("src/images/*.*")
+      .on('error', interceptErrors)
+      .pipe(gulp.dest('./build/images'));
+});
+
+
 gulp.task('views', function() {
   return gulp.src(viewFiles)
       .pipe(templateCache({
@@ -68,10 +75,14 @@ gulp.task('build', ['html', 'browserify'], function() {
                .pipe(uglify())
                .pipe(gulp.dest('./dist/'));
 
-  return merge(html,js);
+  var images = gulp.src("build/images/*.*")
+               .pipe(uglify())
+               .pipe(gulp.dest('./dist/'));
+
+  return merge(html,js,images);
 });
 
-gulp.task('default', ['html', 'browserify'], function() {
+gulp.task('default', ['html', 'browserify','images'], function() {
 
   browserSync.init(['./build/**/**.**'], {
     server: "./build",
@@ -85,5 +96,5 @@ gulp.task('default', ['html', 'browserify'], function() {
   gulp.watch("src/index.html", ['html']);
   gulp.watch(viewFiles, ['views']);
   gulp.watch(jsFiles, ['browserify']);
-  // gulp.watch(imagenes, ['images']);
+  gulp.watch(images, ['images']);
 }); 

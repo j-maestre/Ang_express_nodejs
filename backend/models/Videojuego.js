@@ -3,6 +3,8 @@ var uniqueValidator = require('mongoose-unique-validator');
 let slug = require('slug');
 var User = mongoose.model('User');
 
+//Borrar la BD y vovler a insertar los videojuegos por las tablas de favoritos y coments que no estaban antes y por eso peta
+
 var VideojuegoSchema = new mongoose.Schema({
   slug: {type: String, lowercase: true, unique: true},
   id:String,

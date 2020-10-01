@@ -11,16 +11,17 @@
 
   <div class="container page">
 
-    <div class="container">
+    <!-- <div class="container">
       <div class="row" infinite-scroll="load()" infinite-scroll-distance='0' infinite-scroll-immediate-check='false'>
-        <div class="col-sm-4" ng-repeat="slide in $ctrl.slides"> <!--sector in infoSect-->
+        <div class="col-sm-4" ng-repeat="sector in infoSect"> 
           <div class="panel panel-info">
             <img ng-src="/images/{{slide.slide}}.svg"
-                class="img-responsive" style="width: 100%;"> <!--ui-sref="app.projects({filter:sector.sector})"-->
-          </div></br>
+                class="img-responsive" style="width: 100%;"
+                ui-sref="app.projects({filter:sector.sector})"> -->
+          <!-- </div></br>
         </div></br>
       </div>
-    </div></br></br>
+    </div></br></br> -->
 
     <!-- <home-slider-cmp></home-slider-cmp> -->
     <div class="row">

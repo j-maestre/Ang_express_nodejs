@@ -6,9 +6,9 @@ class homeSliderCtrl {
         //  /images/bingo1.png
         //./home/xema/2DAW/Desarrollo_servidor/Conduit_angular/Ang_express_nodejs/frontend/src/js/home/images/bingo1.png
 
-        this.slides = [ {image:'./images/bingo1.png',text:"Get funding for your code projects.",id:0},
-                    {image:'./images/bingo2.png',text:"Supports other projects to keep the community growing.",id:1},
-                    {image:'./images/bingo3.png',text:"Other users can do the code you don't know how to do.",id:2}];
+        this.slides = [ {image:'/images/bingo3.png',text:"Get funding for your code projects.",id:0},
+                    {image:'/images/bingo1.png',text:"Supports other projects to keep the community growing.",id:1},
+                    {image:'/images/bingo2.png',text:"Other users can do the code you don't know how to do.",id:2}];
 
                     // console.log("HOLA");
                     // console.log(this.slides);

@@ -45,6 +45,7 @@ const requires = [
   'app.settings',
   'app.editor',
   'ngMessages',
+  'ui.bootstrap',
   'angular-stripe',
   toastr
 ]; 
