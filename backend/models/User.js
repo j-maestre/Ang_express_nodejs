@@ -74,12 +74,15 @@ UserSchema.methods.favorite = function(id){
 
 //Favorite videojuego
 UserSchema.methods.favoriteV = function(id){
+
+  console.log("SUMANDO FAVORITO VIDEOJUEGO EN USER");
   if(this.favoritesV.indexOf(id) === -1){
     // this.favorites.push(id);
     this.favoritesV=this.favoritesV.concat([id]);
 
   }
 
+  console.log(this.favoritesV);
   return this.save();
 };
 
@@ -91,7 +94,12 @@ UserSchema.methods.unfavorite = function(id){
 
 //Unfavorite Videojuego
 UserSchema.methods.unfavoriteV = function(id){
+
+  console.log("UNFAVORITE VIDEOJUEGO");
   this.favoritesV.remove(id);
+
+
+  console.log(this.favoritesV);
   return this.save();
 };
 

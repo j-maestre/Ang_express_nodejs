@@ -13,7 +13,6 @@ var VideojuegoSchema = new mongoose.Schema({
   plataform: String,
   body: String,
   favoritesCount: {type: Number, default: 0},
- 
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   tagList: [{ type: String }],
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
@@ -36,19 +35,20 @@ VideojuegoSchema.methods.slugify = function() {
 VideojuegoSchema.methods.updateFavoriteCount = function() {
   var videojuego = this;
 
-  return User.count({favorites: {$in: [videojuego._id]}}).then(function(count){
+  return User.count({favoritesV: {$in: [videojuego._id]}}).then(function(count){
+    console.log("favoritosCOUNTTTT");
+    console.log(count);
     videojuego.favoritesCount = count;
 
     return videojuego.save();
   });
 };
 
-VideojuegoSchema.methods.toJSONFor = function(){ //user
-  // if(!user){
-  //   user="anonimo";
-  // }
-  // console.log("HELLOOO");
-  // console.log(this.slug);
+VideojuegoSchema.methods.toJSONFor = function(user){
+
+  console.log("TO PROFILE JSON");
+  console.log(user.toProfileJSONFor(user));
+ 
   return {
     slug: this.slug,
     title: this.title,
@@ -60,7 +60,10 @@ VideojuegoSchema.methods.toJSONFor = function(){ //user
     tagList: this.tagList,
     favorited: user ? user.isFavoriteV(this._id) : false,
     favoritesCount: this.favoritesCount,
-    author: this.author.toProfileJSONFor(user)
+    // author: user ? user.toProfileJSONFor(user) : this.author.toProfileJSONFor(user)
+    // author: this.author.toProfileJSONFor(user)
+    author: user.toProfileJSONFor(user)
+
   };
 };
 

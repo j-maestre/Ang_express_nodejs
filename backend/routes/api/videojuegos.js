@@ -194,21 +194,28 @@ router.delete('/:videojuego', auth.required, function(req, res, next) {
 
 
 // Favorite an videojuego
-router.post('/videojuego/favorite', auth.required, function(req, res, next) { //Favorito videojuego
+router.post('/:videojuego/favorite', auth.required, function(req, res, next) { //Favorito videojuego
   
   console.log("HOLAAAA");
-  
-  // var videojuegoId = req.videojuego._id;
 
-  // User.findById(req.payload.id).then(function(user){
-  //   if (!user) { return res.sendStatus(401); }
+  console.log(req.payload.id);
+  var videojuegoId = req.videojuego._id;
 
-  //   return user.favoriteV(videojuegoId).then(function(){ //La linea mas importante
-  //     return req.videojuego.updateFavoriteCount().then(function(videojuego){
-  //       return res.json({videojuego: videojuego.toJSONFor(user)});
-  //     });
-  //   });
-  // }).catch(next);
+  User.findById(req.payload.id).then(function(user){
+
+    console.log("USER:");
+    console.log(user);
+    // console.log()
+
+
+    if (!user) { return res.sendStatus(401); }
+
+    return user.favoriteV(videojuegoId).then(function(){ //La linea mas importante
+      return req.videojuego.updateFavoriteCount().then(function(videojuego){
+        return res.json({videojuego: videojuego.toJSONFor(user)});
+      });
+    });
+  }).catch(next);
 });
 
 // Unfavorite an videojuego
