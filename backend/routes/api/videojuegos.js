@@ -2,7 +2,7 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var Videojuego = mongoose.model('Videojuego');
 var passport = require("passport");
-var Comment = mongoose.model('Comment');
+var VideojuegoComment = mongoose.model('VideojuegoComment');
 var User = mongoose.model('User');
 var auth = require('../auth');
 
@@ -234,10 +234,70 @@ router.delete('/:videojuego/favorite', auth.required, function(req, res, next) {
 });
 
 
+//////COMENTARIOS
+// return an videojuego's comments
+router.get('/:videojuego/comments', auth.optional, function(req, res, next){
+  Promise.resolve(req.payload ? User.findById(req.payload.id) : null).then(function(user){
+    return req.videojuego.populate({
+      path: 'comments',
+      populate: {
+        path: 'author'
+      },
+      options: {
+        sort: {
+          createdAt: 'desc'
+        }
+      }
+    }).execPopulate().then(function(videojuego) {
+      return res.json({comments: req.videojuego.comments.map(function(comment){
+        return comment.toJSONFor(user);
+      })});
+    });
+  }).catch(next);
+});
+
+// create a new comment
+router.post('/:videojuego/comments', auth.required, function(req, res, next) {//Poner comentario
+  User.findById(req.payload.id).then(function(user){
+    if(!user){ return res.sendStatus(401); }
+
+    console.log("HOLAAA");
+    // console.log(req.body);
+    var comment = new VideojuegoComment(req.body.comment);
+    console.log(req.body.comment);
+    comment.videojuego = req.videojuego;
+    comment.author = user;
+
+   
+
+    return comment.save().then(function(){//Guardamos el comentario
+      // req.videojuego.comments.push(comment);
+      req.videojuego.comments=req.videojuego.comments.concat([comment]);
+
+      return req.videojuego.save().then(function(videojuego) {//Guardamos el videojuego porque el comentario sismpre va asociado a un videojuego
+        res.json({comment: comment.toJSONFor(user)});
+      });
+    });
+  }).catch(next);
+});
+
+router.delete('/:videojuego/comments/:comment', auth.required, function(req, res, next) { //Borrar comentario
+  if(req.comment.author.toString() === req.payload.id.toString()){
+    req.videojuego.comments.remove(req.comment._id);
+    req.videojuego.save()
+      .then(Comment.find({_id: req.comment._id}).remove().exec())
+      .then(function(){
+        res.sendStatus(204);
+      });
+  } else {
+    res.sendStatus(403);
+  }
+});
 
 
 
 
+//////
 
 
 

@@ -46,6 +46,7 @@ if(isProduction){
 require('./models/User');
 require('./models/Article');
 require('./models/Comment');
+require('./models/VideojuegoComment');
 require('./config/passport');
 require('./models/Videojuego');
 

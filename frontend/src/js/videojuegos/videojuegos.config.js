@@ -13,7 +13,6 @@ function VideojuegosConfig($stateProvider) {
       resolve: {
         videojuegos: function(Videojuegos) {
           return Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
-
         }
 
       }

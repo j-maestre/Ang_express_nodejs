@@ -6,6 +6,7 @@ var CommentSchema = new mongoose.Schema({
   article: { type: mongoose.Schema.Types.ObjectId, ref: 'Article' }
 }, {timestamps: true});
 
+
 // Requires population of author
 CommentSchema.methods.toJSONFor = function(user){
   return {

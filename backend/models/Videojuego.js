@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 let slug = require('slug');
 var User = mongoose.model('User');
+// var VideojuegoComment = mongoose.model('VideojuegoComment');
 
 //Borrar la BD y vovler a insertar los videojuegos por las tablas de favoritos y coments que no estaban antes y por eso peta
 
@@ -13,7 +14,7 @@ var VideojuegoSchema = new mongoose.Schema({
   plataform: String,
   body: String,
   favoritesCount: {type: Number, default: 0},
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'VideojuegoComment' }],
   tagList: [{ type: String }],
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, {timestamps: true});
@@ -46,8 +47,8 @@ VideojuegoSchema.methods.updateFavoriteCount = function() {
 
 VideojuegoSchema.methods.toJSONFor = function(user){
 
-  console.log("TO PROFILE JSON");
-  console.log(user.toProfileJSONFor(user));
+  // console.log("TO PROFILE JSON");
+  // console.log(user.toProfileJSONFor(user));
  
   return {
     slug: this.slug,
@@ -58,6 +59,7 @@ VideojuegoSchema.methods.toJSONFor = function(user){
     createdAt: this.createdAt,
     updatedAt: this.updatedAt,
     tagList: this.tagList,
+    // comments: this.comments,
     favorited: user ? user.isFavoriteV(this._id) : false,
     favoritesCount: this.favoritesCount,
     // author: user ? user.toProfileJSONFor(user) : this.author.toProfileJSONFor(user)

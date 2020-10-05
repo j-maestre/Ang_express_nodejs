@@ -97,9 +97,7 @@ router.post('/users/sociallogin', function (req, res, next){
 
 
   User.findOne({'_id' : sessionUser},function(err,user){
-    console.log("social login findOne");
-    console.log(err);
-    console.log(user);
+  
     if(err){
       return done(err);
     }
