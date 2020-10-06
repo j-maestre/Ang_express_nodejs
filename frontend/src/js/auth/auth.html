@@ -18,10 +18,10 @@
         </p>
          
         <!-- Href a google o github -->
-
+        <div>EEEOOO</div>
         <list-errors errors="$ctrl.errors"></list-errors>
 
-        <form ng-submit="$ctrl.submitForm()">
+        <form name="authForm" ng-submit="$ctrl.submitForm()">
           <fieldset ng-disabled="$ctrl.isSubmitting">
 
             <fieldset class="form-group" ng-show="$ctrl.authType === 'register'">
@@ -32,23 +32,51 @@
             </fieldset>
 
             <fieldset class="form-group">
-              <input class="form-control form-control-lg"
+              <!-- <input class="form-control form-control-lg"
                 type="email"
                 placeholder="Email"
-                ng-model="$ctrl.formData.email" />
+                ng-model="$ctrl.formData.email" /> -->
+
+                <fieldset class="form-group">
+                  <input required class="form-control form-control-lg" type="text" placeholder="email" ng-model="$ctrl.authForm.email" name="Email"/>
+                  <div ng-messages="authForm.Email.$error" style="color:red; font-weight: bold;">
+                    <p ng-messages="requires" ng-show="authForm.Password.$dirty">Email is required</p>
+                  </div>
+                </fieldset>
             </fieldset>
 
+            <p>Prueba ngmessage</p>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg"
+              <!-- <input class="form-control form-control-lg"
                 type="password"
                 placeholder="Password"
-                ng-model="$ctrl.formData.password" />
+                ng-model="$ctrl.formData.password" /> -->
+                <input required class="form-control form-control-lg" type="text" placeholder="password" ng-model="$ctrl.authForm.password" name="Password" ng-minlength="4" ng-maxlength="40"/>
+              <div ng-messages="authForm.Password.$error" style="color: red; font-weight: bold;">
+                <p ng-message="required" ng-show="authForm.Password.$dirty">Password is required</p>
+                <p ng-message="minlength">Enter more than 4 characters</p>
+                <p ng-message="maxlength">Enter less than 40 caracters</p>
+              </div>
+
+
+
             </fieldset>
 
-            <button class="btn btn-lg btn-primary pull-xs-right"
-              type="submit"
-              ng-bind="::$ctrl.title">
-            </button>
+
+            
+            <fieldset ng-show="$ctrl.authType === 'login'">
+              <button class="btn btn-lg btn-primary pull-xs-right" type="submit" ng-bind="::$ctrl.title"
+                            ng-show="authForm.Password.$valid"
+                            ng-click="$ctrl.authSubmit()">
+              </button>
+              <button class="btn btn-lg btn-primary pull-xs-right" type="submit" ng-bind="::$ctrl.title"
+                            ng-hide ="authForm.Password.$valid"
+                            ng-click="$ctrl.nvalidSubmit()">
+              </button>
+            </fieldset>
+            
+            
+
             <!-- El puerto estaba antes en 3002 -->
             <a href="http://localhost:3000/api/auth/github" style="font-size: 25px; color:black"><i class="ion-social-github"></i>&nbsp;Github</a></br>
             <a href="http://localhost:3000/api/auth/googleplus" style="font-size: 25px; color:black"><i class="ion-social-google"></i>&nbsp;google</a>

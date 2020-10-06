@@ -29,7 +29,7 @@ class SocialCtrl {
         (err) => {
           console.log(err);
           this._toaster.showToastr('error','Error trying to login');
-          // alert("Error login");
+          alert("Error login");
           this._$state.go('app.home');
         }
       )

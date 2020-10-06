@@ -26,13 +26,7 @@ function VideojuegosConfig($stateProvider) {
       title: 'Videojuego Details', 
       resolve: {
         videojuego: function(Videojuegos, $stateParams) {
-
-          // console.log("HOLAA");
-          // console.log("Videojuego:");
-          // console.log(Videojuegos);
-          // console.log("statreparams");
-          // console.log($stateParams.slug);
-          return Videojuegos.getVideojuego($stateParams.slug).then((data) => data.videojuego);
+          return Videojuegos.getVideojuego($stateParams.slug).then((videojuego) => videojuego);
         }
       }
     })

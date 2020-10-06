@@ -12,7 +12,7 @@ videojuegosModule.controller('VideojuegosCtrl',VideojuegosCtrl);
 // videojuegosModule.controller('videojuegosDetailsCtrl', VideojuegosDetailsCtrl);
 
 import VideojuegosDetailsCtrl from './videojuegosDetails.controller';
-videojuegosModule.controller('videojuegosDetailsCtrl', VideojuegosDetailsCtrl);
+videojuegosModule.controller('VideojuegosDetailsCtrl', VideojuegosDetailsCtrl);
 
 export default videojuegosModule;
 // export default videojuegosDetails;
