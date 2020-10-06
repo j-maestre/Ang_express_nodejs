@@ -23,14 +23,18 @@ function VideojuegosConfig($stateProvider) {
       controller: 'VideojuegosDetailsCtrl',
       controllerAs: '$ctrl',
       templateUrl: 'videojuegos/videojuegosDetails.html',
-      title: 'Videojuego Details',
-      // resolve: {
-      //   videojuego: function(Videojuegos, $state, $stateParams) {
-      //     return Videojuego.getVideojuego($stateParams.slug).then(
-      //      (data) => data.videojuego
-      //     )
-      //   }
-      // }
+      title: 'Videojuego Details', 
+      resolve: {
+        videojuego: function(Videojuegos, $stateParams) {
+
+          // console.log("HOLAA");
+          // console.log("Videojuego:");
+          // console.log(Videojuegos);
+          // console.log("statreparams");
+          // console.log($stateParams.slug);
+          return Videojuegos.getVideojuego($stateParams.slug).then((data) => data.videojuego);
+        }
+      }
     })
   
   

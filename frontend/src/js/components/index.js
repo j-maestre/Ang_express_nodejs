@@ -73,8 +73,8 @@ componentsModule.component('favoriteBtn', FavoriteBtn);
 import VideojuegosList from './videojuegos-helpers/videojuegos-list.component';
 componentsModule.component('videojuegosList',VideojuegosList); 
 
-import VideojuegosDetails from './videojuegos-helpers/videojuegos-detail.component';
-componentsModule.component('videojuegosDetails',VideojuegosDetails);
+// import VideojuegosDetails from './videojuegos-helpers/videojuegos-detail.component';
+// componentsModule.component('videojuegosDetails',VideojuegosDetails);
 
 /////
 
