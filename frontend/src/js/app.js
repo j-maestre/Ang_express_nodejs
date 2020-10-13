@@ -23,6 +23,7 @@ import './home';
 import './profile';
 import './article';
 import './videojuegos';
+import './videojuego';
 import './services';
 import './auth';
 import './settings';
@@ -38,7 +39,7 @@ const requires = [
   'app.home',
   'app.profile',
   'app.videojuegos',  
-  // 'app.videojuegosDetails',
+  // 'app.videojuego',
   'app.article',
   'app.services',
   'app.auth',

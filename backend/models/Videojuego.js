@@ -47,7 +47,8 @@ VideojuegoSchema.methods.updateFavoriteCount = function() {
 
 VideojuegoSchema.methods.toJSONFor = function(user){
 
-  // console.log("TO PROFILE JSON");
+  console.log("TO PROFILE JeiSON");
+  console.log(user.toProfileJSONFor(user));
   // console.log(user.toProfileJSONFor(user));
  
   return {
@@ -62,9 +63,9 @@ VideojuegoSchema.methods.toJSONFor = function(user){
     // comments: this.comments,
     favorited: user ? user.isFavoriteV(this._id) : false,
     favoritesCount: this.favoritesCount,
-    // author: user ? user.toProfileJSONFor(user) : this.author.toProfileJSONFor(user)
+    author: user ? user.toProfileJSONFor(user) : this.author.toProfileJSONFor(user)
     // author: this.author.toProfileJSONFor(user)
-    author: user.toProfileJSONFor(user)
+    // author: user.toProfileJSONFor(user)
 
   };
 };

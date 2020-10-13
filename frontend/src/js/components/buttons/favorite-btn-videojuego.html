@@ -1,0 +1,7 @@
+<button class="btn btn-sm"
+  ng-class="{ 'disabled' : $ctrl.isSubmitting,
+              'btn-outline-primary': !$ctrl.videojuego.favorited,
+              'btn-primary': $ctrl.videojuego.favorited }"
+  ng-click="$ctrl.submit()">
+  <i class="ion-heart"></i> <ng-transclude></ng-transclude>
+</button>

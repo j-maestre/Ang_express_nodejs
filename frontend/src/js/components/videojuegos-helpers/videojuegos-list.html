@@ -1,20 +1,58 @@
-<div class="videojuego" ng-repeat="videojuego in $ctrl.videojuegos">
+<videojuego-preview
+  videojuego="videojuego"
+  ng-repeat="videojuego in $ctrl.videojuegos"> <!--VideojuegosCtrl-->
+</videojuego-preview>
+
+<!-- <div class="videojuego-preview"
+  ng-hide="!$ctrl.loading">
+  Loading videojuegos...
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="videojuego" ng-repeat="videojuego in $ctrl.videojuegos">
     <h3>{{videojuego.title}}</h3>
-    <p>Plataforma: {{videojuego.plataform}}</p>
+    <p>Plataforma: {{videojuego.plataform}}</p> -->
      <!-- <button ui-sref="app.videojuegosDetails({slug:videojuego.slug})">See more </button> -->
 
-     <div class="videojuego-actions">
+     <!-- <div class="videojuego-actions"> -->
 
         <!-- Show author info + favorite & follow buttons -->
-        <article-actions article="$ctrl.videojuego"></article-actions>
+        <!-- <videojuego-actions videojuego="$ctrl.videojuego"></videojuego-actions>
   
-      </div>
+      </div> -->
      <!-- <button ui-sref="app.videojuegosDetails">See more </button> -->
-     <button ng-click="openDetails()">Visit</button> 
+     <!-- <button ng-click="openDetails()">Visit</button>  -->
      <!-- <favoritbtn hotel="$ctrl.hotel" class="pull-xs-right"> -->
       <!-- {{$ctrlotel.favoritesCount}} -->
 <!-- </favorite-bt -->
+<!-- </div> -->
+
+
+
+
+
+<!-- <div class="videojuego-preview"
+  ng-hide="!$ctrl.loading">
+  Loading videojuegos...
 </div>
+
+<div class="videojuego-preview"
+  ng-show="!$ctrl.loading && !$ctrl.list.length">
+  No videojuegos are here... yet.
+</div> -->
 
 
 

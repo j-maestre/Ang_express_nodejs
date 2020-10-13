@@ -1,0 +1,23 @@
+<videojuego-meta videojuego="$ctrl.videojuego">
+
+    <span ng-show="$ctrl.canModify">
+      <a class="btn btn-sm btn-outline-secondary"
+        ui-sref="app.editor({ slug: $ctrl.videojuego.slug })">
+        <i class="ion-edit"></i> Edit videojuego
+      </a>
+  
+      <button class="btn btn-sm btn-outline-danger"
+        ng-class="{disabled: $ctrl.isDeleting}"
+        ng-click="$ctrl.deleteVideojuego()">
+        <i class="ion-trash-a"></i> Delete Videojuego
+      </button>
+    </span>
+  
+    <span ng-hide="$ctrl.canModify">
+      <follow-btn user="$ctrl.videojuego.author"></follow-btn>
+      <favorite-btn videojuego="$ctrl.videojuego">
+        {{ $ctrl.videojuego.favorited ? 'Unfavorite' : 'Favorite' }} Videojuego <span class="counter">({{$ctrl.videojuego.favoritesCount}})</span>
+      </favorite-btn>
+    </span>
+  
+  </videojuego-meta>

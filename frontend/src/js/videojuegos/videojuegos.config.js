@@ -12,29 +12,16 @@ function VideojuegosConfig($stateProvider) {
       title: "Videojuegos",
       resolve: {
         videojuegos: function(Videojuegos) {
-          return Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
+          console.log("videojuegos config resolve");
+          console.log(Videojuegos);
+          let prueba= Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
+          console.log("prueba");
+          console.log(prueba);
+          return prueba;
         }
 
       }
     })
-  
-    .state('app.videojuegosDetails', {
-      url: "/videojuegos/:slug",
-      controller: 'VideojuegosDetailsCtrl',
-      controllerAs: '$ctrl',
-      templateUrl: 'videojuegos/videojuegosDetails.html',
-      title: 'Videojuego Details', 
-      resolve: {
-        videojuego: function(Videojuegos, $stateParams) {
-          return Videojuegos.getVideojuego($stateParams.slug).then((videojuego) => videojuego);
-        }
-      }
-    })
-  
-  
   };
   
-  
-  
   export default VideojuegosConfig;
-  

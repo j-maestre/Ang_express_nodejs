@@ -1,0 +1,32 @@
+<div class="videojuego-preview" videojuego="$ctrl.videojuego">
+    <!-- <videojuego-meta videojuego="$ctrl.videojuego"> -->
+      <h3>{{$ctrl.videojuego.title}}</h3>
+        <p>Plataforma: {{$ctrl.videojuego.plataform}}</p>
+      <favorite-btn videojuego="$ctrl.videojuego" class="pull-xs-right"   >
+        
+        {{$ctrl.videojuego.favoritesCount}}
+        
+         
+     <!-- <button ui-sref="app.videojuegosDetails({slug:videojuego.slug})">See more </button> -->
+
+      </favorite-btn>
+      <button ui-sref="app.videojuego({slug:videojuego.slug})">See more </button>
+
+</div>
+
+
+
+    <!-- </videojuego-meta> -->
+<!--   
+    <a ui-sref="app.videojuego({ slug: $ctrl.videojuego.slug })" class="preview-link">
+      <h1 ng-bind="$ctrl.videojuego.title"></h1>
+      <p ng-bind="$ctrl.videojuego.description"></p>
+      <span>Read more...</span>
+      <ul class="tag-list">
+        <li class="tag-default tag-pill tag-outline"
+          ng-repeat="tag in $ctrl.videojuego.tagList">
+          {{tag}}
+        </li>
+      </ul>
+    </a>
+  </div> -->

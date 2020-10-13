@@ -42,5 +42,20 @@ export default class Videojuegos{
     }
 
 
+    favorite(slug) {
+      return this._$http({
+        url: this._AppConstants.api + '/videojuegos/' + slug + '/favorite',
+        method: 'POST'
+      })
+    }
+  
+    unfavorite(slug) {
+      return this._$http({
+        url: this._AppConstants.api + '/videojuegos/' + slug + '/favorite',
+        method: 'DELETE'
+      })
+    }
+
+
 
 }

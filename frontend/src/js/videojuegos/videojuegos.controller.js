@@ -11,23 +11,8 @@ class VideojuegosCtrl {
       $scope.videojuegos = this.videojuegos;
 
       this._$scope.openDetails = function () {
-        $state.go("app.videojuegosDetails", { slug: this.videojuego["slug"] });
+        $state.go("app.videojuego", { slug: this.videojuego["slug"] });
       };
   }
-
 }
   export default VideojuegosCtrl;
-  
-
-
-    // videojuegos.getVideojuegos().then(
-  //   (videojuegos) => {
-  //     this.videojuegos = videojuegos
-
-  //     let AllVideojuegos = new Array();
-
-  //     this.videojuegos.forEach(videojuegos => {
-  //       AllVideojuegos.push(videojuegos);
-  //     });
-  //     $scope.AllVideojuegos = AllVideojuegos;
-  //   });

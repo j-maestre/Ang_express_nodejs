@@ -8,7 +8,7 @@ class VideojuegosListCtrl{
         // this.hotel["slug"]
         console.log("SLUG");
         console.log(this.slug);
-        $state.go("app.videojuegosDetails", { slug: this.slug});
+        $state.go("app.videojuego", { slug: this.slug});
       };
     }
 }
