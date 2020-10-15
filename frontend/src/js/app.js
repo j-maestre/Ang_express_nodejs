@@ -39,7 +39,7 @@ const requires = [
   'app.home',
   'app.profile',
   'app.videojuegos',  
-  // 'app.videojuego',
+  'app.videojuego',
   'app.article',
   'app.services',
   'app.auth',

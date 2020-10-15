@@ -10,15 +10,15 @@
      <!-- <button ui-sref="app.videojuegosDetails({slug:videojuego.slug})">See more </button> -->
 
       </favorite-btn>
-      <button ui-sref="app.videojuego({slug:videojuego.slug})">See more </button>
+      <button ui-sref="app.videojuego({slug:$ctrl.videojuego.slug})" class="preview-link">Detalles</button>
 
 </div>
 
 
 
     <!-- </videojuego-meta> -->
-<!--   
-    <a ui-sref="app.videojuego({ slug: $ctrl.videojuego.slug })" class="preview-link">
+   
+<!--<a ui-sref="app.videojuego({ slug: $ctrl.videojuego.slug })" class="preview-link">
       <h1 ng-bind="$ctrl.videojuego.title"></h1>
       <p ng-bind="$ctrl.videojuego.description"></p>
       <span>Read more...</span>

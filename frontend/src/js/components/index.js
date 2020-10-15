@@ -31,14 +31,12 @@ componentsModule.component('videojuegoPreview', VideojuegoPreview);
 // import VideojuegosDetails from './videojuegos-helpers/videojuegos-detail.component';
 // componentsModule.component('videojuegosDetails',VideojuegosDetails);
 
-/////
 
+// import ArticlePreview from './article-helpers/article-preview.component';
+// componentsModule.component('articlePreview', ArticlePreview);
 
-import ArticlePreview from './article-helpers/article-preview.component';
-componentsModule.component('articlePreview', ArticlePreview);
-
-import ArticleList from './article-helpers/article-list.component';
-componentsModule.component('articleList', ArticleList);  
+// import ArticleList from './article-helpers/article-list.component';
+// componentsModule.component('articleList', ArticleList);  
 
 import ListPagination from './article-helpers/list-pagination.component';
 componentsModule.component('listPagination', ListPagination);

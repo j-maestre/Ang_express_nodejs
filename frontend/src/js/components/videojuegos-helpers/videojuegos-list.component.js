@@ -3,13 +3,13 @@ class VideojuegosListCtrl{
         'ngInject';
         this._$scope = $scope;
 
-      this._$scope.openDetails = function (slug) {
-        this.slug=this.videojuego.slug;
-        // this.hotel["slug"]
-        console.log("SLUG");
-        console.log(this.slug);
-        $state.go("app.videojuego", { slug: this.slug});
-      };
+      // this._$scope.openDetails = function (slug) {
+      //   this.slug=this.videojuego.slug;
+      //   // this.hotel["slug"]
+      //   console.log("SLUG");
+      //   console.log(this.slug);
+      //   $state.go("app.videojuego", { slug: this.slug});
+      // };
     }
 }
 

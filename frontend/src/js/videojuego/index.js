@@ -8,7 +8,7 @@ videojuegoModule.config(VideojuegoConfig);
 import VideojuegoCtrl from './videojuego.controller';
 videojuegoModule.controller('VideojuegoCtrl',VideojuegoCtrl);
 
-import VideojuegoActions from '../videojuego/videojuego-actions.component';
+import VideojuegoActions from './videojuego-actions.component';
 videojuegoModule.component('videojuegoActions', VideojuegoActions);
 
 // import Comment from './comment.component';

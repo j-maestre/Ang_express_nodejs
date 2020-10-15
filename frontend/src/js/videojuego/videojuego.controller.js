@@ -1,12 +1,12 @@
   class VideojuegoCtrl {
-    constructor(videojuego, $scope) {
+    constructor(videojuego) {//, $scope
       "ngInject";
    
       console.log("Controller detail");
-      this._$scope = $scope;
+      // this._$scope = $scope;
       this.videojuego = videojuego;
   
-      $scope.videojuego = this.videojuego;
+      // $scope.videojuego = this.videojuego;
 
   }
 

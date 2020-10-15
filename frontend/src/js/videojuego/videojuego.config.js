@@ -1,10 +1,8 @@
-
+console.log("OLE LOS CARACOLES videojuego config");
 function VideojuegoConfig($stateProvider) {
     "ngInject";
   
     $stateProvider
-  
-    
   
     .state('app.videojuego', {
       url: "/videojuegos/:slug",
@@ -14,6 +12,7 @@ function VideojuegoConfig($stateProvider) {
       title: 'Videojuego Details', 
       resolve: {
         videojuego: function(Videojuego, $stateParams) {
+          console.log("OLAAA");
           return Videojuego.getVideojuego($stateParams.slug).then((videojuego) => videojuego);
         }
       }
@@ -22,7 +21,4 @@ function VideojuegoConfig($stateProvider) {
   
   };
   
-  
-  
   export default VideojuegoConfig;
-  
