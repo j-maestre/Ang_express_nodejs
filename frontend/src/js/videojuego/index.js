@@ -11,8 +11,8 @@ videojuegoModule.controller('VideojuegoCtrl',VideojuegoCtrl);
 import VideojuegoActions from './videojuego-actions.component';
 videojuegoModule.component('videojuegoActions', VideojuegoActions);
 
-// import Comment from './comment.component';
-// articleModule.component('comment', Comment);
+import Comment from './comment.component';
+videojuegoModule.component('comment', Comment);
 
 
 export default videojuegoModule;

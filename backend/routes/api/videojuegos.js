@@ -135,6 +135,7 @@ router.post("/", function(req, res, next) {
 
 // return a videojuego
 router.get('/:videojuego', auth.optional, function(req, res, next) {
+  console.log("holaaaaa");
   Promise.all([
     req.payload ? User.findById(req.payload.id) : null,
     req.videojuego.populate('author').execPopulate()

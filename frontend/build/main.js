@@ -53732,7 +53732,7 @@ _angular2.default.bootstrap(document, ['app'], {
   strictDi: true
 });
 
-},{"./article":57,"./auth":60,"./components":67,"./config/app.config":72,"./config/app.constants":73,"./config/app.run":74,"./config/app.templates":75,"./editor":79,"./home":83,"./layout":86,"./profile":87,"./services":93,"./settings":100,"./videojuego":103,"./videojuegos":107,"angular":15,"angular-messages":3,"angular-stripe":6,"angular-toastr":10,"angular-ui-bootstrap":12,"angular-ui-router":13}],53:[function(require,module,exports){
+},{"./article":57,"./auth":60,"./components":66,"./config/app.config":71,"./config/app.constants":72,"./config/app.run":73,"./config/app.templates":74,"./editor":78,"./home":82,"./layout":85,"./profile":86,"./services":92,"./settings":99,"./videojuego":103,"./videojuegos":107,"angular":15,"angular-messages":3,"angular-stripe":6,"angular-toastr":10,"angular-ui-bootstrap":12,"angular-ui-router":13}],53:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54240,19 +54240,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var FavoriteVideojuegoBtnCtrl = function () {
-  FavoriteVideojuegoBtnCtrl.$inject = ["User", "Videojuegos", "$state"];
-  function FavoriteVideojuegoBtnCtrl(User, Videojuegos, $state) {
+var FavoriteBtnCtrl = function () {
+  FavoriteBtnCtrl.$inject = ["User", "Videojuegos", "$state"];
+  function FavoriteBtnCtrl(User, Videojuegos, $state) {
     'ngInject';
 
-    _classCallCheck(this, FavoriteVideojuegoBtnCtrl);
+    _classCallCheck(this, FavoriteBtnCtrl);
 
     this._User = User;
     this._Videojuegos = Videojuegos;
     this._$state = $state;
   }
 
-  _createClass(FavoriteVideojuegoBtnCtrl, [{
+  _createClass(FavoriteBtnCtrl, [{
     key: 'submit',
     value: function submit() {
       var _this = this;
@@ -54280,77 +54280,12 @@ var FavoriteVideojuegoBtnCtrl = function () {
     }
   }]);
 
-  return FavoriteVideojuegoBtnCtrl;
-}();
-
-var FavoriteVideojuegoBtn = {
-  bindings: {
-    videojuego: '='
-  },
-  transclude: true,
-  controller: FavoriteVideojuegoBtnCtrl,
-  templateUrl: 'components/buttons/favorite-btn.html'
-};
-
-exports.default = FavoriteVideojuegoBtn;
-
-},{}],65:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var FavoriteBtnCtrl = function () {
-  FavoriteBtnCtrl.$inject = ["User", "Articles", "$state"];
-  function FavoriteBtnCtrl(User, Articles, $state) {
-    'ngInject';
-
-    _classCallCheck(this, FavoriteBtnCtrl);
-
-    this._User = User;
-    this._Articles = Articles;
-    this._$state = $state;
-  }
-
-  _createClass(FavoriteBtnCtrl, [{
-    key: 'submit',
-    value: function submit() {
-      var _this = this;
-
-      this.isSubmitting = true;
-
-      if (!this._User.current) {
-        this._$state.go('app.register');
-        return;
-      }
-
-      if (this.article.favorited) {
-        this._Articles.unfavorite(this.article.slug).then(function () {
-          _this.isSubmitting = false;
-          _this.article.favorited = false;
-          _this.article.favoritesCount--;
-        });
-      } else {
-        this._Articles.favorite(this.article.slug).then(function () {
-          _this.isSubmitting = false;
-          _this.article.favorited = true;
-          _this.article.favoritesCount++;
-        });
-      }
-    }
-  }]);
-
   return FavoriteBtnCtrl;
 }();
 
 var FavoriteBtn = {
   bindings: {
-    article: '='
+    videojuego: '='
   },
   transclude: true,
   controller: FavoriteBtnCtrl,
@@ -54359,7 +54294,7 @@ var FavoriteBtn = {
 
 exports.default = FavoriteBtn;
 
-},{}],66:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54425,7 +54360,7 @@ var FollowBtn = {
 
 exports.default = FollowBtn;
 
-},{}],67:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54456,10 +54391,6 @@ var _favoriteBtn = require('./buttons/favorite-btn.component');
 
 var _favoriteBtn2 = _interopRequireDefault(_favoriteBtn);
 
-var _favoriteBtnVideojuego = require('./buttons/favorite-btn-videojuego.component');
-
-var _favoriteBtnVideojuego2 = _interopRequireDefault(_favoriteBtnVideojuego);
-
 var _videojuegosList = require('./videojuegos-helpers/videojuegos-list.component');
 
 var _videojuegosList2 = _interopRequireDefault(_videojuegosList);
@@ -54486,9 +54417,11 @@ componentsModule.component('articleMeta', _articleMeta2.default);
 
 componentsModule.component('favoriteBtn', _favoriteBtn2.default);
 
-//Videojuegos
+//Xema del futuro, envia a tomar por culo el favorite button videojuegos y modifica el favorite btn de articles y ponlo de videojuegos y a chuparla ya
 
-componentsModule.component('favoriteVideojuegoBtn', _favoriteBtnVideojuego2.default);
+//Videojuegos
+// import FavoriteBtnVideojuego from './buttons/favorite-btn-videojuego.component';
+// componentsModule.component('favoriteBtnVideojuego', FavoriteBtnVideojuego);
 
 componentsModule.component('videojuegosList', _videojuegosList2.default);
 
@@ -54508,7 +54441,7 @@ componentsModule.component('listPagination', _listPagination2.default);
 
 exports.default = componentsModule;
 
-},{"./article-helpers/article-meta.component":62,"./article-helpers/list-pagination.component":63,"./buttons/favorite-btn-videojuego.component":64,"./buttons/favorite-btn.component":65,"./buttons/follow-btn.component":66,"./list-errors.component":68,"./show-authed.directive":69,"./videojuegos-helpers/videojuego-preview.component":70,"./videojuegos-helpers/videojuegos-list.component":71,"angular":15}],68:[function(require,module,exports){
+},{"./article-helpers/article-meta.component":62,"./article-helpers/list-pagination.component":63,"./buttons/favorite-btn.component":64,"./buttons/follow-btn.component":65,"./list-errors.component":67,"./show-authed.directive":68,"./videojuegos-helpers/videojuego-preview.component":69,"./videojuegos-helpers/videojuegos-list.component":70,"angular":15}],67:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54523,7 +54456,7 @@ var ListErrors = {
 
 exports.default = ListErrors;
 
-},{}],69:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 'use strict';
 
 ShowAuthed.$inject = ["User"];
@@ -54562,7 +54495,7 @@ function ShowAuthed(User) {
 
 exports.default = ShowAuthed;
 
-},{}],70:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54577,7 +54510,7 @@ var VideojuegoPreview = {
 
 exports.default = VideojuegoPreview;
 
-},{}],71:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54612,7 +54545,7 @@ var VideojuegosList = {
 };
 exports.default = VideojuegosList;
 
-},{}],72:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 'use strict';
 
 AppConfig.$inject = ["$httpProvider", "$stateProvider", "$locationProvider", "$urlRouterProvider"];
@@ -54652,7 +54585,7 @@ function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterP
 
 exports.default = AppConfig;
 
-},{"./auth.interceptor":76}],73:[function(require,module,exports){
+},{"./auth.interceptor":75}],72:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54671,7 +54604,7 @@ var AppConstants = {
 
 exports.default = AppConstants;
 
-},{}],74:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 'use strict';
 
 AppRun.$inject = ["AppConstants", "$rootScope"];
@@ -54700,27 +54633,28 @@ function AppRun(AppConstants, $rootScope) {
 
 exports.default = AppRun;
 
-},{}],75:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 "use strict";
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
-  $templateCache.put("auth/auth.html", "<div class=\"auth-page\">\n  <div class=\"container page\">\n    <div class=\"row\">\n\n      <div class=\"col-md-6 offset-md-3 col-xs-12\">\n        <h1 class=\"text-xs-center\" ng-bind=\"::$ctrl.title\"></h1>\n        <p class=\"text-xs-center\">\n          <a ui-sref=\"app.login\"\n            ng-show=\"$ctrl.authType === \'login\'\"><!--register-->\n            Have an account?\n          </a>\n         \n\n          <a ui-sref=\"app.register\"\n            ng-show=\"$ctrl.authType === \'register\'\">\n            Need an account?\n          </a>\n        </p>\n         \n        <!-- Href a google o github -->\n        \n        <list-errors errors=\"$ctrl.errors\"></list-errors>\n\n        <form name=\"authForm\" ng-submit=\"$ctrl.submitForm()\">\n          <fieldset ng-disabled=\"$ctrl.isSubmitting\">\n\n            <fieldset class=\"form-group\" ng-show=\"$ctrl.authType === \'register\'\">\n              <!-- <input class=\"form-control form-control-lg\"\n                type=\"text\"\n                placeholder=\"Username\"\n                ng-model=\"$ctrl.formData.username\" /> -->\n                <input required class=\"form-control form-control-lg\" required type=\"text\" placeholder=\"Username\" ng-model=\"$ctrl.authForm.username\" minlength=\"4\" maxlength=\"12\" name=\"Username\"/>\n\n                <div ng-messages=\"authForm.Username.$error\" style=\"color:red; font-weight: bold;\">\n                  <p ng-message=\"required\" ng-show=\"authForm.Username.$dirty\">Username is required</p>\n                  <p ng-message=\"minlength\">Enter more than 4 caracters</p>\n                  <p ng-message=\"maxlength\">Enter less than 12 caracters</p>\n                </div>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <!-- <input class=\"form-control form-control-lg\"\n                type=\"email\"\n                placeholder=\"Email\"\n                ng-model=\"$ctrl.formData.email\" /> -->\n\n                <fieldset class=\"form-group\">\n                  <input required class=\"form-control form-control-lg\" type=\"text\" placeholder=\"email\" ng-model=\"$ctrl.authForm.email\" name=\"Email\"/>\n                  <div ng-messages=\"authForm.Email.$error\" style=\"color:red; font-weight: bold;\">\n                    <p ng-message=\"required\" ng-show=\"authForm.Email.$dirty\">Email is required</p>\n                  </div>\n                </fieldset>\n            </fieldset>\n\n            \n            <fieldset class=\"form-group\">\n              <!-- <input class=\"form-control form-control-lg\"\n                type=\"password\"\n                placeholder=\"Password\"\n                ng-model=\"$ctrl.formData.password\" /> -->\n                <input required class=\"form-control form-control-lg\" type=\"text\" placeholder=\"password\" ng-model=\"$ctrl.authForm.password\" name=\"Password\" ng-minlength=\"4\" ng-maxlength=\"40\"/>\n              <div ng-messages=\"authForm.Password.$error\" style=\"color: red; font-weight: bold;\">\n                <p ng-message=\"required\" ng-show=\"authForm.Password.$dirty\">Password is required</p>\n                <p ng-message=\"minlength\">Enter more than 4 characters</p>\n                <p ng-message=\"maxlength\">Enter less than 40 caracters</p>\n              </div>\n\n\n\n            </fieldset>\n\n\n            \n            <fieldset ng-show=\"$ctrl.authType === \'login\'\">\n              <button class=\"btn btn-lg btn-primary pull-xs-right\" type=\"submit\" ng-bind=\"::$ctrl.title\"\n                            ng-show=\"authForm.Password.$valid && authForm.Email.$valid\"\n                            ng-click=\"$ctrl.authSubmit()\">\n              </button>\n              <button class=\"btn btn-lg btn-primary pull-xs-right\" type=\"submit\" ng-bind=\"::$ctrl.title\"\n                            ng-hide =\"authForm.Password.$valid && authForm.Email.$valid\"\n                            ng-click=\"$ctrl.nvalidSubmit()\">\n              </button>\n            </fieldset>\n            \n            \n\n            <!-- El puerto estaba antes en 3002 -->\n            <a href=\"http://localhost:3000/api/auth/github\" style=\"font-size: 25px; color:black\"><i class=\"ion-social-github\"></i>&nbsp;Github</a></br>\n            <a href=\"http://localhost:3000/api/auth/googleplus\" style=\"font-size: 25px; color:black\"><i class=\"ion-social-google\"></i>&nbsp;google</a>\n\n          </fieldset>\n        </form>\n      </div>\n\n    </div>\n  </div>\n</div>\n");
   $templateCache.put("article/article-actions.html", "<article-meta article=\"$ctrl.article\">\n\n  <span ng-show=\"$ctrl.canModify\">\n    <a class=\"btn btn-sm btn-outline-secondary\"\n      ui-sref=\"app.editor({ slug: $ctrl.article.slug })\">\n      <i class=\"ion-edit\"></i> Edit Article\n    </a>\n\n    <button class=\"btn btn-sm btn-outline-danger\"\n      ng-class=\"{disabled: $ctrl.isDeleting}\"\n      ng-click=\"$ctrl.deleteArticle()\">\n      <i class=\"ion-trash-a\"></i> Delete Article\n    </button>\n  </span>\n\n  <span ng-hide=\"$ctrl.canModify\">\n    <follow-btn user=\"$ctrl.article.author\"></follow-btn>\n    <favorite-btn article=\"$ctrl.article\">\n      {{ $ctrl.article.favorited ? \'Unfavorite\' : \'Favorite\' }} Article <span class=\"counter\">({{$ctrl.article.favoritesCount}})</span>\n    </favorite-btn>\n  </span>\n\n</article-meta>\n");
   $templateCache.put("article/article.html", "<div class=\"article-page\">\n\n  <!-- Banner for article title, action buttons -->\n  <div class=\"banner\">\n    <div class=\"container\">\n\n      <h1 ng-bind=\"::$ctrl.article.title\"></h1>\n\n      <div class=\"article-meta\">\n        <!-- Show author info + favorite & follow buttons -->\n        <article-actions article=\"$ctrl.article\"></article-actions>\n\n      </div>\n\n    </div>\n  </div>\n\n\n\n  <!-- Main view. Contains article html and comments -->\n  <div class=\"container page\">\n\n    <!-- Article\'s HTML & tags rendered here -->\n    <div class=\"row article-content\">\n      <div class=\"col-xs-12\">\n\n        <div ng-bind-html=\"::$ctrl.article.body\"></div>\n\n        <ul class=\"tag-list\">\n          <li class=\"tag-default tag-pill tag-outline\"\n            ng-repeat=\"tag in ::$ctrl.article.tagList\">\n            {{ tag }}\n          </li>\n        </ul>\n\n      </div>\n    </div>\n\n    <hr />\n\n    <div class=\"article-actions\">\n\n      <!-- Show author info + favorite & follow buttons -->\n      <article-actions article=\"$ctrl.article\"></article-actions>\n\n    </div>\n\n    <!-- Comments section -->\n    <div class=\"row\">\n      <div class=\"col-xs-12 col-md-8 offset-md-2\">\n\n        <div show-authed=\"true\">\n          <list-errors from=\"$crl.commentForm.errors\"></list-errors>\n          <form class=\"card comment-form\" ng-submit=\"$ctrl.addComment()\">\n            <fieldset ng-disabled=\"$ctrl.commentForm.isSubmitting\">\n              <div class=\"card-block\">\n                <textarea class=\"form-control\"\n                  placeholder=\"Write a comment...\"\n                  rows=\"3\"\n                  ng-model=\"$ctrl.commentForm.body\"></textarea>\n              </div>\n              <div class=\"card-footer\">\n                <img ng-src=\"{{::$ctrl.currentUser.image}}\" class=\"comment-author-img\" />\n                <button class=\"btn btn-sm btn-primary\" type=\"submit\">\n                 Post Comment\n                </button>\n              </div>\n            </fieldset>\n          </form>\n        </div>\n\n        <div show-authed=\"false\">\n          <a ui-sref=\"app.login\">Sign in</a> or <a ui-sref=\"app.register\">sign up</a> to add comments on this article.\n        </div>\n\n        <comment ng-repeat=\"cmt in $ctrl.comments\"\n          data=\"cmt\"\n          delete-cb=\"$ctrl.deleteComment(cmt.id, $index)\">\n        </comment>\n\n\n      </div>\n    </div>\n\n  </div>\n\n\n\n</div>\n");
   $templateCache.put("article/comment.html", "<div class=\"card\">\n  <div class=\"card-block\">\n    <p class=\"card-text\" ng-bind=\"::$ctrl.data.body\"></p>\n  </div>\n  <div class=\"card-footer\">\n    <a class=\"comment-author\" ui-sref=\"app.profile.main({ username: $ctrl.data.author.username })\">\n      <img ng-src=\"{{::$ctrl.data.author.image}}\" class=\"comment-author-img\" />\n    </a>\n    &nbsp;\n    <a class=\"comment-author\" ui-sref=\"app.profile.main({ username: $ctrl.data.author.username })\" ng-bind=\"::$ctrl.data.author.username\">\n    </a>\n    <span class=\"date-posted\"\n      ng-bind=\"::$ctrl.data.createdAt | date: \'longDate\'\">\n    </span>\n    <span class=\"mod-options\" ng-show=\"$ctrl.canModify\">\n      <i class=\"ion-trash-a\" ng-click=\"$ctrl.deleteCb()\"></i>\n    </span>\n  </div>\n</div>\n");
+  $templateCache.put("auth/auth.html", "<div class=\"auth-page\">\n  <div class=\"container page\">\n    <div class=\"row\">\n\n      <div class=\"col-md-6 offset-md-3 col-xs-12\">\n        <h1 class=\"text-xs-center\" ng-bind=\"::$ctrl.title\"></h1>\n        <p class=\"text-xs-center\">\n          <a ui-sref=\"app.login\"\n            ng-show=\"$ctrl.authType === \'login\'\"><!--register-->\n            Have an account?\n          </a>\n         \n\n          <a ui-sref=\"app.register\"\n            ng-show=\"$ctrl.authType === \'register\'\">\n            Need an account?\n          </a>\n        </p>\n         \n        <!-- Href a google o github -->\n        \n        <list-errors errors=\"$ctrl.errors\"></list-errors>\n\n        <form name=\"authForm\" ng-submit=\"$ctrl.submitForm()\">\n          <fieldset ng-disabled=\"$ctrl.isSubmitting\">\n\n            <fieldset class=\"form-group\" ng-show=\"$ctrl.authType === \'register\'\">\n              <!-- <input class=\"form-control form-control-lg\"\n                type=\"text\"\n                placeholder=\"Username\"\n                ng-model=\"$ctrl.formData.username\" /> -->\n                <input required class=\"form-control form-control-lg\" required type=\"text\" placeholder=\"Username\" ng-model=\"$ctrl.authForm.username\" minlength=\"4\" maxlength=\"12\" name=\"Username\"/>\n\n                <div ng-messages=\"authForm.Username.$error\" style=\"color:red; font-weight: bold;\">\n                  <p ng-message=\"required\" ng-show=\"authForm.Username.$dirty\">Username is required</p>\n                  <p ng-message=\"minlength\">Enter more than 4 caracters</p>\n                  <p ng-message=\"maxlength\">Enter less than 12 caracters</p>\n                </div>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <!-- <input class=\"form-control form-control-lg\"\n                type=\"email\"\n                placeholder=\"Email\"\n                ng-model=\"$ctrl.formData.email\" /> -->\n\n                <fieldset class=\"form-group\">\n                  <input required class=\"form-control form-control-lg\" type=\"text\" placeholder=\"email\" ng-model=\"$ctrl.authForm.email\" name=\"Email\"/>\n                  <div ng-messages=\"authForm.Email.$error\" style=\"color:red; font-weight: bold;\">\n                    <p ng-message=\"required\" ng-show=\"authForm.Email.$dirty\">Email is required</p>\n                  </div>\n                </fieldset>\n            </fieldset>\n\n            \n            <fieldset class=\"form-group\">\n              <!-- <input class=\"form-control form-control-lg\"\n                type=\"password\"\n                placeholder=\"Password\"\n                ng-model=\"$ctrl.formData.password\" /> -->\n                <input required class=\"form-control form-control-lg\" type=\"text\" placeholder=\"password\" ng-model=\"$ctrl.authForm.password\" name=\"Password\" ng-minlength=\"4\" ng-maxlength=\"40\"/>\n              <div ng-messages=\"authForm.Password.$error\" style=\"color: red; font-weight: bold;\">\n                <p ng-message=\"required\" ng-show=\"authForm.Password.$dirty\">Password is required</p>\n                <p ng-message=\"minlength\">Enter more than 4 characters</p>\n                <p ng-message=\"maxlength\">Enter less than 40 caracters</p>\n              </div>\n\n\n\n            </fieldset>\n\n\n            \n            <fieldset ng-show=\"$ctrl.authType === \'login\'\">\n              <button class=\"btn btn-lg btn-primary pull-xs-right\" type=\"submit\" ng-bind=\"::$ctrl.title\"\n                            ng-show=\"authForm.Password.$valid && authForm.Email.$valid\"\n                            ng-click=\"$ctrl.authSubmit()\">\n              </button>\n              <button class=\"btn btn-lg btn-primary pull-xs-right\" type=\"submit\" ng-bind=\"::$ctrl.title\"\n                            ng-hide =\"authForm.Password.$valid && authForm.Email.$valid\"\n                            ng-click=\"$ctrl.nvalidSubmit()\">\n              </button>\n            </fieldset>\n            \n            \n\n            <!-- El puerto estaba antes en 3002 -->\n            <a href=\"http://localhost:3000/api/auth/github\" style=\"font-size: 25px; color:black\"><i class=\"ion-social-github\"></i>&nbsp;Github</a></br>\n            <a href=\"http://localhost:3000/api/auth/googleplus\" style=\"font-size: 25px; color:black\"><i class=\"ion-social-google\"></i>&nbsp;google</a>\n\n          </fieldset>\n        </form>\n      </div>\n\n    </div>\n  </div>\n</div>\n");
   $templateCache.put("components/list-errors.html", "<ul class=\"error-messages\" ng-show=\"$ctrl.errors\">\n  <div ng-repeat=\"(field, errors) in $ctrl.errors\">\n    <li ng-repeat=\"error in errors\">\n      {{field}} {{error}}\n    </li>\n  </div>\n</ul>\n");
-  $templateCache.put("editor/editor.html", "<div class=\"editor-page\">\n  <div class=\"container page\">\n    <div class=\"row\">\n      <div class=\"col-md-10 offset-md-1 col-xs-12\">\n\n        <list-errors errors=\"$ctrl.errors\"></list-errors>\n\n        <form>\n          <fieldset ng-disabled=\"$ctrl.isSubmitting\">\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control form-control-lg\"\n                ng-model=\"$ctrl.article.title\"\n                type=\"text\"\n                placeholder=\"Article Title\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control\"\n                ng-model=\"$ctrl.article.description\"\n                type=\"text\"\n                placeholder=\"What\'s this article about?\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <textarea class=\"form-control\"\n                rows=\"8\"\n                ng-model=\"$ctrl.article.body\"\n                placeholder=\"Write your article (in markdown)\">\n              </textarea>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control\"\n                type=\"text\"\n                placeholder=\"Enter tags\"\n                ng-model=\"$ctrl.tagField\"\n                ng-keyup=\"$event.keyCode == 13 && $ctrl.addTag()\" />\n\n              <div class=\"tag-list\">\n                <span ng-repeat=\"tag in $ctrl.article.tagList\"\n                  class=\"tag-default tag-pill\">\n                  <i class=\"ion-close-round\" ng-click=\"$ctrl.removeTag(tag)\"></i>\n                  {{ tag }}\n                </span>\n              </div>\n            </fieldset>\n\n            <button class=\"btn btn-lg pull-xs-right btn-primary\" type=\"button\" ng-click=\"$ctrl.submit()\">\n              Publish Article\n            </button>\n\n          </fieldset>\n        </form>\n\n      </div>\n    </div>\n  </div>\n</div>\n");
-  $templateCache.put("home/home.html", " <div class=\"home-page\">\n  <home-slider-cmp></home-slider-cmp>\n  \n  <!-- Splash banner that only shows when not logged in -->\n  <div class=\"banner\" show-authed=\"false\">\n    <div class=\"container\">\n      <h1 class=\"logo-font\" ng-bind=\"::$ctrl.appName | lowercase\"></h1>\n      <p>A place to share your knowledge.</p>\n    </div>\n  </div>\n\n  <div class=\"container page\">\n\n    <!-- <div class=\"container\">\n      <div class=\"row\" infinite-scroll=\"load()\" infinite-scroll-distance=\'0\' infinite-scroll-immediate-check=\'false\'>\n        <div class=\"col-sm-4\" ng-repeat=\"sector in infoSect\"> \n          <div class=\"panel panel-info\">\n            <img ng-src=\"/images/{{slide.slide}}.svg\"\n                class=\"img-responsive\" style=\"width: 100%;\"\n                ui-sref=\"app.projects({filter:sector.sector})\"> -->\n          <!-- </div></br>\n        </div></br>\n      </div>\n    </div></br></br> -->\n\n    <!-- <home-slider-cmp></home-slider-cmp> -->\n    <div class=\"row\">\n\n\n      <!-- Main view - contains tabs & article list -->\n      <div class=\"col-md-9\">\n        <!-- Tabs for toggling between feed, article lists -->\n        <div class=\"feed-toggle\">\n          <ul class=\"nav nav-pills outline-active\">\n\n            <li class=\"nav-item\" show-authed=\"true\">\n              <a href=\"\" class=\"nav-link\"\n                ng-class=\"{ active: $ctrl.listConfig.type === \'feed\' }\"\n                ng-click=\"$ctrl.changeList({ type: \'feed\' })\">\n                Your Feed\n              </a>\n            </li>\n\n            <li class=\"nav-item\">\n              <a href=\"\" class=\"nav-link\"\n                ng-class=\"{ active: $ctrl.listConfig.type === \'all\' && !$ctrl.listConfig.filters }\"\n                ng-click=\"$ctrl.changeList({ type: \'all\' })\">\n                Global Feed\n              </a>\n            </li>\n\n            <li class=\"nav-item\" ng-show=\"$ctrl.listConfig.filters.tag\">\n              <a href=\"\" class=\"nav-link active\">\n                <i class=\"ion-pound\"></i> {{$ctrl.listConfig.filters.tag}}\n              </a>\n            </li>\n\n          </ul>\n        </div>\n\n        <!-- List the current articles -->\n        <article-list limit=\"10\" list-config=\"$ctrl.listConfig\"></article-list>\n\n      </div>\n\n      <!-- Sidebar where popular tags are listed -->\n      <div class=\"col-md-3\">\n        <div class=\"sidebar\">\n\n          <p>Popular Tags</p>\n\n          <div class=\"tag-list\" ng-show=\"$ctrl.tags\">\n            <a href=\"\" class=\"tag-default tag-pill\"\n              ng-click=\"$ctrl.changeList({ type: \'all\', filters: { tag: tagName } })\"\n              ng-repeat=\"tagName in $ctrl.tags\"\n              ng-bind=\"tagName\">\n            </a>\n          </div>\n\n          <div ng-show=\"!$ctrl.tagsLoaded\">\n            Loading tags...\n          </div>\n\n          <div class=\"post-preview\"\n            ng-show=\"$ctrl.tagsLoaded && !$ctrl.tags.length\">\n            No tags are here... yet.\n          </div>\n\n        </div>\n      </div>\n\n      <!-- End the row & container divs -->\n    </div>\n  </div>\n\n</div>\n");
-  $templateCache.put("home/homeSlider.html", "<div style=\"height: 400px\">\n    <!-- <img src=\'/images/bingo1.png\'></img> -->\n    <div uib-carousel active=\"active\" interval=\"$ctrl.myInterval\" no-wrap=\"$ctrl.noWrapSlides\">\n        <div uib-slide ng-repeat=\"slide in $ctrl.slides track by slide.id\" index=\"slide.id\" style=\"height: 400px\">\n        <img ng-src=\"{{slide.image}}\" class=\"img-fluid\" style=\"filter: blur(2px);\">\n        <div class=\"carousel-caption\" style=\"padding-bottom:100px;\">\n            <!-- <img src=\"images/bingo1.png\"></img> -->\n            <h2>{{slide.text}}</h2>\n        </div>\n        </div>\n    </div>\n</div>");
   $templateCache.put("layout/app-view.html", "<app-header></app-header>\n\n<div ui-view></div>\n\n<app-footer></app-footer>\n");
   $templateCache.put("layout/footer.html", "<footer>\n  <div class=\"container\">\n    <a class=\"logo-font\" ui-sref=\"app.home\" ng-bind=\"::$ctrl.appName | lowercase\"></a>\n    <span class=\"attribution\">\n      &copy; {{::$ctrl.date | date:\'yyyy\'}}.\n      An interactive learning project from <a href=\"https://thinkster.io\">Thinksters</a>.\n      Code licensed under MIT.\n    </span>\n  </div>\n</footer>\n");
   $templateCache.put("layout/header.html", "<nav class=\"navbar navbar-light\">\n  <div class=\"container\">\n\n    <a class=\"navbar-brand\"\n      ui-sref=\"app.home\"\n      ng-bind=\"::$ctrl.appName | lowercase\">\n    </a>\n\n    <!-- Show this for logged out users -->\n    <ul show-authed=\"false\"\n      class=\"nav navbar-nav pull-xs-right\">\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.home\">\n          Home\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.login\">\n          Sign in\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.register\">\n          Sign up\n        </a>\n      </li>\n\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.videojuegos\">\n            Videojuegos\n        </a>\n      </li>\n\n      </li>\n\n    </ul>\n\n    <!-- Show this for logged in users -->\n    <ul show-authed=\"true\"\n      class=\"nav navbar-nav pull-xs-right\">\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.home\">\n          Home\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.videojuegos\">\n            Videojuegos\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.editor\">\n          <i class=\"ion-compose\"></i>&nbsp;New Article\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.settings\">\n          <i class=\"ion-gear-a\"></i>&nbsp;Settings\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"\n          ui-sref-active=\"active\"\n          ui-sref=\"app.profile.main({ username: $ctrl.currentUser.username})\">\n          <img ng-src=\"{{$ctrl.currentUser.image}}\" class=\"user-pic\" />\n          {{ $ctrl.currentUser.username }}\n        </a>\n      </li>\n\n    </ul>\n\n\n  </div>\n</nav>\n");
+  $templateCache.put("editor/editor.html", "<div class=\"editor-page\">\n  <div class=\"container page\">\n    <div class=\"row\">\n      <div class=\"col-md-10 offset-md-1 col-xs-12\">\n\n        <list-errors errors=\"$ctrl.errors\"></list-errors>\n\n        <form>\n          <fieldset ng-disabled=\"$ctrl.isSubmitting\">\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control form-control-lg\"\n                ng-model=\"$ctrl.article.title\"\n                type=\"text\"\n                placeholder=\"Article Title\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control\"\n                ng-model=\"$ctrl.article.description\"\n                type=\"text\"\n                placeholder=\"What\'s this article about?\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <textarea class=\"form-control\"\n                rows=\"8\"\n                ng-model=\"$ctrl.article.body\"\n                placeholder=\"Write your article (in markdown)\">\n              </textarea>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control\"\n                type=\"text\"\n                placeholder=\"Enter tags\"\n                ng-model=\"$ctrl.tagField\"\n                ng-keyup=\"$event.keyCode == 13 && $ctrl.addTag()\" />\n\n              <div class=\"tag-list\">\n                <span ng-repeat=\"tag in $ctrl.article.tagList\"\n                  class=\"tag-default tag-pill\">\n                  <i class=\"ion-close-round\" ng-click=\"$ctrl.removeTag(tag)\"></i>\n                  {{ tag }}\n                </span>\n              </div>\n            </fieldset>\n\n            <button class=\"btn btn-lg pull-xs-right btn-primary\" type=\"button\" ng-click=\"$ctrl.submit()\">\n              Publish Article\n            </button>\n\n          </fieldset>\n        </form>\n\n      </div>\n    </div>\n  </div>\n</div>\n");
+  $templateCache.put("home/home.html", " <div class=\"home-page\">\n  <home-slider-cmp></home-slider-cmp>\n  \n  <!-- Splash banner that only shows when not logged in -->\n  <div class=\"banner\" show-authed=\"false\">\n    <div class=\"container\">\n      <h1 class=\"logo-font\" ng-bind=\"::$ctrl.appName | lowercase\"></h1>\n      <p>A place to share your knowledge.</p>\n    </div>\n  </div>\n\n  <div class=\"container page\">\n\n    <!-- <div class=\"container\">\n      <div class=\"row\" infinite-scroll=\"load()\" infinite-scroll-distance=\'0\' infinite-scroll-immediate-check=\'false\'>\n        <div class=\"col-sm-4\" ng-repeat=\"sector in infoSect\"> \n          <div class=\"panel panel-info\">\n            <img ng-src=\"/images/{{slide.slide}}.svg\"\n                class=\"img-responsive\" style=\"width: 100%;\"\n                ui-sref=\"app.projects({filter:sector.sector})\"> -->\n          <!-- </div></br>\n        </div></br>\n      </div>\n    </div></br></br> -->\n\n    <!-- <home-slider-cmp></home-slider-cmp> -->\n    <div class=\"row\">\n\n\n      <!-- Main view - contains tabs & article list -->\n      <div class=\"col-md-9\">\n        <!-- Tabs for toggling between feed, article lists -->\n        <div class=\"feed-toggle\">\n          <ul class=\"nav nav-pills outline-active\">\n\n            <li class=\"nav-item\" show-authed=\"true\">\n              <a href=\"\" class=\"nav-link\"\n                ng-class=\"{ active: $ctrl.listConfig.type === \'feed\' }\"\n                ng-click=\"$ctrl.changeList({ type: \'feed\' })\">\n                Your Feed\n              </a>\n            </li>\n\n            <li class=\"nav-item\">\n              <a href=\"\" class=\"nav-link\"\n                ng-class=\"{ active: $ctrl.listConfig.type === \'all\' && !$ctrl.listConfig.filters }\"\n                ng-click=\"$ctrl.changeList({ type: \'all\' })\">\n                Global Feed\n              </a>\n            </li>\n\n            <li class=\"nav-item\" ng-show=\"$ctrl.listConfig.filters.tag\">\n              <a href=\"\" class=\"nav-link active\">\n                <i class=\"ion-pound\"></i> {{$ctrl.listConfig.filters.tag}}\n              </a>\n            </li>\n\n          </ul>\n        </div>\n\n        <!-- List the current articles -->\n        <article-list limit=\"10\" list-config=\"$ctrl.listConfig\"></article-list>\n\n      </div>\n\n      <!-- Sidebar where popular tags are listed -->\n      <div class=\"col-md-3\">\n        <div class=\"sidebar\">\n\n          <p>Popular Tags</p>\n\n          <div class=\"tag-list\" ng-show=\"$ctrl.tags\">\n            <a href=\"\" class=\"tag-default tag-pill\"\n              ng-click=\"$ctrl.changeList({ type: \'all\', filters: { tag: tagName } })\"\n              ng-repeat=\"tagName in $ctrl.tags\"\n              ng-bind=\"tagName\">\n            </a>\n          </div>\n\n          <div ng-show=\"!$ctrl.tagsLoaded\">\n            Loading tags...\n          </div>\n\n          <div class=\"post-preview\"\n            ng-show=\"$ctrl.tagsLoaded && !$ctrl.tags.length\">\n            No tags are here... yet.\n          </div>\n\n        </div>\n      </div>\n\n      <!-- End the row & container divs -->\n    </div>\n  </div>\n\n</div>\n");
+  $templateCache.put("home/homeSlider.html", "<div style=\"height: 400px\">\n    <!-- <img src=\'/images/bingo1.png\'></img> -->\n    <div uib-carousel active=\"active\" interval=\"$ctrl.myInterval\" no-wrap=\"$ctrl.noWrapSlides\">\n        <div uib-slide ng-repeat=\"slide in $ctrl.slides track by slide.id\" index=\"slide.id\" style=\"height: 400px\">\n        <img ng-src=\"{{slide.image}}\" class=\"img-fluid\" style=\"filter: blur(2px);\">\n        <div class=\"carousel-caption\" style=\"padding-bottom:100px;\">\n            <!-- <img src=\"images/bingo1.png\"></img> -->\n            <h2>{{slide.text}}</h2>\n        </div>\n        </div>\n    </div>\n</div>");
   $templateCache.put("profile/profile-articles.html", "<article-list limit=\"5\" list-config=\"$ctrl.listConfig\"></article-list>\n");
   $templateCache.put("profile/profile.html", "<div class=\"profile-page\">\n\n  <!-- User\'s basic info & action buttons -->\n  <div class=\"user-info\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-xs-12 col-md-10 offset-md-1\">\n\n          <img ng-src=\"{{::$ctrl.profile.image}}\" class=\"user-img\" />\n          <h4 ng-bind=\"::$ctrl.profile.username\"></h4>\n          <p ng-bind=\"::$ctrl.profile.bio\"></p>\n\n          <a ui-sref=\"app.settings\"\n            class=\"btn btn-sm btn-outline-secondary action-btn\"\n            ng-show=\"$ctrl.isUser\">\n            <i class=\"ion-gear-a\"></i> Edit Profile Settings\n          </a>\n\n          <follow-btn user=\"$ctrl.profile\" ng-hide=\"$ctrl.isUser\"></follow-btn>\n\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- Container where User\'s posts & favs are list w/ toggle tabs -->\n  <div class=\"container\">\n    <div class=\"row\">\n\n      <div class=\"col-xs-12 col-md-10 offset-md-1\">\n\n        <!-- Tabs for switching between author articles & favorites -->\n        <div class=\"articles-toggle\">\n          <ul class=\"nav nav-pills outline-active\">\n\n            <li class=\"nav-item\">\n              <a class=\"nav-link active\"\n                ui-sref-active=\"active\"\n                ui-sref=\"app.profile.main({username: $ctrl.profile.username})\">\n                My Articles\n              </a>\n            </li>\n\n            <li class=\"nav-item\">\n              <a class=\"nav-link\"\n                ui-sref-active=\"active\"\n                ui-sref=\"app.profile.favorites({username: $ctrl.profile.username})\">\n                Favorited Articles\n              </a>\n            </li>\n\n          </ul>\n        </div>\n\n        <!-- List of articles -->\n        <div ui-view></div>\n\n\n      </div>\n\n    <!-- End row & container divs -->\n    </div>\n  </div>\n\n</div>\n");
   $templateCache.put("settings/settings.html", "<div class=\"settings-page\">\n  <div class=\"container page\">\n    <div class=\"row\">\n      <div class=\"col-md-6 offset-md-3 col-xs-12\">\n\n        <h1 class=\"text-xs-center\">Configuraxione</h1>\n\n        <list-errors errors=\"$ctrl.errors\"></list-errors>\n\n        <form ng-submit=\"$ctrl.submitForm()\">\n          <fieldset ng-disabled=\"$ctrl.isSubmitting\">\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control\"\n                type=\"text\"\n                placeholder=\"URL of profile picture\"\n                ng-model=\"$ctrl.formData.image\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control form-control-lg\"\n                type=\"text\"\n                placeholder=\"Username\"\n                ng-model=\"$ctrl.formData.username\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <textarea class=\"form-control form-control-lg\"\n                rows=\"8\"\n                placeholder=\"Short bio about you\"\n                ng-model=\"$ctrl.formData.bio\">\n              </textarea>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control form-control-lg\"\n                type=\"email\"\n                placeholder=\"Email\"\n                ng-model=\"$ctrl.formData.email\" />\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n              <input class=\"form-control form-control-lg\"\n                type=\"password\"\n                placeholder=\"New Password\"\n                ng-model=\"$ctrl.formData.password\" />\n            </fieldset>\n\n            <button class=\"btn btn-lg btn-primary pull-xs-right\"\n              type=\"submit\">\n              Update Settings\n            </button>\n\n          </fieldset>\n        </form>\n\n        <!-- Line break for logout button -->\n        <hr />\n\n        <button class=\"btn btn-outline-danger\"\n          ng-click=\"$ctrl.logout()\">\n          Or click here to logout.\n        </button>\n\n      </div>\n    </div>\n  </div>\n</div>\n");
-  $templateCache.put("videojuego/videojuego-actions.html", "<videojuego-meta videojuego=\"$ctrl.videojuego\">\n\n    <span ng-show=\"$ctrl.canModify\">\n      <a class=\"btn btn-sm btn-outline-secondary\"\n        ui-sref=\"app.editor({ slug: $ctrl.videojuego.slug })\">\n        <i class=\"ion-edit\"></i> Edit videojuego\n      </a>\n  \n      <button class=\"btn btn-sm btn-outline-danger\"\n        ng-class=\"{disabled: $ctrl.isDeleting}\"\n        ng-click=\"$ctrl.deleteVideojuego()\">\n        <i class=\"ion-trash-a\"></i> Delete Videojuego\n      </button>\n    </span>\n  \n    <span ng-hide=\"$ctrl.canModify\">\n      <follow-btn user=\"$ctrl.videojuego.author\"></follow-btn>\n      <favorite-btn videojuego=\"$ctrl.videojuego\">\n        {{ $ctrl.videojuego.favorited ? \'Unfavorite\' : \'Favorite\' }} Videojuego <span class=\"counter\">({{$ctrl.videojuego.favoritesCount}})</span>\n      </favorite-btn>\n    </span>\n  \n  </videojuego-meta>");
-  $templateCache.put("videojuego/videojuego.html", "<!-- <videojuegos-list videojuegos=\"$ctrl.videojuegos\"></videojuegos-list>\n<videojuego-actions videojuego=\"$ctrl.videojuego\"></videojuego-actions> -->\n<!-- <videojuego-preview videojuego=\"$ctrl.videojuego\"></videojuego-preview> -->\n\n\n<div class=\"videojuego\">\n    <!-- <h2 ng-bind=\"$ctrl.videojuego.title\"> </h2> -->\n    <h2>{{videojuego.title}}</h2>\n    <p>{{videojuego.plataform}}</p>\n    <p>{{videojuego.description}}</p>\n    <!-- <p>$ctrl.videojuego.description</p> -->\n    \n</div>\n");
   $templateCache.put("videojuegos/videojuegos.html", "<videojuegos-list videojuegos=\"$ctrl.videojuegos\"></videojuegos-list>\n\n<!-- <videojuego-actions videojuego=\"$ctrl.videojuego\"></videojuego-actions> -->\n<!-- <videojuego-preview videojuego=\"$ctrl.videojuego\"></videojuego-preview> -->");
+  $templateCache.put("videojuego/comment.html", "<div class=\"card\">\n  <div class=\"card-block\">\n    <p class=\"card-text\" ng-bind=\"::$ctrl.data.body\"></p> <!--{{$ctrl.data.body}}-->\n  </div>\n  <div class=\"card-footer\">\n    <a class=\"comment-author\" ui-sref=\"app.profile.main({ username: $ctrl.data.author.username })\">\n      <img ng-src=\"{{::$ctrl.data.author.image}}\" class=\"comment-author-img\" />\n    </a>\n    &nbsp;\n    <a class=\"comment-author\" ui-sref=\"app.profile.main({ username: $ctrl.data.author.username })\" ng-bind=\"::$ctrl.data.author.username\">\n    </a>\n    <span class=\"date-posted\"\n      ng-bind=\"::$ctrl.data.createdAt | date: \'longDate\'\">\n    </span>\n    <span class=\"mod-options\" ng-show=\"$ctrl.canModify\">\n      <i class=\"ion-trash-a\" ng-click=\"$ctrl.deleteCb()\"></i>\n    </span>\n  </div>\n</div>\n");
+  $templateCache.put("videojuego/videojuego-actions.html", "<videojuego-meta videojuego=\"$ctrl.videojuego\">\n\n    <span ng-show=\"$ctrl.canModify\">\n      <a class=\"btn btn-sm btn-outline-secondary\"\n        ui-sref=\"app.editor({ slug: $ctrl.videojuego.slug })\">\n        <i class=\"ion-edit\"></i> Edit videojuego\n      </a>\n  \n      <button class=\"btn btn-sm btn-outline-danger\"\n        ng-class=\"{disabled: $ctrl.isDeleting}\"\n        ng-click=\"$ctrl.deleteVideojuego()\">\n        <i class=\"ion-trash-a\"></i> Delete Videojuego\n      </button>\n    </span>\n  \n    <span ng-hide=\"$ctrl.canModify\">\n      <follow-btn user=\"$ctrl.videojuego.author\"></follow-btn>\n      <favorite-btn videojuego=\"$ctrl.videojuego\">\n        {{ $ctrl.videojuego.favorited ? \'Unfavorite\' : \'Favorite\' }} Videojuego <span class=\"counter\">({{$ctrl.videojuego.favoritesCount}})</span>\n      </favorite-btn>\n    </span>\n  \n  </videojuego-meta>");
+  $templateCache.put("videojuego/videojuego.html", "<!-- <videojuegos-list videojuegos=\"$ctrl.videojuegos\"></videojuegos-list>\n<videojuego-actions videojuego=\"$ctrl.videojuego\"></videojuego-actions> -->\n<!-- <videojuego-preview videojuego=\"$ctrl.videojuego\"></videojuego-preview> -->\n\n<div class=\"videojuego\">\n    <!-- <h2 ng-bind=\"$ctrl.videojuego.title\"> </h2> -->\n    <h2>{{videojuego.title}}</h2>\n    <p>{{videojuego.plataform}}</p>\n    <p>{{videojuego.description}}</p>\n    <!-- <p>$ctrl.videojuego.description</p> -->\n    <favorite-btn videojuego=\"$ctrl.videojuego\" class=\"pull-xs-right\">\n        {{$ctrl.videojuego.favoritesCount}}\n      </favorite-btn>\n\n\n    <div class=\"videojuego-meta\">\n      <!-- Show author info + favorite & follow buttons -->\n      <videojuego-actions videojuego=\"$ctrl.videojuego\"></videojuego-actions>\n    </div>\n\n\n    <!-- Comments section -->\n    <div class=\"row\">\n      <div class=\"col-xs-12 col-md-8 offset-md-2\">\n\n        <div show-authed=\"true\">\n          <list-errors from=\"$crl.commentForm.errors\"></list-errors>\n          <form class=\"card comment-form\" ng-submit=\"$ctrl.addComment()\">\n            <fieldset ng-disabled=\"$ctrl.commentForm.isSubmitting\">\n              <div class=\"card-block\">\n                <textarea class=\"form-control\"\n                  placeholder=\"Write a comment...\"\n                  rows=\"3\"\n                  ng-model=\"$ctrl.commentForm.body\"></textarea>\n              </div>\n              <div class=\"card-footer\">\n                <img ng-src=\"{{::$ctrl.currentUser.image}}\" class=\"comment-author-img\" />\n                <button class=\"btn btn-sm btn-primary\" type=\"submit\">\n                 Post Comment\n                </button>\n              </div>\n            </fieldset>\n          </form>\n        </div>\n\n        <div show-authed=\"false\">\n          <a ui-sref=\"app.login\">Sign in</a> or <a ui-sref=\"app.register\">sign up</a> to add comments on this game.\n        </div>\n\n        <comment ng-repeat=\"cmt in $ctrl.comments\"\n          data=\"cmt\"\n          delete-cb=\"$ctrl.deleteComment(cmt.id, $index)\">\n        </comment>\n\n\n      </div>\n    </div>\n</div>\n");
   $templateCache.put("components/article-helpers/article-list.html", "<article-preview\n  article=\"article\"\n  ng-repeat=\"article in $ctrl.list\">\n</article-preview>\n\n<div class=\"article-preview\"\n  ng-hide=\"!$ctrl.loading\">\n  Loading articles...\n</div>\n\n<div class=\"article-preview\"\n  ng-show=\"!$ctrl.loading && !$ctrl.list.length\">\n  No articles are here... yet.\n</div>\n\n<list-pagination\n total-pages=\"$ctrl.listConfig.totalPages\"\n current-page=\"$ctrl.listConfig.currentPage\"\n ng-hide=\"$ctrl.listConfig.totalPages <= 1\">\n</list-pagination>\n");
   $templateCache.put("components/article-helpers/article-meta.html", "<div class=\"article-meta\">\n  <a ui-sref=\"app.profile.main({ username:$ctrl.article.author.username })\">\n    <img ng-src=\"{{$ctrl.article.author.image}}\" />\n  </a>\n\n  <div class=\"info\">\n    <a class=\"author\"\n      ui-sref=\"app.profile.main({ username:$ctrl.article.author.username })\"\n      ng-bind=\"$ctrl.article.author.username\">\n    </a>\n    <span class=\"date\"\n      ng-bind=\"$ctrl.article.createdAt | date: \'longDate\' \">\n    </span>\n  </div>\n\n  <ng-transclude></ng-transclude>\n</div>\n");
   $templateCache.put("components/article-helpers/article-preview.html", "<div class=\"article-preview\">\n  <article-meta article=\"$ctrl.article\">\n    <favorite-btn\n      article=\"$ctrl.article\"\n      class=\"pull-xs-right\">\n      {{$ctrl.article.favoritesCount}}\n    </favorite-btn>\n  </article-meta>\n\n  <a ui-sref=\"app.article({ slug: $ctrl.article.slug })\" class=\"preview-link\">\n    <h1 ng-bind=\"$ctrl.article.title\"></h1>\n    <p ng-bind=\"$ctrl.article.description\"></p>\n    <span>Read more...</span>\n    <ul class=\"tag-list\">\n      <li class=\"tag-default tag-pill tag-outline\"\n        ng-repeat=\"tag in $ctrl.article.tagList\">\n        {{tag}}\n      </li>\n    </ul>\n  </a>\n</div>\n");
@@ -54728,11 +54662,11 @@ angular.module("templates", []).run(["$templateCache", function ($templateCache)
   $templateCache.put("components/buttons/favorite-btn-videojuego.html", "<button class=\"btn btn-sm\"\n  ng-class=\"{ \'disabled\' : $ctrl.isSubmitting,\n              \'btn-outline-primary\': !$ctrl.videojuego.favorited,\n              \'btn-primary\': $ctrl.videojuego.favorited }\"\n  ng-click=\"$ctrl.submit()\">\n  <i class=\"ion-heart\"></i> <ng-transclude></ng-transclude>\n</button>\n");
   $templateCache.put("components/buttons/favorite-btn.html", "<button class=\"btn btn-sm\"\n  ng-class=\"{ \'disabled\' : $ctrl.isSubmitting,\n              \'btn-outline-primary\': !$ctrl.article.favorited,\n              \'btn-primary\': $ctrl.article.favorited }\"\n  ng-click=\"$ctrl.submit()\">\n  <i class=\"ion-heart\"></i> <ng-transclude></ng-transclude>\n</button>\n");
   $templateCache.put("components/buttons/follow-btn.html", "<button\n  class=\"btn btn-sm action-btn\"\n  ng-class=\"{ \'disabled\': $ctrl.isSubmitting,\n              \'btn-outline-secondary\': !$ctrl.user.following,\n              \'btn-secondary\': $ctrl.user.following }\"\n  ng-click=\"$ctrl.submit()\">\n  <i class=\"ion-plus-round\"></i>\n  &nbsp;\n  {{ $ctrl.user.following ? \'Unfollow\' : \'Follow\' }} {{ $ctrl.user.username }}\n</button>\n");
-  $templateCache.put("components/videojuegos-helpers/videojuego-preview.html", "<div class=\"videojuego-preview\" videojuego=\"$ctrl.videojuego\">\n    <!-- <videojuego-meta videojuego=\"$ctrl.videojuego\"> -->\n      <h3>{{$ctrl.videojuego.title}}</h3>\n        <p>Plataforma: {{$ctrl.videojuego.plataform}}</p>\n      <favorite-btn videojuego=\"$ctrl.videojuego\" class=\"pull-xs-right\"   >\n        \n        {{$ctrl.videojuego.favoritesCount}}\n        \n         \n     <!-- <button ui-sref=\"app.videojuegosDetails({slug:videojuego.slug})\">See more </button> -->\n\n      </favorite-btn>\n      <button ui-sref=\"app.videojuego({slug:$ctrl.videojuego.slug})\" class=\"preview-link\">Detalles</button>\n\n</div>\n\n\n\n    <!-- </videojuego-meta> -->\n   \n<!--<a ui-sref=\"app.videojuego({ slug: $ctrl.videojuego.slug })\" class=\"preview-link\">\n      <h1 ng-bind=\"$ctrl.videojuego.title\"></h1>\n      <p ng-bind=\"$ctrl.videojuego.description\"></p>\n      <span>Read more...</span>\n      <ul class=\"tag-list\">\n        <li class=\"tag-default tag-pill tag-outline\"\n          ng-repeat=\"tag in $ctrl.videojuego.tagList\">\n          {{tag}}\n        </li>\n      </ul>\n    </a>\n  </div> -->");
+  $templateCache.put("components/videojuegos-helpers/videojuego-preview.html", "<div class=\"videojuego-preview\" videojuego=\"$ctrl.videojuego\">\n    <!-- <videojuego-meta videojuego=\"$ctrl.videojuego\"> -->\n      <h3>{{$ctrl.videojuego.title}}</h3>\n        <p>Plataforma: {{$ctrl.videojuego.plataform}}</p>\n      <favorite-btn videojuego=\"$ctrl.videojuego\" class=\"pull-xs-right\"   >\n        \n        {{$ctrl.videojuego.favoritesCount}}\n        \n         \n     <!-- <button ui-sref=\"app.videojuegosDetails({slug:videojuego.slug})\">See more </button> -->\n\n      </favorite-btn>\n      <button ui-sref=\"app.videojuego({slug:$ctrl.videojuego.slug})\" class=\"preview-link\">Detalles</button>\n      <!-- <div ng-click = \"openDetails()\" class=\"preview-link\">Detalles</div> -->\n</div>\n\n\n\n    <!-- </videojuego-meta> -->\n   \n<!--<a ui-sref=\"app.videojuego({ slug: $ctrl.videojuego.slug })\" class=\"preview-link\">\n      <h1 ng-bind=\"$ctrl.videojuego.title\"></h1>\n      <p ng-bind=\"$ctrl.videojuego.description\"></p>\n      <span>Read more...</span>\n      <ul class=\"tag-list\">\n        <li class=\"tag-default tag-pill tag-outline\"\n          ng-repeat=\"tag in $ctrl.videojuego.tagList\">\n          {{tag}}\n        </li>\n      </ul>\n    </a>\n  </div> -->");
   $templateCache.put("components/videojuegos-helpers/videojuegos-list.html", "<videojuego-preview\n  videojuego=\"videojuego\"\n  ng-repeat=\"videojuego in $ctrl.videojuegos\"> <!--VideojuegosCtrl-->\n</videojuego-preview>\n\n<!-- <div class=\"videojuego-preview\"\n  ng-hide=\"!$ctrl.loading\">\n  Loading videojuegos...\n</div> -->");
 }]);
 
-},{}],76:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 'use strict';
 
 authInterceptor.$inject = ["JWT", "AppConstants", "$window", "$q"];
@@ -54767,7 +54701,7 @@ function authInterceptor(JWT, AppConstants, $window, $q) {
 
 exports.default = authInterceptor;
 
-},{}],77:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 'use strict';
 
 EditorConfig.$inject = ["$stateProvider"];
@@ -54810,7 +54744,7 @@ function EditorConfig($stateProvider) {
 
 exports.default = EditorConfig;
 
-},{}],78:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54879,7 +54813,7 @@ var EditorCtrl = function () {
 
 exports.default = EditorCtrl;
 
-},{}],79:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54913,7 +54847,7 @@ editorModule.controller('EditorCtrl', _editor4.default);
 
 exports.default = editorModule;
 
-},{"./editor.config":77,"./editor.controller":78,"angular":15}],80:[function(require,module,exports){
+},{"./editor.config":76,"./editor.controller":77,"angular":15}],79:[function(require,module,exports){
 'use strict';
 
 HomeConfig.$inject = ["$stateProvider"];
@@ -54934,7 +54868,7 @@ function HomeConfig($stateProvider) {
 
 exports.default = HomeConfig;
 
-},{}],81:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54993,7 +54927,7 @@ var HomeCtrl = function () {
 
 exports.default = HomeCtrl;
 
-},{}],82:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55024,7 +54958,7 @@ var homeSlider = {
 
 exports.default = homeSlider;
 
-},{}],83:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55072,7 +55006,7 @@ homeModule.component('homeSliderCmp', _homeSlider2.default);
 
 exports.default = homeModule;
 
-},{"./home.config":80,"./home.controller":81,"./homeSlider.component":82,"angular":15,"ng-infinite-scroll":42}],84:[function(require,module,exports){
+},{"./home.config":79,"./home.controller":80,"./homeSlider.component":81,"angular":15,"ng-infinite-scroll":42}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55100,7 +55034,7 @@ var AppFooter = {
 
 exports.default = AppFooter;
 
-},{}],85:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55132,7 +55066,7 @@ var AppHeader = {
 
 exports.default = AppHeader;
 
-},{}],86:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55164,7 +55098,7 @@ layoutModule.component('appFooter', _footer2.default);
 
 exports.default = layoutModule;
 
-},{"./footer.component":84,"./header.component":85,"angular":15}],87:[function(require,module,exports){
+},{"./footer.component":83,"./header.component":84,"angular":15}],86:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55204,7 +55138,7 @@ profileModule.controller('ProfileArticlesCtrl', _profileArticles2.default);
 
 exports.default = profileModule;
 
-},{"./profile-articles.controller":88,"./profile.config":89,"./profile.controller":90,"angular":15}],88:[function(require,module,exports){
+},{"./profile-articles.controller":87,"./profile.config":88,"./profile.controller":89,"angular":15}],87:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55242,7 +55176,7 @@ ProfileArticlesCtrl.$inject = ["profile", "$state", "$rootScope"];
 
 exports.default = ProfileArticlesCtrl;
 
-},{}],89:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 'use strict';
 
 ProfileConfig.$inject = ["$stateProvider"];
@@ -55285,7 +55219,7 @@ function ProfileConfig($stateProvider) {
 
 exports.default = ProfileConfig;
 
-},{}],90:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55312,7 +55246,7 @@ ProfileCtrl.$inject = ["profile", "User"];
 
 exports.default = ProfileCtrl;
 
-},{}],91:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55429,7 +55363,7 @@ var Articles = function () {
 
 exports.default = Articles;
 
-},{}],92:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55451,14 +55385,14 @@ var Comments = function () {
     this._$http = $http;
   }
 
-  // Add a comment to an article
+  // Add a comment to an videojuego
 
 
   _createClass(Comments, [{
     key: 'add',
     value: function add(slug, payload) {
       return this._$http({
-        url: this._AppConstants.api + '/articles/' + slug + '/comments',
+        url: this._AppConstants.api + '/videojuegos/' + slug + '/comments',
         method: 'POST',
         data: { comment: { body: payload } }
       }).then(function (res) {
@@ -55469,7 +55403,7 @@ var Comments = function () {
     key: 'getAll',
     value: function getAll(slug) {
       return this._$http({
-        url: this._AppConstants.api + '/articles/' + slug + '/comments',
+        url: this._AppConstants.api + '/videojuegos/' + slug + '/comments',
         method: 'GET'
       }).then(function (res) {
         return res.data.comments;
@@ -55477,9 +55411,9 @@ var Comments = function () {
     }
   }, {
     key: 'destroy',
-    value: function destroy(commentId, articleSlug) {
+    value: function destroy(commentId, videojuegoSlug) {
       return this._$http({
-        url: this._AppConstants.api + '/articles/' + articleSlug + '/comments/' + commentId,
+        url: this._AppConstants.api + '/videojuegos/' + videojuegoSlug + '/comments/' + commentId,
         method: 'DELETE'
       });
     }
@@ -55490,7 +55424,7 @@ var Comments = function () {
 
 exports.default = Comments;
 
-},{}],93:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55556,7 +55490,7 @@ servicesModule.service('Toastr', _toastr2.default);
 
 exports.default = servicesModule;
 
-},{"./articles.service":91,"./comments.service":92,"./jwt.service":94,"./profile.service":95,"./tags.service":96,"./toastr.service":97,"./user.service":98,"./videojuegos.service":99,"angular":15}],94:[function(require,module,exports){
+},{"./articles.service":90,"./comments.service":91,"./jwt.service":93,"./profile.service":94,"./tags.service":95,"./toastr.service":96,"./user.service":97,"./videojuegos.service":98,"angular":15}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55600,7 +55534,7 @@ var JWT = function () {
 
 exports.default = JWT;
 
-},{}],95:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55659,7 +55593,7 @@ var Profile = function () {
 
 exports.default = Profile;
 
-},{}],96:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55699,7 +55633,7 @@ var Tags = function () {
 
 exports.default = Tags;
 
-},{}],97:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55759,7 +55693,7 @@ var Toastr = function () {
 
 exports.default = Toastr;
 
-},{}],98:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55899,7 +55833,7 @@ var User = function () {
 
 exports.default = User;
 
-},{}],99:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55978,7 +55912,7 @@ var Videojuegos = function () {
 
 exports.default = Videojuegos;
 
-},{}],100:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56011,7 +55945,7 @@ settingsModule.controller('SettingsCtrl', _settings4.default);
 
 exports.default = settingsModule;
 
-},{"./settings.config":101,"./settings.controller":102,"angular":15}],101:[function(require,module,exports){
+},{"./settings.config":100,"./settings.controller":101,"angular":15}],100:[function(require,module,exports){
 'use strict';
 
 SettingsConfig.$inject = ["$stateProvider"];
@@ -56037,7 +55971,7 @@ function SettingsConfig($stateProvider) {
 
 exports.default = SettingsConfig;
 
-},{}],102:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56088,6 +56022,44 @@ var SettingsCtrl = function () {
 
 exports.default = SettingsCtrl;
 
+},{}],102:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CommentCtrl = function CommentCtrl(User, $scope) {
+  'ngInject';
+
+  var _this = this;
+
+  _classCallCheck(this, CommentCtrl);
+
+  setTimeout(function () {
+    if (User.current) {
+      _this.canModify = User.current.username === _this.data.author.username;
+    } else {
+      _this.canModify = false;
+    }
+    $scope.$apply();
+  }, 1000);
+};
+CommentCtrl.$inject = ["User", "$scope"];
+
+var Comment = {
+  bindings: {
+    data: '=',
+    deleteCb: '&'
+  },
+  controller: CommentCtrl,
+  templateUrl: 'videojuego/comment.html'
+};
+
+exports.default = Comment;
+
 },{}],103:[function(require,module,exports){
 'use strict';
 
@@ -56111,6 +56083,10 @@ var _videojuegoActions = require('./videojuego-actions.component');
 
 var _videojuegoActions2 = _interopRequireDefault(_videojuegoActions);
 
+var _comment = require('./comment.component');
+
+var _comment2 = _interopRequireDefault(_comment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var videojuegoModule = _angular2.default.module('app.videojuego', []);
@@ -56121,14 +56097,12 @@ videojuegoModule.controller('VideojuegoCtrl', _videojuego4.default);
 
 videojuegoModule.component('videojuegoActions', _videojuegoActions2.default);
 
-// import Comment from './comment.component';
-// articleModule.component('comment', Comment);
-
+videojuegoModule.component('comment', _comment2.default);
 
 exports.default = videojuegoModule;
 
-},{"./videojuego-actions.component":104,"./videojuego.config":105,"./videojuego.controller":106,"angular":15}],104:[function(require,module,exports){
-'use strict';
+},{"./comment.component":102,"./videojuego-actions.component":104,"./videojuego.config":105,"./videojuego.controller":106,"angular":15}],104:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -56139,35 +56113,42 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var VideojuegoActionsCtrl = function () {
-  VideojuegoActionsCtrl.$inject = ["Videojuegos", "User", "$state"];
-  function VideojuegoActionsCtrl(Videojuegos, User, $state) {
+  VideojuegoActionsCtrl.$inject = ["Videojuegos", "User", "$state", "$scope"];
+  function VideojuegoActionsCtrl(Videojuegos, User, $state, $scope) {
     'ngInject';
+
+    var _this = this;
 
     _classCallCheck(this, VideojuegoActionsCtrl);
 
     this.videojuego = Videojuegos;
     this._$state = $state;
 
-    if (User.current) {
-      console.log("HOLAA");
-      console.log(this.videojuego.author);
-      // console.log(User.current);
-      this.canModify = this.videojuego.author && User.current.username === this.videojuego.author.username; //PEta aqui
-    } else {
-      this.canModify = false;
-    }
+    setTimeout(function () {
+      if (User.current) {
+        console.log("HOLA current user");
+        // console.log(this.videojuego.author);
+
+        // console.log(User.current);
+        _this.canModify = _this.videojuego.author && User.current.username === _this.videojuego.author.username; //PEta aqui
+      } else {
+        console.log("Else current user");
+        _this.canModify = false;
+      }
+      $scope.$apply();
+    }, 10);
   }
 
   _createClass(VideojuegoActionsCtrl, [{
-    key: 'deleteVideojuego',
+    key: "deleteVideojuego",
     value: function deleteVideojuego() {
-      var _this = this;
+      var _this2 = this;
 
       this.isDeleting = true;
       this.videojuego.destroy(this.videojuego.slug).then(function (success) {
-        return _this._$state.go('app.home');
+        return _this2._$state.go('app.home');
       }, function (err) {
-        return _this._$state.go('app.home');
+        return _this2._$state.go('app.home');
       });
     }
   }]);
@@ -56192,20 +56173,18 @@ VideojuegoConfig.$inject = ["$stateProvider"];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-console.log("OLE LOS CARACOLES videojuego config");
 function VideojuegoConfig($stateProvider) {
   "ngInject";
 
   $stateProvider.state('app.videojuego', {
-    url: "/videojuegos/:slug",
+    url: "/videojuego/:slug",
     controller: 'VideojuegoCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'videojuego/videojuego.html',
     title: 'Videojuego Details',
     resolve: {
-      videojuego: ["Videojuego", "$stateParams", function videojuego(Videojuego, $stateParams) {
-        console.log("OLAAA");
-        return Videojuego.getVideojuego($stateParams.slug).then(function (videojuego) {
+      videojuego: ["Videojuegos", "$stateParams", function videojuego(Videojuegos, $stateParams) {
+        return Videojuegos.getVideojuego($stateParams.slug).then(function (videojuego) {
           return videojuego;
         });
       }]
@@ -56222,21 +56201,77 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var VideojuegoCtrl = function VideojuegoCtrl(videojuego) {
-  //, $scope
-  "ngInject";
+var VideojuegoCtrl = function () {
+  VideojuegoCtrl.$inject = ["videojuego", "User", "Comments", "$scope"];
+  function VideojuegoCtrl(videojuego, User, Comments, $scope) {
+    "ngInject";
 
-  _classCallCheck(this, VideojuegoCtrl);
+    var _this = this;
 
-  console.log("Controller detail");
-  // this._$scope = $scope;
-  this.videojuego = videojuego;
+    _classCallCheck(this, VideojuegoCtrl);
 
-  // $scope.videojuego = this.videojuego;
-};
-VideojuegoCtrl.$inject = ["videojuego"];
+    console.log("Controller class videojuego");
+    this._$scope = $scope;
+    this.videojuego = videojuego;
+    this._Comments = Comments;
+
+    $scope.videojuego = this.videojuego;
+
+    Comments.getAll(this.videojuego.slug).then(function (comments) {
+      return _this.comments = comments;
+    });
+
+    this.resetCommentForm();
+
+    Comments.getAll(this.videojuego.slug).then(function (comments) {
+      return _this.comments = comments;
+    });
+  }
+
+  _createClass(VideojuegoCtrl, [{
+    key: "resetCommentForm",
+    value: function resetCommentForm() {
+      this.commentForm = {
+        isSubmitting: false,
+        body: '',
+        errors: []
+      };
+    }
+
+    // Comments.getAll();
+
+  }, {
+    key: "addComment",
+    value: function addComment() {
+      var _this2 = this;
+
+      this.commentForm.isSubmitting = true;
+
+      this._Comments.add(this.videojuego.slug, this.commentForm.body).then(function (comment) {
+        _this2.comments.unshift(comment);
+        _this2.resetCommentForm();
+      }, function (err) {
+        _this2.commentForm.isSubmitting = false;
+        _this2.commentForm.errors = err.data.errors;
+      });
+    }
+  }, {
+    key: "deleteComment",
+    value: function deleteComment(commentId, index) {
+      var _this3 = this;
+
+      this._Comments.destroy(commentId, this.videojuego.slug).then(function (success) {
+        _this3.comments.splice(index, 1);
+      });
+    }
+  }]);
+
+  return VideojuegoCtrl;
+}();
 
 exports.default = VideojuegoCtrl;
 
@@ -56298,16 +56333,10 @@ function VideojuegosConfig($stateProvider) {
     title: "Videojuegos",
     resolve: {
       videojuegos: ["Videojuegos", function videojuegos(Videojuegos) {
-        console.log("videojuegos config resolve");
-        console.log(Videojuegos);
-        var prueba = Videojuegos.getVideojuegos().then(function (videojuegos) {
+        return Videojuegos.getVideojuegos().then(function (videojuegos) {
           return videojuegos;
         });
-        console.log("prueba");
-        console.log(prueba);
-        return prueba;
       }]
-
     }
   });
 };

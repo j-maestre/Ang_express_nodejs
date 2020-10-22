@@ -2,12 +2,57 @@
 <videojuego-actions videojuego="$ctrl.videojuego"></videojuego-actions> -->
 <!-- <videojuego-preview videojuego="$ctrl.videojuego"></videojuego-preview> -->
 
-
 <div class="videojuego">
     <!-- <h2 ng-bind="$ctrl.videojuego.title"> </h2> -->
     <h2>{{videojuego.title}}</h2>
     <p>{{videojuego.plataform}}</p>
     <p>{{videojuego.description}}</p>
     <!-- <p>$ctrl.videojuego.description</p> -->
-    
+    <favorite-btn videojuego="$ctrl.videojuego" class="pull-xs-right">
+        {{$ctrl.videojuego.favoritesCount}}
+      </favorite-btn>
+
+
+    <div class="videojuego-meta">
+      <!-- Show author info + favorite & follow buttons -->
+      <videojuego-actions videojuego="$ctrl.videojuego"></videojuego-actions>
+    </div>
+
+
+    <!-- Comments section -->
+    <div class="row">
+      <div class="col-xs-12 col-md-8 offset-md-2">
+
+        <div show-authed="true">
+          <list-errors from="$crl.commentForm.errors"></list-errors>
+          <form class="card comment-form" ng-submit="$ctrl.addComment()">
+            <fieldset ng-disabled="$ctrl.commentForm.isSubmitting">
+              <div class="card-block">
+                <textarea class="form-control"
+                  placeholder="Write a comment..."
+                  rows="3"
+                  ng-model="$ctrl.commentForm.body"></textarea>
+              </div>
+              <div class="card-footer">
+                <img ng-src="{{::$ctrl.currentUser.image}}" class="comment-author-img" />
+                <button class="btn btn-sm btn-primary" type="submit">
+                 Post Comment
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+
+        <div show-authed="false">
+          <a ui-sref="app.login">Sign in</a> or <a ui-sref="app.register">sign up</a> to add comments on this game.
+        </div>
+
+        <comment ng-repeat="cmt in $ctrl.comments"
+          data="cmt"
+          delete-cb="$ctrl.deleteComment(cmt.id, $index)">
+        </comment>
+
+
+      </div>
+    </div>
 </div>

@@ -12,14 +12,8 @@ function VideojuegosConfig($stateProvider) {
       title: "Videojuegos",
       resolve: {
         videojuegos: function(Videojuegos) {
-          console.log("videojuegos config resolve");
-          console.log(Videojuegos);
-          let prueba= Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
-          console.log("prueba");
-          console.log(prueba);
-          return prueba;
-        }
-
+          return Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
+          }
       }
     })
   };

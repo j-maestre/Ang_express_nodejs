@@ -1,9 +1,9 @@
 class FavoriteBtnCtrl {
-  constructor(User, Articles, $state) {
+  constructor(User, Videojuegos, $state) {
     'ngInject';
 
     this._User = User;
-    this._Articles = Articles;
+    this._Videojuegos = Videojuegos;
     this._$state = $state;
 
   }
@@ -16,21 +16,21 @@ class FavoriteBtnCtrl {
       return;
     }
 
-    if (this.article.favorited) {
-      this._Articles.unfavorite(this.article.slug).then(
+    if (this.videojuego.favorited) {
+      this._Videojuegos.unfavorite(this.videojuego.slug).then(
         () => {
           this.isSubmitting = false;
-          this.article.favorited = false;
-          this.article.favoritesCount--;
+          this.videojuego.favorited = false;
+          this.videojuego.favoritesCount--;
         }
       )
 
     } else {
-      this._Articles.favorite(this.article.slug).then(
+      this._Videojuegos.favorite(this.videojuego.slug).then(
         () => {
           this.isSubmitting = false;
-          this.article.favorited = true;
-          this.article.favoritesCount++;
+          this.videojuego.favorited = true;
+          this.videojuego.favoritesCount++;
         }
       )
     }
@@ -41,7 +41,7 @@ class FavoriteBtnCtrl {
 
 let FavoriteBtn= {
   bindings: {
-    article: '='
+    videojuego: '='
   },
   transclude: true,
   controller: FavoriteBtnCtrl,

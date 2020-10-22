@@ -1,4 +1,4 @@
-class FavoriteVideojuegoBtnCtrl {
+class FavoriteBtnVideojuegoCtrl {
     constructor(User, Videojuegos, $state) {
       'ngInject';
   
@@ -10,6 +10,7 @@ class FavoriteVideojuegoBtnCtrl {
 
 
   submit() {
+    console.log("Submit");
     this.isSubmitting = true;
 
     if (!this._User.current) {
@@ -40,14 +41,14 @@ class FavoriteVideojuegoBtnCtrl {
 
 }
 
-let FavoriteVideojuegoBtn= {
+let FavoriteBtnVideojuego= {
   bindings: {
     videojuego: '='
   },
   transclude: true,
-  controller: FavoriteVideojuegoBtnCtrl,
-  templateUrl: 'components/buttons/favorite-btn.html'
+  controller: FavoriteBtnVideojuegoCtrl,
+  templateUrl: 'components/buttons/favorite-btn-videojuego.html'
 };
 
-export default FavoriteVideojuegoBtn;
+export default FavoriteBtnVideojuego;
 

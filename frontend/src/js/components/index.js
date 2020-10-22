@@ -18,9 +18,11 @@ componentsModule.component('articleMeta', ArticleMeta);
 import FavoriteBtn from './buttons/favorite-btn.component';
 componentsModule.component('favoriteBtn', FavoriteBtn);
 
+//Xema del futuro, envia a tomar por culo el favorite button videojuegos y modifica el favorite btn de articles y ponlo de videojuegos y a chuparla ya
+
 //Videojuegos
-import FavoriteVideojuegoBtn from './buttons/favorite-btn-videojuego.component';
-componentsModule.component('favoriteVideojuegoBtn', FavoriteVideojuegoBtn);
+// import FavoriteBtnVideojuego from './buttons/favorite-btn-videojuego.component';
+// componentsModule.component('favoriteBtnVideojuego', FavoriteBtnVideojuego);
 
 import VideojuegosList from './videojuegos-helpers/videojuegos-list.component';
 componentsModule.component('videojuegosList',VideojuegosList); 
