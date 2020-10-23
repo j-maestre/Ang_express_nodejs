@@ -21,15 +21,22 @@ class VideojuegosListCtrl{
     
     setListTo(newList) {
       // Set the current list to an empty array
+      console.log("setListTo");
+      console.log("new list");
+      console.log(newList);
       this.list = [];
   
       // Set listConfig to the new list's config
+      
       this.listConfig = newList;
-  
+      console.log(this.listConfig);
+
       this.runQuery();
     }
   
     setPageTo(pageNumber) {
+      console.log("set page to");
+      console.log(pageNumber);
       this.listConfig.currentPage = pageNumber;
   
       this.runQuery();
@@ -39,16 +46,27 @@ class VideojuegosListCtrl{
       // Show the loading indicator
       this.loading = true;
       this.listConfig = this.listConfig || {};
+
+      console.log("this config::");
+      console.log(this.listConfig);
   
       // Create an object for this query
       let queryConfig = {
         type: this.listConfig.type || undefined,
         filters: this.listConfig.filters || {}
       };
+      console.log("query config");
+      console.log(queryConfig);
   
       // Set the limit filter from the component's attribute
-      queryConfig.filters.limit = this.limit;
-  
+
+      /////
+      this.limit=5;
+      /////
+      
+      queryConfig.filters.limit = this.limit; //this.limit es undefined
+      console.log("limit:");
+      console.log(this.limit);
       // If there is no page set, set page as 1
       if (!this.listConfig.currentPage) {
         this.listConfig.currentPage = 1;
@@ -60,8 +78,7 @@ class VideojuegosListCtrl{
       // Run the query
       this._Videojuegos.query(queryConfig).then(
           (res) => {
-            console.log("HOLa run query this.videojuegos");
-            console.log(res.videojuegos);
+            
             // console.log(this.listConfig.totalPages);//totalpages es undefined
             this.loading = false;
   
@@ -69,8 +86,9 @@ class VideojuegosListCtrl{
             this.list = res.videojuegos;
   
             this.listConfig.totalPages = Math.ceil(res.videojuegosCount / this.limit);
-            console.log("listconfig");
-            console.log(this.listConfig);
+            
+            console.log("listconfig.TOTALPAGES");
+            console.log(this.listConfig.totalPages);
           });
     }
 }

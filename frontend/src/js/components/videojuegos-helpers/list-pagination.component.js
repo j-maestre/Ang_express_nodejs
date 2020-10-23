@@ -29,7 +29,7 @@ let ListPagination= {
     currentPage: '='
   },
   controller: ListPaginationCtrl,
-  templateUrl: 'components/videojuego-helpers/list-pagination.html'
+  templateUrl: 'components/videojuegos-helpers/list-pagination.html'
 };
 
 export default ListPagination;

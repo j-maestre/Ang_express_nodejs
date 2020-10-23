@@ -80,6 +80,7 @@ router.get('/', auth.optional, function(req, res, next) { //auth.required
 });
 
 router.get('/feed', auth.required, function(req, res, next) {
+  console.log("FEEED");
   var limit = 20;
   var offset = 0;
 
@@ -135,7 +136,7 @@ router.post("/", function(req, res, next) {
 
 // return a videojuego
 router.get('/:videojuego', auth.optional, function(req, res, next) {
-  console.log("holaaaaa");
+  console.log("return videojuego");
   Promise.all([
     req.payload ? User.findById(req.payload.id) : null,
     req.videojuego.populate('author').execPopulate()

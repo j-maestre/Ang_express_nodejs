@@ -19,7 +19,8 @@ componentsModule.component('favoriteBtn', FavoriteBtn);
 import FavoriteVideojuegoBtn from './buttons/favorite-btn-videojuego.component';
 componentsModule.component('favoriteVideojuegoBtn', FavoriteVideojuegoBtn);
 
-import VideojuegosList from './videojuego-helpers/videojuego-list.component';
+//Esto no creo que tenga que estar aqui
+import VideojuegosList from './videojuegos-helpers/videojuego-list.component';
 componentsModule.component('videojuegosList',VideojuegosList); 
 
 import VideojuegoPreview from './videojuegos-helpers/videojuego-preview.component';
