@@ -21,16 +21,16 @@ function ProfileConfig($stateProvider) {
 
   .state('app.profile.main', {
     url:'',
-    controller: 'ProfileArticlesCtrl',
+    controller: 'ProfileVideojuegosCtrl',
     controllerAs: '$ctrl',
-    templateUrl: 'profile/profile-articles.html',
+    templateUrl: 'profile/profile-videojuegos.html',
     title: 'Profile'
   })
   .state('app.profile.favorites', {
     url:'/favorites',
-    controller: 'ProfileArticlesCtrl',
+    controller: 'ProfileVideojuegosCtrl',
     controllerAs: '$ctrl',
-    templateUrl: 'profile/profile-articles.html',
+    templateUrl: 'profile/profile-videojuegos.html',
     title: 'Favorites'
   });
 
