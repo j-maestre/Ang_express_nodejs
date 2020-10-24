@@ -120,6 +120,10 @@ router.get('/feed', auth.required, function(req, res, next) {
 
 
 router.post("/", function(req, res, next) {
+  console.log("POOOOST");
+  console.log(req.payload);
+  // User.findById(req.payload.id).then(function(user){
+    // if (!user) { return res.sendStatus(401); }
     let videojuego = new Videojuego(req.body.videojuego);
     console.log("insertando videojuego");
     console.log(videojuego.author);
@@ -131,6 +135,7 @@ router.post("/", function(req, res, next) {
         console.log(videojuego.title);
         return res.json({videojuego: videojuego.toJSONFor() });
       });  
+  // }).catch(next);
 });
 
 
