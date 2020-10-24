@@ -7,6 +7,7 @@ var auth = require('../auth');
 
 // Preload article objects on routes with ':article'
 router.param('article', function(req, res, next, slug) {
+  console.log("DENTRO DE ARTICLE PARAM");
   Article.findOne({ slug: slug})
     .populate('author')
     .then(function (article) {

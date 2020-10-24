@@ -8,9 +8,8 @@ var auth = require('../auth');
 
 // Preload videojuego objects on routes with ':videojuego'
 router.param('videojuego', function(req, res, next, slug) {
-  Videojuego.findOne({ slug: slug})
-    .populate('author')
-    .then(function (videojuego) {
+  console.log("DENTRO DE PARAM");
+  Videojuego.findOne({ slug: slug}).populate('author').then(function (videojuego) {
       if (!videojuego) { return res.sendStatus(404); }
 
       req.videojuego = videojuego;
@@ -42,6 +41,7 @@ router.get('/', auth.optional, function(req, res, next) { //auth.required
     req.query.author ? User.findOne({username: req.query.author}) : null,
     req.query.favorited ? User.findOne({username: req.query.favorited}) : null
   ]).then(function(results){
+    consola.log("HOLA");
     var author = results[0];
     var favoriter = results[1];
 
@@ -121,6 +121,8 @@ router.get('/feed', auth.required, function(req, res, next) {
 
 router.post("/", function(req, res, next) {
     let videojuego = new Videojuego(req.body.videojuego);
+    console.log("insertando videojuego");
+    console.log(videojuego.author);
       // console.log("Save VIDEOJUEGO");
       // console.log({videojuego: videojuego.toJSONFor(user)});  El slug es undefined
 

@@ -23,6 +23,8 @@ VideojuegoSchema.plugin(uniqueValidator, {message: 'is already taken'});
  
 VideojuegoSchema.pre('validate', function(next){//next
   if(!this.slug)  {
+    // console.log("dentro del pre");
+    // console.log(user);
     this.slugify();
   }
     next();
