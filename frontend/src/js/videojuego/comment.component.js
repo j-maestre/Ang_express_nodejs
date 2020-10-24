@@ -2,14 +2,21 @@ class CommentCtrl {
   constructor(User,$scope) {
     'ngInject';
 
-    setTimeout(()=>{
-      if (User.current) {
-        this.canModify = (User.current.username === this.data.author.username);
-      } else {
-        this.canModify = false;
-      }
-      $scope.$apply();
-    },1000);
+ 
+    this.$onInit = () => {
+      setTimeout(()=>{
+        if (User.current) {
+          // console.log("autor");
+          // console.log(User.current);
+          // console.log("this data");
+          // console.log(this.data.author.username);
+          this.canModify = (User.current.username === this.data.author.username);
+        } else {
+          this.canModify = false;
+        }
+        $scope.$apply();
+      },1000);
+    }
 
   }
 }

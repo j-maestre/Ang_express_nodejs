@@ -1,42 +1,44 @@
 class VideojuegosListCtrl{
     constructor(Videojuegos,$scope,$state){
         'ngInject';
-        this._Videojuegos=Videojuegos;
-        console.log("HOLA constructor list");
-        // this._$scope = $scope;
+        this.$onInit=()=>{
 
-        this.setListTo(this.listConfig);
+          this._Videojuegos=Videojuegos;
+          console.log("HOLA constructor list");
+          // this._$scope = $scope;
+
+          this.setListTo(this.listConfig); 
 
 
-        $scope.$on('setListTo', (ev, newList) => {
-          this.setListTo(newList);
-        });
-    
-        $scope.$on('setPageTo', (ev, pageNumber) => {
-          this.setPageTo(pageNumber);
-        });
-
+          $scope.$on('setListTo', (ev, newList) => {
+            this.setListTo(newList);
+          });
+      
+          $scope.$on('setPageTo', (ev, pageNumber) => {
+            this.setPageTo(pageNumber);
+          });
+        }
     }
 
     
     setListTo(newList) {
       // Set the current list to an empty array
-      console.log("setListTo");
-      console.log("new list");
-      console.log(newList);
+      // console.log("setListTo");
+      // console.log("new list");
+      // console.log(newList);
       this.list = [];
   
       // Set listConfig to the new list's config
       
       this.listConfig = newList;
-      console.log(this.listConfig);
+      // console.log(this.listConfig);
 
       this.runQuery();
     }
   
     setPageTo(pageNumber) {
-      console.log("set page to");
-      console.log(pageNumber);
+      // console.log("set page to");
+      // console.log(pageNumber);
       this.listConfig.currentPage = pageNumber;
   
       this.runQuery();
@@ -59,9 +61,10 @@ class VideojuegosListCtrl{
       console.log(queryConfig);
   
       // Set the limit filter from the component's attribute
-
+      console.log("LIMIT");
+      console.log(this.limit);
       /////
-      this.limit=5;
+      // this.limit=5;
       /////
       
       queryConfig.filters.limit = this.limit; //this.limit es undefined
@@ -74,10 +77,14 @@ class VideojuegosListCtrl{
   
       // Add the offset filter
       queryConfig.filters.offset = (this.limit * (this.listConfig.currentPage - 1));
+      console.log("query config");
+      console.log(queryConfig);
   
       // Run the query
       this._Videojuegos.query(queryConfig).then(
           (res) => {
+            console.log("res videojuegos");
+            console.log(res);
             
             // console.log(this.listConfig.totalPages);//totalpages es undefined
             this.loading = false;

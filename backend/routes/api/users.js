@@ -4,7 +4,10 @@ var passport = require('passport');
 var User = mongoose.model('User');
 var auth = require('../auth');
 
-router.get('/user', auth.required, function(req, res, next){  //Select User UNICO
+router.get('/user', auth.optional, function(req, res, next){  //Select User UNICO
+  // console.log("userrr");
+  // console.log(req.payload);
+  
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
 
@@ -12,22 +15,22 @@ router.get('/user', auth.required, function(req, res, next){  //Select User UNIC
   }).catch(next);
 });
 
-//////////////////////////////////////ç
+//////////////////////////////////////
 
 
 
 
 ///Devolver todos los usuarios
 // router.get('/users', auth.optional, function(req, res, next){  //Select Users
-//   // User.findById(req.payload.id).then(function(user){
-//     // if(!user){ return res.sendStatus(401); }
+//   User.findById(req.payload.id).then(function(user){
+//     if(!user){ return res.sendStatus(401); }
 //     uss=[];
 //     for(user in users){
 //       uss.push(user);
 //     }
 
 //     return res.json({user: user.toAuthJSON()});
-//   // }).catch(next);
+//   }).catch(next);
 // });
 
 

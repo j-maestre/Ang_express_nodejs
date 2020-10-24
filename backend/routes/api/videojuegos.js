@@ -198,15 +198,15 @@ router.delete('/:videojuego', auth.required, function(req, res, next) {
 // Favorite an videojuego
 router.post('/:videojuego/favorite', auth.required, function(req, res, next) { //Favorito videojuego
   
-  console.log("HOLAAAA");
+  // console.log("HOLAAAA");
 
   console.log(req.payload.id);
   var videojuegoId = req.videojuego._id;
 
   User.findById(req.payload.id).then(function(user){
 
-    console.log("USER:");
-    console.log(user);
+    // console.log("USER:");
+    // console.log(user);
     // console.log()
 
 
@@ -283,7 +283,8 @@ router.post('/:videojuego/comments', auth.required, function(req, res, next) {//
   }).catch(next);
 });
 
-router.delete('/:videojuego/comments/:comment', auth.required, function(req, res, next) { //Borrar comentario
+router.delete('/:videojuego/comments/:comment', auth.required, function(req, res, next) {
+   //Borrar comentario
   if(req.comment.author.toString() === req.payload.id.toString()){
     req.videojuego.comments.remove(req.comment._id);
     req.videojuego.save()

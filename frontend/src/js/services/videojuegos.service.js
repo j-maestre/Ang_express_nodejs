@@ -12,21 +12,26 @@ export default class Videojuegos{
     
       }
       query(config) {
+        console.log("DENTRO DE QUERY CONFIG SERVICE");
+        console.log(config);
         // Create the $http object for this request
         let request = {
           url: this._AppConstants.api + '/videojuegos' + ((config.type === 'feed') ? '/feed' : ''),
           method: 'GET',
           params: config.filters ? config.filters : null
         };
-        return this._$http(request).then((res) => res.data);
+        console.log("request");
+        console.log(request);
+        let prueba= this._$http(request).then((res) => res.data);
+        console.log("PRUEBA RES SERVICE");
+        console.log(prueba);
+        return prueba;
       }
 
 
      
       getVideojuegos(){
         // console.log("VWE");
-
-
         return this._$http({
             url: this._AppConstants.api + "/videojuegos",  //  /videojuegos/
             // url: 'localhost:4000/api/videojuegos',
