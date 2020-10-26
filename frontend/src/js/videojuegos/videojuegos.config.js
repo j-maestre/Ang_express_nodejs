@@ -9,12 +9,12 @@ function VideojuegosConfig($stateProvider) {
       controller: "VideojuegosCtrl",
       controllerAs: "$ctrl",
       templateUrl: "videojuegos/videojuegos.html",
-      title: "Videojuegos",
-      resolve: {
-        videojuegos: function(Videojuegos) {
-          return Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
-          }
-      }
+      title: "Videojuegos"
+      // resolve: {
+      //   videojuegos: function(Videojuegos) {
+      //     return Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
+      //     }
+      // }
     })
   };
   
