@@ -41,7 +41,10 @@ router.get('/', auth.optional, function(req, res, next) { //auth.required
     req.query.author ? User.findOne({username: req.query.author}) : null,
     req.query.favorited ? User.findOne({username: req.query.favorited}) : null
   ]).then(function(results){
-    consola.log("HOLA");
+    console.log("HOLA desde videojuegos.js");
+    console.log(req.query.favorited);
+    console.log("result");
+    console.log(results);
     var author = results[0];
     var favoriter = results[1];
 
@@ -50,7 +53,7 @@ router.get('/', auth.optional, function(req, res, next) { //auth.required
     }
 
     if(favoriter){
-      query._id = {$in: favoriter.favorites};
+      query._id = {$in: favoriter.favoritesV};//FavoritesV porque son los videojuegos, favorites son los articles
     } else if(req.query.favorited){
       query._id = {$in: []};
     }
@@ -119,12 +122,15 @@ router.get('/feed', auth.required, function(req, res, next) {
 
 
 
-router.post("/", function(req, res, next) {
+router.post("/",auth.required ,function(req, res, next) {
   console.log("POOOOST");
   console.log(req.payload);
-  // User.findById(req.payload.id).then(function(user){
-    // if (!user) { return res.sendStatus(401); }
+  User.findById(req.payload.id).then(function(user){
+    console.log("USER EN el post");
+    console.log(user);
+    if (!user) { return res.sendStatus(401); }
     let videojuego = new Videojuego(req.body.videojuego);
+    videojuego.author=user;
     console.log("insertando videojuego");
     console.log(videojuego.author);
       // console.log("Save VIDEOJUEGO");
@@ -135,7 +141,7 @@ router.post("/", function(req, res, next) {
         console.log(videojuego.title);
         return res.json({videojuego: videojuego.toJSONFor() });
       });  
-  // }).catch(next);
+  }).catch(next);
 });
 
 
