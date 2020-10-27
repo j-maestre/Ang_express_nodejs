@@ -9,13 +9,13 @@ var User = mongoose.model('User');
 var VideojuegoSchema = new mongoose.Schema({
   slug: {type: String, lowercase: true, unique: true},
   id:String,
-  title: String,
-  description: String,
-  plataform: String,
-  body: String,
+  title: String, //fake
+  description: String, //fake
+  plataform: String, //fake
+  body: String, //fake
   favoritesCount: {type: Number, default: 0},
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'VideojuegoComment' }],
-  tagList: [{ type: String }],
+  tagList: [{ type: String }], //fake
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, {timestamps: true});
 
