@@ -252,6 +252,7 @@ router.delete('/:videojuego/favorite', auth.required, function(req, res, next) {
 //////COMENTARIOS
 // return an videojuego's comments
 router.get('/:videojuego/comments', auth.optional, function(req, res, next){
+  console.log("RETURN videojuego comments");
   Promise.resolve(req.payload ? User.findById(req.payload.id) : null).then(function(user){
     return req.videojuego.populate({
       path: 'comments',
@@ -298,10 +299,22 @@ router.post('/:videojuego/comments', auth.required, function(req, res, next) {//
 
 router.delete('/:videojuego/comments/:comment', auth.required, function(req, res, next) {
    //Borrar comentario
-  if(req.comment.author.toString() === req.payload.id.toString()){
-    req.videojuego.comments.remove(req.comment._id);
+   console.log("BORRAR COMENTARIO 1");
+   console.log(req.videojuego.comments); //Aqui es donde estan los ids de comentarios
+   console.log("buscar id de author");
+   console.log(req.videojuego.author._id);
+   console.log("payload");
+   console.log(req.payload.id.toString());
+
+   console.log("buscando id del commment");
+   console.log(req.videojuego.comments);//Aqui estan todos los ids
+
+   console.log("ID del comentario que quiero borrar (:comment)");
+   console.log(req.params.comment);
+  if(req.videojuego.author._id.toString() === req.payload.id.toString()){ //Hay que borrar el req.videojuego.comments(El comentario con la id igual) que sea igual que :comment
+    req.videojuego.comments.remove(req.params.comment);
     req.videojuego.save()
-      .then(Comment.find({_id: req.comment._id}).remove().exec())
+      // .then(VideojuegoComment.find({_id: req.comment._id}).remove().exec())
       .then(function(){
         res.sendStatus(204);
       });
@@ -309,10 +322,6 @@ router.delete('/:videojuego/comments/:comment', auth.required, function(req, res
     res.sendStatus(403);
   }
 });
-
-
-
-
 //////
 
 
