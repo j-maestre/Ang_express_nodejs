@@ -293,24 +293,24 @@
           }
         }
       },
-      "/articles/feed": {
+      "/videojuegos/feed": {
         "get": {
-          "summary": "Get recent articles from users you follow",
-          "description": "Get most recent articles from users you follow. Use query parameters to limit. Auth is required",
+          "summary": "Get recent videojuegos from users you follow",
+          "description": "Get most recent videojuegos from users you follow. Use query parameters to limit. Auth is required",
           "tags": [
-            "Articles"
+            "Videojuegos"
           ],
           "security": [
             {
               "Token": []
             }
           ],
-          "operationId": "GetArticlesFeed",
+          "operationId": "GetVideojuegosFeed",
           "parameters": [
             {
               "name": "limit",
               "in": "query",
-              "description": "Limit number of articles returned (default is 20)",
+              "description": "Limit number of videojuegos returned (default is 20)",
               "required": false,
               "default": 20,
               "type": "integer"
@@ -318,7 +318,7 @@
             {
               "name": "offset",
               "in": "query",
-              "description": "Offset/skip number of articles (default is 0)",
+              "description": "Offset/skip number of videojuegos (default is 0)",
               "required": false,
               "default": 0,
               "type": "integer"
@@ -328,7 +328,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/MultipleArticlesResponse"
+                "$ref": "#/definitions/MultipleVideojuegosResponse"
               }
             },
             "401": {
@@ -343,14 +343,14 @@
           }
         }
       },
-      "/articles": {
+      "/videojuegos": {
         "get": {
-          "summary": "Get recent articles globally",
-          "description": "Get most recent articles globally. Use query parameters to filter results. Auth is optional",
+          "summary": "Get recent videojuegos globally",
+          "description": "Get most recent videojuegos globally. Use query parameters to filter results. Auth is optional",
           "tags": [
-            "Articles"
+            "Videojuegos"
           ],
-          "operationId": "GetArticles",
+          "operationId": "GetVideojuegos",
           "parameters": [
             {
               "name": "tag",
@@ -376,7 +376,7 @@
             {
               "name": "limit",
               "in": "query",
-              "description": "Limit number of articles returned (default is 20)",
+              "description": "Limit number of videojuegos returned (default is 20)",
               "required": false,
               "default": 20,
               "type": "integer"
@@ -384,7 +384,7 @@
             {
               "name": "offset",
               "in": "query",
-              "description": "Offset/skip number of articles (default is 0)",
+              "description": "Offset/skip number of videojuegos (default is 0)",
               "required": false,
               "default": 0,
               "type": "integer"
@@ -394,7 +394,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/MultipleArticlesResponse"
+                "$ref": "#/definitions/MultipleVideojuegosResponse"
               }
             },
             "401": {
@@ -409,25 +409,25 @@
           }
         },
         "post": {
-          "summary": "Create an article",
-          "description": "Create an article. Auth is required",
+          "summary": "Create an videojuego",
+          "description": "Create an videojuego. Auth is required",
           "tags": [
-            "Articles"
+            "Videojuegos"
           ],
           "security": [
             {
               "Token": []
             }
           ],
-          "operationId": "CreateArticle",
+          "operationId": "CreateVideojuego",
           "parameters": [
             {
-              "name": "article",
+              "name": "videojuego",
               "in": "body",
               "required": true,
-              "description": "Article to create",
+              "description": "Videojuego to create",
               "schema": {
-                "$ref": "#/definitions/NewArticleRequest"
+                "$ref": "#/definitions/NewVideojuegoRequest"
               }
             }
           ],
@@ -435,7 +435,7 @@
             "201": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/SingleArticleResponse"
+                "$ref": "#/definitions/SingleVideojuegoResponse"
               }
             },
             "401": {
@@ -450,20 +450,20 @@
           }
         }
       },
-      "/articles/{slug}": {
+      "/videojuegos/{slug}": {
         "get": {
-          "summary": "Get an article",
-          "description": "Get an article. Auth not required",
+          "summary": "Get an videojuego",
+          "description": "Get an videojuego. Auth not required",
           "tags": [
-            "Articles"
+            "Videojuegos"
           ],
-          "operationId": "GetArticle",
+          "operationId": "GetVideojuego",
           "parameters": [
             {
               "name": "slug",
               "in": "path",
               "required": true,
-              "description": "Slug of the article to get",
+              "description": "Slug of the videojuego to get",
               "type": "string"
             }
           ],
@@ -471,7 +471,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/SingleArticleResponse"
+                "$ref": "#/definitions/SingleVideojuegoResponse"
               }
             },
             "422": {
@@ -483,32 +483,32 @@
           }
         },
         "put": {
-          "summary": "Update an article",
-          "description": "Update an article. Auth is required",
+          "summary": "Update an videojuego",
+          "description": "Update an videojuego. Auth is required",
           "tags": [
-            "Articles"
+            "Videojuegos"
           ],
           "security": [
             {
               "Token": []
             }
           ],
-          "operationId": "UpdateArticle",
+          "operationId": "UpdateVideojuego",
           "parameters": [
             {
               "name": "slug",
               "in": "path",
               "required": true,
-              "description": "Slug of the article to update",
+              "description": "Slug of the videojuego to update",
               "type": "string"
             },
             {
-              "name": "article",
+              "name": "videojuego",
               "in": "body",
               "required": true,
-              "description": "Article to update",
+              "description": "Videojuego to update",
               "schema": {
-                "$ref": "#/definitions/UpdateArticleRequest"
+                "$ref": "#/definitions/UpdateVideojuegoRequest"
               }
             }
           ],
@@ -516,7 +516,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/SingleArticleResponse"
+                "$ref": "#/definitions/SingleVideojuegoResponse"
               }
             },
             "401": {
@@ -531,23 +531,23 @@
           }
         },
         "delete": {
-          "summary": "Delete an article",
-          "description": "Delete an article. Auth is required",
+          "summary": "Delete an videojuego",
+          "description": "Delete an videojuego. Auth is required",
           "tags": [
-            "Articles"
+            "Videojuegos"
           ],
           "security": [
             {
               "Token": []
             }
           ],
-          "operationId": "DeleteArticle",
+          "operationId": "DeleteVideojuego",
           "parameters": [
             {
               "name": "slug",
               "in": "path",
               "required": true,
-              "description": "Slug of the article to delete",
+              "description": "Slug of the videojuego to delete",
               "type": "string"
             }
           ],
@@ -567,20 +567,20 @@
           }
         }
       },
-      "/articles/{slug}/comments": {
+      "/videojuegos/{slug}/comments": {
         "get": {
-          "summary": "Get comments for an article",
-          "description": "Get the comments for an article. Auth is optional",
+          "summary": "Get comments for an videojuego",
+          "description": "Get the comments for an videojuego. Auth is optional",
           "tags": [
             "Comments"
           ],
-          "operationId": "GetArticleComments",
+          "operationId": "GetVideojuegoComments",
           "parameters": [
             {
               "name": "slug",
               "in": "path",
               "required": true,
-              "description": "Slug of the article that you want to get comments for",
+              "description": "Slug of the videojuego that you want to get comments for",
               "type": "string"
             }
           ],
@@ -603,8 +603,8 @@
           }
         },
         "post": {
-          "summary": "Create a comment for an article",
-          "description": "Create a comment for an article. Auth is required",
+          "summary": "Create a comment for an videojuego",
+          "description": "Create a comment for an videojuego. Auth is required",
           "tags": [
             "Comments"
           ],
@@ -613,13 +613,13 @@
               "Token": []
             }
           ],
-          "operationId": "CreateArticleComment",
+          "operationId": "CreateVideojuegoComment",
           "parameters": [
             {
               "name": "slug",
               "in": "path",
               "required": true,
-              "description": "Slug of the article that you want to create a comment for",
+              "description": "Slug of the videojuego that you want to create a comment for",
               "type": "string"
             },
             {
@@ -651,10 +651,10 @@
           }
         }
       },
-      "/articles/{slug}/comments/{id}": {
+      "/videojuegos/{slug}/comments/{id}": {
         "delete": {
-          "summary": "Delete a comment for an article",
-          "description": "Delete a comment for an article. Auth is required",
+          "summary": "Delete a comment for an videojuego",
+          "description": "Delete a comment for an videojuego. Auth is required",
           "tags": [
             "Comments"
           ],
@@ -663,13 +663,13 @@
               "Token": []
             }
           ],
-          "operationId": "DeleteArticleComment",
+          "operationId": "DeleteVideojuegoComment",
           "parameters": [
             {
               "name": "slug",
               "in": "path",
               "required": true,
-              "description": "Slug of the article that you want to delete a comment for",
+              "description": "Slug of the videojuego that you want to delete a comment for",
               "type": "string"
             },
             {
@@ -696,10 +696,10 @@
           }
         }
       },
-      "/articles/{slug}/favorite": {
+      "/videojuegos/{slug}/favorite": {
         "post": {
-          "summary": "Favorite an article",
-          "description": "Favorite an article. Auth is required",
+          "summary": "Favorite an videojuego",
+          "description": "Favorite an videojuego. Auth is required",
           "tags": [
             "Favorites"
           ],
@@ -708,13 +708,13 @@
               "Token": []
             }
           ],
-          "operationId": "CreateArticleFavorite",
+          "operationId": "CreateVideojuegoFavorite",
           "parameters": [
             {
               "name": "slug",
               "in": "path",
               "required": true,
-              "description": "Slug of the article that you want to favorite",
+              "description": "Slug of the videojuego that you want to favorite",
               "type": "string"
             }
           ],
@@ -722,7 +722,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/SingleArticleResponse"
+                "$ref": "#/definitions/SingleVideojuegoResponse"
               }
             },
             "401": {
@@ -737,8 +737,8 @@
           }
         },
         "delete": {
-          "summary": "Unfavorite an article",
-          "description": "Unfavorite an article. Auth is required",
+          "summary": "Unfavorite an videojuego",
+          "description": "Unfavorite an videojuego. Auth is required",
           "tags": [
             "Favorites"
           ],
@@ -747,13 +747,13 @@
               "Token": []
             }
           ],
-          "operationId": "DeleteArticleFavorite",
+          "operationId": "DeleteVideojuegoFavorite",
           "parameters": [
             {
               "name": "slug",
               "in": "path",
               "required": true,
-              "description": "Slug of the article that you want to unfavorite",
+              "description": "Slug of the videojuego that you want to unfavorite",
               "type": "string"
             }
           ],
@@ -761,7 +761,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/SingleArticleResponse"
+                "$ref": "#/definitions/SingleVideojuegoResponse"
               }
             },
             "401": {
@@ -959,7 +959,7 @@
           "following"
         ]
       },
-      "Article": {
+      "Videojuego": {
         "type": "object",
         "properties": {
           "slug": {
@@ -1011,36 +1011,36 @@
           "author"
         ]
       },
-      "SingleArticleResponse": {
+      "SingleVideojuegoResponse": {
         "type": "object",
         "properties": {
-          "article": {
-            "$ref": "#/definitions/Article"
+          "videojuego": {
+            "$ref": "#/definitions/Videojuego"
           }
         },
         "required": [
-          "article"
+          "videojuego"
         ]
       },
-      "MultipleArticlesResponse": {
+      "MultipleVideojuegosResponse": {
         "type": "object",
         "properties": {
-          "articles": {
+          "videojuegos": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/Article"
+              "$ref": "#/definitions/Videojuego"
             }
           },
-          "articlesCount": {
+          "videojuegosCount": {
             "type": "integer"
           }
         },
         "required": [
-          "articles",
-          "articlesCount"
+          "videojuegos",
+          "videojuegosCount"
         ]
       },
-      "NewArticle": {
+      "NewVideojuego": {
         "type": "object",
         "properties": {
           "title": {
@@ -1065,18 +1065,18 @@
           "body"
         ]
       },
-      "NewArticleRequest": {
+      "NewVideojuegoRequest": {
         "type": "object",
         "properties": {
-          "article": {
-            "$ref": "#/definitions/NewArticle"
+          "videojuego": {
+            "$ref": "#/definitions/NewVideojuego"
           }
         },
         "required": [
-          "article"
+          "videojuego"
         ]
       },
-      "UpdateArticle": {
+      "UpdateVideojuego": {
         "type": "object",
         "properties": {
           "title": {
@@ -1090,15 +1090,15 @@
           }
         }
       },
-      "UpdateArticleRequest": {
+      "UpdateVideojuegoRequest": {
         "type": "object",
         "properties": {
-          "article": {
-            "$ref": "#/definitions/UpdateArticle"
+          "videojuego": {
+            "$ref": "#/definitions/UpdateVideojuego"
           }
         },
         "required": [
-          "article"
+          "videojuego"
         ]
       },
       "Comment": {
