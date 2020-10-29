@@ -42,9 +42,9 @@ router.get('/', auth.optional, function(req, res, next) { //auth.required
     req.query.favorited ? User.findOne({username: req.query.favorited}) : null
   ]).then(function(results){
     console.log("HOLA desde videojuegos.js");
-    console.log(req.query.favorited);
-    console.log("result");
-    console.log(results);
+    // console.log(req.query.favorited);
+    // console.log("result");
+    // console.log(results);
     var author = results[0];
     var favoriter = results[1];
 
@@ -122,7 +122,7 @@ router.get('/feed', auth.required, function(req, res, next) {
 
 
 
-router.post("/",auth.required ,function(req, res, next) {
+router.post("/",auth.optional ,function(req, res, next) {
   console.log("POOOOST");
   console.log(req.payload);
   User.findById(req.payload.id).then(function(user){

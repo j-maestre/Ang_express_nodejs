@@ -21,17 +21,21 @@ router.get('/user', auth.optional, function(req, res, next){  //Select User UNIC
 
 
 ///Devolver todos los usuarios
-// router.get('/users', auth.optional, function(req, res, next){  //Select Users
-//   User.findById(req.payload.id).then(function(user){
-//     if(!user){ return res.sendStatus(401); }
-//     uss=[];
-//     for(user in users){
-//       uss.push(user);
-//     }
+router.get("/users", auth.optional, function(req, res, next) {
+ 
+  Promise.resolve(req.payload ? User.findById(req.payload.id) : null).then(function(currentUser){
 
-//     return res.json({user: user.toAuthJSON()});
-//   }).catch(next);
-// });
+    User.find().then(function(users) {
+      if (!users) {
+        return res.sendStatus(401);
+      }
+      return res.json({
+        users:users.map(user => user.toProfileJSONFor(currentUser))
+      });
+    }).catch(next);
+  }).catch(next);
+  
+});
 
 
 router.put('/user', auth.required, function(req, res, next){  //Update user
