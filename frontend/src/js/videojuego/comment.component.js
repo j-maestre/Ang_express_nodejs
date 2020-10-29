@@ -6,10 +6,6 @@ class CommentCtrl {
     this.$onInit = () => {
       setTimeout(()=>{
         if (User.current) {
-          // console.log("autor");
-          // console.log(User.current);
-          // console.log("this data");
-          // console.log(this.data.author.username);
           this.canModify = (User.current.username === this.data.author.username);
         } else {
           this.canModify = false;

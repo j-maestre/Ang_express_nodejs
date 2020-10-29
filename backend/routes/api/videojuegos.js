@@ -8,7 +8,6 @@ var auth = require('../auth');
 
 // Preload videojuego objects on routes with ':videojuego'
 router.param('videojuego', function(req, res, next, slug) {
-  console.log("DENTRO DE PARAM");
   Videojuego.findOne({ slug: slug}).populate('author').then(function (videojuego) {
       if (!videojuego) { return res.sendStatus(404); }
 
@@ -41,10 +40,6 @@ router.get('/', auth.optional, function(req, res, next) { //auth.required
     req.query.author ? User.findOne({username: req.query.author}) : null,
     req.query.favorited ? User.findOne({username: req.query.favorited}) : null
   ]).then(function(results){
-    console.log("HOLA desde videojuegos.js");
-    // console.log(req.query.favorited);
-    // console.log("result");
-    // console.log(results);
     var author = results[0];
     var favoriter = results[1];
 
@@ -83,7 +78,6 @@ router.get('/', auth.optional, function(req, res, next) { //auth.required
 });
 
 router.get('/feed', auth.required, function(req, res, next) {
-  console.log("FEEED");
   var limit = 20;
   var offset = 0;
 
@@ -123,22 +117,12 @@ router.get('/feed', auth.required, function(req, res, next) {
 
 
 router.post("/",auth.optional ,function(req, res, next) {
-  console.log("POOOOST");
-  console.log(req.payload);
   User.findById(req.payload.id).then(function(user){
-    console.log("USER EN el post");
-    console.log(user);
     if (!user) { return res.sendStatus(401); }
     let videojuego = new Videojuego(req.body.videojuego);
     videojuego.author=user;
-    console.log("insertando videojuego");
-    console.log(videojuego.author);
-      // console.log("Save VIDEOJUEGO");
-      // console.log({videojuego: videojuego.toJSONFor(user)});  El slug es undefined
 
       return videojuego.save().then(function() {
- 
-        console.log(videojuego.title);
         return res.json({videojuego: videojuego.toJSONFor() });
       });  
   }).catch(next);
@@ -149,7 +133,6 @@ router.post("/",auth.optional ,function(req, res, next) {
 
 // return a videojuego
 router.get('/:videojuego', auth.optional, function(req, res, next) {
-  console.log("return videojuego");
   Promise.all([
     req.payload ? User.findById(req.payload.id) : null,
     req.videojuego.populate('author').execPopulate()
@@ -210,19 +193,9 @@ router.delete('/:videojuego', auth.required, function(req, res, next) {
 
 // Favorite an videojuego
 router.post('/:videojuego/favorite', auth.required, function(req, res, next) { //Favorito videojuego
-  
-  // console.log("HOLAAAA");
-
-  console.log(req.payload.id);
   var videojuegoId = req.videojuego._id;
 
   User.findById(req.payload.id).then(function(user){
-
-    // console.log("USER:");
-    // console.log(user);
-    // console.log()
-
-
     if (!user) { return res.sendStatus(401); }
 
     return user.favoriteV(videojuegoId).then(function(){ //La linea mas importante
@@ -252,7 +225,6 @@ router.delete('/:videojuego/favorite', auth.required, function(req, res, next) {
 //////COMENTARIOS
 // return an videojuego's comments
 router.get('/:videojuego/comments', auth.optional, function(req, res, next){
-  console.log("RETURN videojuego comments");
   Promise.resolve(req.payload ? User.findById(req.payload.id) : null).then(function(user){
     return req.videojuego.populate({
       path: 'comments',
@@ -276,16 +248,10 @@ router.get('/:videojuego/comments', auth.optional, function(req, res, next){
 router.post('/:videojuego/comments', auth.required, function(req, res, next) {//Poner comentario
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
-
-    console.log("HOLAAA");
-    // console.log(req.body);
     var comment = new VideojuegoComment(req.body.comment);
-    console.log(req.body.comment);
+  
     comment.videojuego = req.videojuego;
     comment.author = user;
-
-   
-
     return comment.save().then(function(){//Guardamos el comentario
       // req.videojuego.comments.push(comment);
       req.videojuego.comments=req.videojuego.comments.concat([comment]);
@@ -299,18 +265,6 @@ router.post('/:videojuego/comments', auth.required, function(req, res, next) {//
 
 router.delete('/:videojuego/comments/:comment', auth.required, function(req, res, next) {
    //Borrar comentario
-   console.log("BORRAR COMENTARIO 1");
-   console.log(req.videojuego.comments); //Aqui es donde estan los ids de comentarios
-   console.log("buscar id de author");
-   console.log(req.videojuego.author._id);
-   console.log("payload");
-   console.log(req.payload.id.toString());
-
-   console.log("buscando id del commment");
-   console.log(req.videojuego.comments);//Aqui estan todos los ids
-
-   console.log("ID del comentario que quiero borrar (:comment)");
-   console.log(req.params.comment);
   if(req.videojuego.author._id.toString() === req.payload.id.toString()){ //Hay que borrar el req.videojuego.comments(El comentario con la id igual) que sea igual que :comment
     req.videojuego.comments.remove(req.params.comment);
     req.videojuego.save()

@@ -4,7 +4,6 @@ class VideojuegosCtrl {
       ////
       this.$state=$state;
       ////
-      console.log("Controller list");
       this._$scope = $scope;
       this.videojuegos = videojuegos;
       this.filter = $stateParams.filter;

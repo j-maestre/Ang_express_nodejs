@@ -9,12 +9,10 @@ class SocialCtrl {
   
       this.title = $state.current.title;
       this.authType = $state.current.name.replace('app.', '');
-      console.log("Bon dia pel mati");
-
 
       this._User.attemptAuth(this.authType, null).then(
         (res) => {
-          console.log("Justo antes del toastr");
+
           this._toaster.showToastr('success','Successfully Logged In');
           // Toastr.showToastr('success','Successfully Logged In');
           // alert("Successfully Logged In");

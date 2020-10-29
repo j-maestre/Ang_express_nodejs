@@ -37,20 +37,12 @@ VideojuegoSchema.methods.updateFavoriteCount = function() {
   var videojuego = this;
 
   return User.count({favoritesV: {$in: [videojuego._id]}}).then(function(count){
-    console.log("favoritosCOUNTTTT");
-    console.log(count);
     videojuego.favoritesCount = count;
-
     return videojuego.save();
   });
 };
 
 VideojuegoSchema.methods.toJSONFor = function(user){
-
-  console.log("TO PROFILE JSON");
-  console.log(user); //Me dice que es undefined pero si que está insertado y va bien
-  // console.log(user.toProfileJSONFor(user));
-  // console.log(user.toProfileJSONFor(user));
  
   return {
     slug: this.slug,
@@ -67,7 +59,6 @@ VideojuegoSchema.methods.toJSONFor = function(user){
     author: user ? user.toProfileJSONFor(user) : this.author.toProfileJSONFor(user)
     // author: this.author.toProfileJSONFor(user)
     // author: user.toProfileJSONFor(user)
-
   };
 };
 

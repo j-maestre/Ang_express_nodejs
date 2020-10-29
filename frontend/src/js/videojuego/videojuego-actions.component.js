@@ -7,13 +7,9 @@ class VideojuegoActionsCtrl {
   
       setTimeout(()=>{
         if (User.current) {
-          console.log("HOLA current user");
-          // console.log(this.videojuego.author);
-
-          // console.log(User.current);
           this.canModify = ((this.videojuego.author)&&(User.current.username === this.videojuego.author.username)); //PEta aqui
         } else {
-          console.log("Else current user");
+   
           this.canModify = false;
         }
         $scope.$apply();

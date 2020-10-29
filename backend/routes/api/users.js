@@ -5,9 +5,6 @@ var User = mongoose.model('User');
 var auth = require('../auth');
 
 router.get('/user', auth.optional, function(req, res, next){  //Select User UNICO
-  // console.log("userrr");
-  // console.log(req.payload);
-  
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
 
@@ -112,13 +109,10 @@ router.post('/users/sociallogin', function (req, res, next){
     //Si hemos encontrao al usuario lo logueamos
 
     if(user){
-      console.log("Usuario encontrado");
-      console.log(user);
       user.token = user.generateJWT();
       return res.json({user: user.toAuthJSON()}); //Usuario encontrado, return user
       
     }else{
-      console.log("Usuario NO encontrado");
       return res.status(422).json(err);
     }
   });
@@ -184,7 +178,6 @@ router.get('/auth/googleplus/callback',
 //GITHUB
 
 router.get("/auth/github", passport.authenticate("github"));
-console.log("Users get github passport autenticate");
 router.get("/auth/github/callback",
   passport.authenticate("github", {
     successRedirect: "http://localhost:4000/#!/auth/sociallogin",  //El puerto estaba en 3001 antes

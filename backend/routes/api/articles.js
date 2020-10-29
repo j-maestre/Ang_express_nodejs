@@ -7,14 +7,11 @@ var auth = require('../auth');
 
 // Preload article objects on routes with ':article'
 router.param('article', function(req, res, next, slug) {
-  console.log("DENTRO DE ARTICLE PARAM");
   Article.findOne({ slug: slug})
     .populate('author')
     .then(function (article) {
       if (!article) { return res.sendStatus(404); }
-
       req.article = article;
-
       return next();
     }).catch(next);
 });
@@ -132,7 +129,6 @@ router.post('/', auth.required, function(req, res, next) {
     article.author = user;
 
     return article.save().then(function(){
-      console.log(article.author);
       return res.json({article: article.toJSONFor(user)});
     });
   }).catch(next);

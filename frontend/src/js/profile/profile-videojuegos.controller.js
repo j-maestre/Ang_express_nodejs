@@ -17,9 +17,8 @@ class ProfileVideojuegosCtrl {
       $rootScope.setPageTitle('@' + this.profile.username);
 
     } else if (this.profileState === 'favorites') {
-      console.log("FILTEr por favorited");
       this.listConfig.filters = {favorited: this.profile.username};
-      console.log(this.listConfig.filters);
+
       // Set page title
       $rootScope.setPageTitle(`Videojuegos favorited by ${this.profile.username}`);
     }

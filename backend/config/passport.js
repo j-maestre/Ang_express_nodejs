@@ -22,13 +22,12 @@ passport.use(new LocalStrategy({
 
 ///Serializer
 passport.serializeUser((user, done) => {
-  console.log("SERIALIZE");
+ 
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  // console.log(`id: ${id}`);
-  console.log("DESERIALIZE");
+
   User.findById(id)
     .then(user => {
       done(null, user);
@@ -60,23 +59,19 @@ passport.deserializeUser((id, done) => {
         profile.emails=profile.username+'@gmail.com';
        
           if (err){
-
-            console.log("if err");
             return done(err);
-            
-
           }
           // if the user is found then log them in
           if (user) {
-            console.log("if user");
+         
               return done(null, user);
           } else {
-            console.log("else");
+          
             if(!profile.emails){ 
-              console.log("if hola");
+            
               return done("The email is private");
             }else{
-              console.log("else hola");
+     
               var user = new User({
                   idsocial: profile.id,
                   username: profile.username,
@@ -85,8 +80,7 @@ passport.deserializeUser((id, done) => {
                   image: profile.photos[0].value,
               });
 
-              // console.log("USUARIO GUARDADO:");
-              console.log(user);
+         
               user.save(function(err) {
                   //if(err){
                     console.log("SAVE USER");
@@ -94,7 +88,7 @@ passport.deserializeUser((id, done) => {
                     if(err)
                     console.log("ERROR",err);
                     
-                    // console.log(err);
+             
                       return done(null, user);
                   //}
               });
@@ -124,29 +118,23 @@ passport.deserializeUser((id, done) => {
 
       User.findOne({idsocial:profile.id.toString()}, function(err, user) {
 
-        console.log("OLE LOS CARACOLES");
-        // console.log(profile.email);
-
         profile.emails=profile.username+'@gmail.com';
        
           if (err){
-
-            // console.log("if err");
             return done(err);
             
-
           }
           // if the user is found then log them in
           if (user) {
-            // console.log("if user");
+           
               return done(null, user);
           } else {
-            // console.log("else");
+       
             if(!profile.emails){ 
-              // console.log("if hola");
+          
               return done("The email is private");
             }else{
-              // console.log("else hola");
+          
               var user = new User({
                   idsocial: profile.id,
                   username: profile.username,
@@ -155,8 +143,6 @@ passport.deserializeUser((id, done) => {
                   image: profile.photos[0].value,
               });
 
-              // console.log("USUARIO GUARDADO:");
-              console.log(user);
               user.save(function(err) {
                   //if(err){
                     console.log("SAVE USER GOOGLE");

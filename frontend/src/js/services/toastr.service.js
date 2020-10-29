@@ -3,7 +3,6 @@
 export default class Toastr {
     constructor (AppConstants, $http, toastr) {
       'ngInject';
-    //   console.log("HOLAAAA");
         this._AppConstants= AppConstants;
         this._$http=$http;
         this._toastr = toastr;

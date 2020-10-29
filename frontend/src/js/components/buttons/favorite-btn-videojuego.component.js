@@ -10,7 +10,6 @@ class FavoriteBtnVideojuegoCtrl {
 
 
   submit() {
-    console.log("Submit");
     this.isSubmitting = true;
 
     if (!this._User.current) {
