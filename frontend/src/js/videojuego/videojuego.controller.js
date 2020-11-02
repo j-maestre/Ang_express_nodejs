@@ -5,6 +5,7 @@ class VideojuegoCtrl {
       this._$scope = $scope;
       this.videojuego = videojuego;
       this._Comments=Comments;
+
   
       $scope.videojuego = this.videojuego;
 

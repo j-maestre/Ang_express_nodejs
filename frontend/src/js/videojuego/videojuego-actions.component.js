@@ -2,7 +2,7 @@ class VideojuegoActionsCtrl {
     constructor(Videojuegos, User, $state,$scope) {
       'ngInject';
   
-      this.videojuego = Videojuegos;
+      this.videojuegos = Videojuegos;
       this._$state = $state;
   
       setTimeout(()=>{
@@ -19,8 +19,12 @@ class VideojuegoActionsCtrl {
     }
   
     deleteVideojuego() {
+      console.log("Dentro de delete videojuegoo");
       this.isDeleting = true;
-      this.videojuego.destroy(this.videojuego.slug).then(
+
+      console.log(this.videojuegos);
+
+      this.videojuegos.destroy(this.videojuego.slug).then(
         (success) => this._$state.go('app.home'),
         (err) => this._$state.go('app.home')
       )

@@ -34,6 +34,7 @@ export default class Videojuegos{
     }
 
     getVideojuego(slug) {
+      console.log("GET VIDEOJUEGO");
       return this._$http({
         url: this._AppConstants.api + "/videojuegos/" + slug,
         method: "GET"
@@ -42,6 +43,15 @@ export default class Videojuegos{
           return res.data.videojuego
         });
     }
+
+    destroy(slug) {
+      console.log("DESTROY");
+      return this._$http({
+        url: this._AppConstants.api + '/videojuegos/' + slug,
+        method: 'DELETE'
+      })
+    }
+  
 
 
     favorite(slug) {
