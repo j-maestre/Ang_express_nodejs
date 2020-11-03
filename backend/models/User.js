@@ -14,7 +14,8 @@ var UserSchema = new mongoose.Schema({
   favoritesV: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Videojuego' }],
   following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   hash: String,
-  salt: String
+  salt: String,
+  karma:{type: Number, default: 0}
 }, {timestamps: true});
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken.'});

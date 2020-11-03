@@ -17,6 +17,7 @@ var VideojuegoSchema = new mongoose.Schema({
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'VideojuegoComment' }],
   tagList: [{ type: String }], //fake
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  
 }, {timestamps: true});
 
 VideojuegoSchema.plugin(uniqueValidator, {message: 'is already taken'});

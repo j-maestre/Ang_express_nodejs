@@ -35,6 +35,7 @@ export default class Videojuegos{
 
     getVideojuego(slug) {
       console.log("GET VIDEOJUEGO");
+      console.log(slug);
       return this._$http({
         url: this._AppConstants.api + "/videojuegos/" + slug,
         method: "GET"

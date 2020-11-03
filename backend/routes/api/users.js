@@ -23,6 +23,8 @@ router.get("/users", auth.optional, function(req, res, next) {
   Promise.resolve(req.payload ? User.findById(req.payload.id) : null).then(function(currentUser){
 
     User.find().then(function(users) {
+      console.log("USERS");
+      console.log(users);
       if (!users) {
         return res.sendStatus(401);
       }
@@ -119,27 +121,30 @@ router.post('/users/sociallogin', function (req, res, next){
 });
 
 ///Register
-router.post("/users/register", function(req, res, next) {
-  User.find({
-    $or: [{ email: req.body.user.email }, { username: req.body.user.username }],
-    idsocial: null
-  }).then(function(user) {
-    if (user[0]) {
+router.post("/users/register", async (req, res, next)=> {
+  try{
+    let user= await User.find({
+      $or: [{ email: req.body.user.email }, { username: req.body.user.username }]
+    })
+
+    if(user[0]){
       return res.status(422).json("The email or username are already created");
-    } else {
-      var user = new User();
-      user.username = req.body.user.username;
-      user.email = req.body.user.email;
+    }else{
+      console.log("new user");
+      let user = new User();
+      user.idsocial = await req.body.user.username;
+      user.username = await req.body.user.username;
+      user.email = await req.body.user.email;
       user.type = "client";
       user.setPassword(req.body.user.password);
-      user
-        .save()
-        .then(function() {
-          return res.json({ user: user.toAuthJSON() });
-        })
-        .catch(next);
+      
+      await user.save();
+      return res.json({ user: user.toAuthJSON() });
     }
-  });
+  }catch(e){
+    next(e);
+  }
+
 });
 //////
 
@@ -184,12 +189,5 @@ router.get("/auth/github/callback",
     failureRedirect: "/"
   })
 );
-
-
-
-
-
-
-
 
 module.exports = router;

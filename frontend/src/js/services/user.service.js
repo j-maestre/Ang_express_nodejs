@@ -13,6 +13,9 @@ export default class User {
   }
 
   attemptAuth(type, credentials) {
+    console.log("attemptAuth");
+    console.log(type);
+    console.log(credentials); //credentials está vacio 
     return this._$http({
       url: this._AppConstants.api + '/users/'+type,
       method: 'POST',

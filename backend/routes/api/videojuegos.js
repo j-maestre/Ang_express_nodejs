@@ -5,6 +5,7 @@ var passport = require("passport");
 var VideojuegoComment = mongoose.model('VideojuegoComment');
 var User = mongoose.model('User');
 var auth = require('../auth');
+let videojuegosUtils = require('../utils/videojuegosUtils')
 
 // Preload videojuego objects on routes with ':videojuego'
 router.param('videojuego', function(req, res, next, slug) {
@@ -176,18 +177,28 @@ router.put('/:videojuego', auth.required, function(req, res, next) {
 });
 
 // delete videojuego
-router.delete('/:videojuego', auth.required, function(req, res, next) {
-  User.findById(req.payload.id).then(function(user){
-    if (!user) { return res.sendStatus(401); }
+router.delete('/:videojuego', auth.required, async(req, res, next) =>{
+  console.log("dentro de delete");
+   try{
+    let user= await User.findById(req.payload.id);
+    console.log("user");
+    console.log(user);
+    if(!user) return res.sendStatus(401);
 
-    if(req.videojuego.author._id.toString() === req.payload.id.toString()){
-      return req.videojuego.remove().then(function(){
-        return res.sendStatus(204);
-      });
-    } else {
+    if(req.videojuego.author._id.toString()===req.payload.id.toString()){
+
+      console.log("videojuego a borrar");
+      console.log(req.videojuego);
+      let vidDel = await videojuegosUtils.DeleteVideojuego(req.videojuego);
+      if(vidDel) return res.sendStatus(204);
+
+    }else{
       return res.sendStatus(403);
     }
-  }).catch(next);
+
+   }catch(e){
+     next(e);
+   }
 });
 
 
