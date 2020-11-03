@@ -64,8 +64,9 @@ mongooseConnect()
 require('./models/User');
 require('./models/Article');
 require('./models/Comment');
-require('./models/Company');
+// require('./models/Company');
 
+require('./models/companys/Company');
 require('./models/adventures/Adventure');
 require('./models/restaurants/Restaurant');
 require('./models/travels/Country');

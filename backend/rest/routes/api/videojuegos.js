@@ -121,18 +121,13 @@ router.get('/feed', auth.required, function(req, res, next) {
 router.post("/",auth.optional ,async function(req, res, next) {
   try {
       let user = await User.findById(req.payload.id)
-      console.log(user)
       if (!user) { return res.sendStatus(401); }
 
       let videojuego = new Videojuego(req.body.videojuego);
       videojuego.author=user;
 
       await videojuego.save();
-
-      console.log("antes del update karma");
-      console.log(user.id);
       await userUtils.UpdateKarma(user.id,40);
-
     
       return res.json({videojuego: videojuego.toJSONFor(user) });
   } catch (error) {

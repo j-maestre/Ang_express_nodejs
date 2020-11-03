@@ -13,7 +13,8 @@
     "mongo:stop": "docker stop realworld-mongo && docker rm realworld-mongo",
     "jasmine": "jasmine",
     "seed": "node ./helpers/seed.js",
-    "clear": "mongo < clearCollections.js"
+    "clear": "mongo < clearCollections.js",
+    "serve":"nodemon ./app.js --exec babel-node"
   },
   "repository": {
     "type": "git",

@@ -19,7 +19,22 @@ const resolvers = {
       city: (parent) => {
         return City.findOne({_id: parent.city}).exec();
       }
-    }
+    },
+
+    Mutation: {
+      createCompany: (root, {input}) => {
+          const company = new Company(input);
+  
+          // no .exec();
+          company.save();
+          return company;
+      }
+  }
+//   Company: {
+//       city: (parent) => {
+//           return City.findOne({_id: parent.city}).exec();
+//       }
+//   }
 };
 
 export default resolvers;

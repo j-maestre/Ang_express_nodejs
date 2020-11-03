@@ -17,6 +17,7 @@ require('../models/travels/Country')
 require('../models/travels/City')
 require('../models/restaurants/Restaurant');
 require('../models/adventures/Adventure');
+require('../models/companys/Company');
 // hotels
 require("../models/hotels/Hotel");
 require("../models/User");
@@ -25,10 +26,26 @@ var Country = mongoose.model('Country');
 var City = mongoose.model('City');
 let Restaurant = mongoose.model('Restaurant');
 let Adventure = mongoose.model('Adventure');
+let Company = mongoose.model('Company');
 let User = mongoose.model('User');
 
 // hotels
 var hotel = mongoose.model("Hotel");
+
+const generateCompanys = () =>{
+	let companys = [];
+	let i=0;
+
+
+	while(i<50){
+		const name;
+		const description;
+		const city;
+		const stars;
+		const image;
+
+	}
+}
 
 const generateAdventures = () => {
 	let adventures = [];
