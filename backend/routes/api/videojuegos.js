@@ -5,7 +5,8 @@ var passport = require("passport");
 var VideojuegoComment = mongoose.model('VideojuegoComment');
 var User = mongoose.model('User');
 var auth = require('../auth');
-let videojuegosUtils = require('../utils/videojuegosUtils')
+let videojuegosUtils = require('../utils/videojuegosUtils');
+let userUtils = require('../utils/usersUtils');
 
 // Preload videojuego objects on routes with ':videojuego'
 router.param('videojuego', function(req, res, next, slug) {
@@ -117,16 +118,26 @@ router.get('/feed', auth.required, function(req, res, next) {
 
 
 
-router.post("/",auth.optional ,function(req, res, next) {
-  User.findById(req.payload.id).then(function(user){
-    if (!user) { return res.sendStatus(401); }
-    let videojuego = new Videojuego(req.body.videojuego);
-    videojuego.author=user;
+router.post("/",auth.optional ,async function(req, res, next) {
+  try {
+      let user = await User.findById(req.payload.id)
+      console.log(user)
+      if (!user) { return res.sendStatus(401); }
 
-      return videojuego.save().then(function() {
-        return res.json({videojuego: videojuego.toJSONFor() });
-      });  
-  }).catch(next);
+      let videojuego = new Videojuego(req.body.videojuego);
+      videojuego.author=user;
+
+      await videojuego.save();
+
+      console.log("antes del update karma");
+      console.log(user.id);
+      await userUtils.UpdateKarma(user.id,40);
+
+    
+      return res.json({videojuego: videojuego.toJSONFor(user) });
+  } catch (error) {
+      next(error);
+  }
 });
 
 
@@ -190,7 +201,9 @@ router.delete('/:videojuego', auth.required, async(req, res, next) =>{
       console.log("videojuego a borrar");
       console.log(req.videojuego);
       let vidDel = await videojuegosUtils.DeleteVideojuego(req.videojuego);
+      await userUtils.UpdateKarma(user.id,-40);
       if(vidDel) return res.sendStatus(204);
+      
 
     }else{
       return res.sendStatus(403);
