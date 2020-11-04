@@ -43,7 +43,7 @@ function mongooseConnect() {
       mongoose.set('useNewUrlParser', true);
       mongoose.set('useUnifiedTopology', true);
       try {
-        mongoose.connect('mongodb://mongo/conduit_nodejs'); //Cambiar base de datos de mongo  ¿Crear una nueva?
+        mongoose.connect('mongodb://localhost/conduit_nodejs'); //Cambiar localhost a mongo cuando lo tenga dockerizado
       } catch (error) {
         console.log(error);
         
@@ -62,18 +62,10 @@ function mongooseConnect() {
 mongooseConnect()
 
 require('./models/User');
-require('./models/Article');
-require('./models/Comment');
 // require('./models/Company');
 
 require('./models/companys/Company');
-require('./models/adventures/Adventure');
-require('./models/restaurants/Restaurant');
-require('./models/travels/Country');
-require('./models/travels/City');
-require('./models/travels/Travel');
-require('./models/hotels/Room');
-require('./models/hotels/Hotel');
+
 
 app.use(require('./routes'));
 //// Swagger ////

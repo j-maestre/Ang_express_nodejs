@@ -1,25 +1,28 @@
 const mongoose = require('mongoose');
 const Company = mongoose.model('Company');
-const City = mongoose.model('City');
+// const City = mongoose.model('City'); //Quitar city y dejarlo como una String
 
 const resolvers = {
     Query: {
         company: (root, {slug}) => {
             return Company.findOne({slug: slug}).exec();
         },
-        companys: () => {
-            return Company.find().exec();
+        companys: async () => {
+            console.log("resolve de todas las companys");
+            // console.log(await Company.find().exec());
+            // console.log(Company.count());
+            return await Company.find({}).exec();
         },
-        companysResults: async function(root, {slug}) {
-          let city = await City.findOne({slug: slug});
-          return Company.find({city: city._id});
-        }
+        // companysResults: async function(root, {slug}) {
+        //   let city = await City.findOne({slug: slug});
+        //   return Company.find({city: city._id});
+        // }
     },
-    Company: {
-      city: (parent) => {
-        return City.findOne({_id: parent.city}).exec();
-      }
-    },
+    // Company: {
+    //   city: (parent) => {
+    //     return City.findOne({_id: parent.city}).exec();
+    //   }
+    // },
 
     Mutation: {
       createCompany: (root, {input}) => {

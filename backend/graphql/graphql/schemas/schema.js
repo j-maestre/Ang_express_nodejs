@@ -16,27 +16,16 @@ const Query = gql`
     }
 `;
 
-import Restaurant from "../../graphql/schemas/restaurants/restaurant.schema";
-import Country from "../../graphql/schemas/travels/country.schema";
-import City from "../../graphql/schemas/travels/city.schema";
-import Hotel from "../../graphql/schemas/hotels/hotel.schema";
+
 import Company from "../../graphql/schemas/company/company.schema";
-import Room from "../../graphql/schemas/hotels/room.schema";
-import Adventure from "../../graphql/schemas/adventures/adventure.schema";
+
 import User from "../../graphql/schemas/users/user.schema";
-import Travel from "../../graphql/schemas/travels/travel.schema"
+
 
 const typeDefs = [
     Query,
-    Restaurant,
-    Country,
-    City,
-    Hotel,
     Company,
-    Room,
-    Adventure,
-    User,
-    Travel
+    User
 ];
 
 export default typeDefs;

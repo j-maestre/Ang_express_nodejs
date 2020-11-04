@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 var slug = require('slug');
-var User = mongoose.model('User');
+// var User = mongoose.model('User');
 
 var CompanySchema = new mongoose.Schema({
   slug: {type: String, lowercase: true, unique: true},
@@ -30,7 +30,7 @@ CompanySchema.methods.slugify = function() {
   this.slug = slug(this.title) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36);
 };
 
-CompanySchema.methods.toJSONFor = function(user){
+CompanySchema.methods.toJSONFor = function(){
     return {
       slug: this.slug,
       id: this.id,
