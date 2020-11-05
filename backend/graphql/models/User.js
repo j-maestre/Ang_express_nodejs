@@ -3,6 +3,8 @@ var uniqueValidator = require('mongoose-unique-validator');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 var secret = require('../config').secret;
+console.log("MODEL USER");
+console.log(mongoose.models);
 
 var UserSchema = new mongoose.Schema({
   idsocial: String,

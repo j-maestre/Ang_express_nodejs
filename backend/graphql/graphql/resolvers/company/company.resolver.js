@@ -25,15 +25,15 @@ const resolvers = {
     //   }
     // },
 
-    Mutation: {
-      createCompany: (root, {input}) => {
-          const company = new Company(input);
+//     Mutation: {
+//       createCompany: (root, {input}) => {
+//           const company = new Company(input);
   
-          // no .exec();
-          company.save();
-          return company;
-      }
-  }
+//           // no .exec();
+//           company.save();
+//           return company;
+//       }
+//   }
 //   Company: {
 //       city: (parent) => {
 //           return City.findOne({_id: parent.city}).exec();

@@ -12,17 +12,21 @@ mongoose
 	.then(() => console.log('MongoDB connected...'))
 	.catch(err => console.log(err))
 
-// Get Data Models
-require('../models/companys/Company');
+	console.log("MONGO CONECTADO");
+	console.log(mongoose);
 
+// Get Data Models
+// require('../models/companys/Company');
+require('../models/companys/Company');
+require('../models/plataforms/Plataform');
 require("../models/User");
 
-
+let Plataform = mongoose.model('Plataform');
 let Company = mongoose.model('Company');
 let User = mongoose.model('User');
 
 // hotels
-var hotel = mongoose.model("Hotel");
+
 
 // const generateCompanys = () =>{
 // 	let companys = [];

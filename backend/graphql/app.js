@@ -61,6 +61,7 @@ require('./models/User');
 // require('./models/Company');
 
 require('./models/companys/Company');
+require('./models/plataforms/Plataform');
 
 
 app.use(require('./routes'));

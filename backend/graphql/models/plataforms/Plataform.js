@@ -2,25 +2,24 @@ var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 var slug = require('slug');
 // var User = mongoose.model('User');
-console.log("HOLAAAAAA");
+console.log("HOLAAAAAA Plataform");
 console.log(mongoose.models);
 
-var CompanySchema = new mongoose.Schema({
+var PlataformSchema = new mongoose.Schema({
   slug: {type: String, lowercase: true, unique: true},
   id:{type: String, unique: true},
   name: String,
   description: String,
-  city: String,
-  stars:String,
-  image:String
+  price:String,
+  rate:String
 }, {
   timestamps: true,
   usePushEach: true
 });
 
-CompanySchema.plugin(uniqueValidator, {message: 'is already taken'});
+PlataformSchema.plugin(uniqueValidator, {message: 'is already taken'});
 
-CompanySchema.pre('validate', function(next){
+PlataformSchema.pre('validate', function(next){
   if(!this.slug)  {
     this.slugify();
   }
@@ -28,23 +27,22 @@ CompanySchema.pre('validate', function(next){
   next();
 });
 
-CompanySchema.methods.slugify = function() {
+PlataformSchema.methods.slugify = function() {
   this.slug = slug(this.title) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36);
 };
 
-CompanySchema.methods.toJSONFor = function(){
+PlataformSchema.methods.toJSONFor = function(){
     return {
       slug: this.slug,
       id: this.id,
       name:this.name,
       description: this.description,
-      city: this.city,
-      stars:this.stars,
-      image:this.image,
+      price:this.price,
+      rate:this.rate,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };
   };
   
-  mongoose.model('Company', CompanySchema);
+  mongoose.model('Plataform', PlataformSchema);
   console.log(mongoose.models);

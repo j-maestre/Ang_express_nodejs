@@ -20,11 +20,13 @@ const Query = gql`
 import Company from "../../graphql/schemas/company/company.schema";
 
 import User from "../../graphql/schemas/users/user.schema";
+import Plataform from "../../graphql/schemas/plataform/plataform.schema";
 
 
 const typeDefs = [
     Query,
     Company,
+    Plataform,
     User
 ];
 

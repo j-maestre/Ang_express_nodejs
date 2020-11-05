@@ -16,9 +16,7 @@ class VideojuegoCtrl {
       this.resetCommentForm();
 
       Comments.getAll(this.videojuego.slug).then(
-
         (comments) => this.comments = comments
-        
       );
   }
 

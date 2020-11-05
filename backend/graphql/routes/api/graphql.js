@@ -20,6 +20,7 @@ import resolvers from "../../graphql/resolvers/resolver";
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Company = mongoose.model('Company');
+const Plataform = mongoose.model('Plataform');
 
 const SERVER = new ApolloServer({
     typeDefs,
