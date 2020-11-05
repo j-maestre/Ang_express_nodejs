@@ -1,5 +1,6 @@
 const AppConstants = {
   api: 'http://localhost:3000/api',
+  gql : 'http://localhost:3002/api',
   // api: 'http://localhost:3000/api',
   //http://localhost:3004/api
 

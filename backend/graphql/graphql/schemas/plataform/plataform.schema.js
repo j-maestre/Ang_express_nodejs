@@ -12,18 +12,18 @@ const typeDefs = gql`
     type Plataform {
         id: ID!
         slug: String!
-        name: String
+        name: String!
         description: String
         price: String
         rate: String
     }
     input PlataformInput {
-        slug: String!
-        name: String
+        name: String!
         description: String
         price: String
         rate: String
     }
 `;
 
+// slug: String!
 export default typeDefs;

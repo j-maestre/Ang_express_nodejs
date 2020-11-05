@@ -8,19 +8,14 @@ const resolvers = {
             return Plataform.findOne({slug: slug}).exec();
         },
         plataforms: async () => {
-            console.log("resolve de todas las plataforms");
-            console.log("prueba");
-            let prueba=Plataform.find({}).exec();
-            console.log(prueba);
-            return await Plataform.find({}).exec();
+           return await Plataform.find({}).exec();
         },
       
     },
     Mutation: {
       createPlataform: (root, {input}) => {
           const plataform = new Plataform(input);
-  
-          // no .exec();
+          // no .exec(); 
           plataform.save();
           return plataform;
       }

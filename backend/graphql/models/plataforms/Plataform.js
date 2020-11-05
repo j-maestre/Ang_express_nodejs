@@ -7,7 +7,7 @@ console.log(mongoose.models);
 
 var PlataformSchema = new mongoose.Schema({
   slug: {type: String, lowercase: true, unique: true},
-  id:{type: String, unique: true},
+  // id:{type: String, unique: true},
   name: String,
   description: String,
   price:String,
@@ -28,13 +28,14 @@ PlataformSchema.pre('validate', function(next){
 });
 
 PlataformSchema.methods.slugify = function() {
-  this.slug = slug(this.title) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36);
+  console.log("SLUGIFY");
+  this.slug = slug(this.name) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36);
 };
 
 PlataformSchema.methods.toJSONFor = function(){
+  console.log("TO JSON FOR");
     return {
       slug: this.slug,
-      id: this.id,
       name:this.name,
       description: this.description,
       price:this.price,
@@ -45,4 +46,4 @@ PlataformSchema.methods.toJSONFor = function(){
   };
   
   mongoose.model('Plataform', PlataformSchema);
-  console.log(mongoose.models);
+  // console.log(mongoose.models);
