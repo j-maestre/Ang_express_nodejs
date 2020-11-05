@@ -19,6 +19,7 @@ import typeDefs from "../../graphql/schemas/schema";
 import resolvers from "../../graphql/resolvers/resolver";
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Company = mongoose.model('Company');
 
 const SERVER = new ApolloServer({
     typeDefs,

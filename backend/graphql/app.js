@@ -47,10 +47,6 @@ function mongooseConnect() {
       } catch (error) {
         console.log(error);
         
-        console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
-        console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
-        console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
-        console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
         process.exit(1);
         mongooseConnect();
       }

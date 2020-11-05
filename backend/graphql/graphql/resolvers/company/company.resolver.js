@@ -9,8 +9,9 @@ const resolvers = {
         },
         companys: async () => {
             console.log("resolve de todas las companys");
-            // console.log(await Company.find().exec());
-            // console.log(Company.count());
+            console.log("prueba");
+            let prueba=Company.find({}).exec();
+            console.log(prueba);
             return await Company.find({}).exec();
         },
         // companysResults: async function(root, {slug}) {
