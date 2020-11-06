@@ -14,8 +14,8 @@ export default class Toastr {
       switch (type) {
         case 'success':
           // alert("Dentro del type succes");
-          console.log(this._toastr.success("hola"));
-          alert(message);
+          // console.log(this._toastr.success("hola"));
+          // alert(message);
           // this._toastr.isOpened=true;
 
           this._toastr.success(message);

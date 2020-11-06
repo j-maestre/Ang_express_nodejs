@@ -6,6 +6,9 @@ let servicesModule = angular.module('app.services', []);
 import GraphQLClientService from './graphql.service';
 servicesModule.service('GraphQLClient',GraphQLClientService);
 
+import PlataformsService from './plataforms.service';
+servicesModule.service('Plataforms', PlataformsService);
+
 import UserService from './user.service';
 servicesModule.service('User', UserService);
 

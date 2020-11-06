@@ -53,7 +53,7 @@
          });
      }
  
-     get(query, server = this._AppConstants.api_gql) {
+     get(query, server = this._AppConstants.api_gql) {  //Aqui se ejecutaran todas las consultas, ya bien sean mutations o consultas o lo que sea
          let deferred = this._$q.defer();
          if (!this._clients.has(server)) {
              this._clients.set(server, this.createClient(server));
@@ -67,7 +67,7 @@
          return deferred.promise;
      }
  
-     getAuth(query) {
+     getAuth(query) {  //Se viene aqui del plataform service y recibe la query y la ejecuta
          let deferred = this._$q.defer();
  
          this._authClient.query({

@@ -24,6 +24,7 @@ import './profile';
 import './article';
 import './videojuegos';
 import './videojuego';
+import './plataforms';
 import './services';
 import './auth';
 import './settings';
@@ -40,6 +41,7 @@ const requires = [
   'app.profile',
   'app.videojuegos',  
   'app.videojuego',
+  'app.plataforms',
   'app.article',
   'app.services',
   'app.auth',

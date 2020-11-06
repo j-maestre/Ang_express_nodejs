@@ -14,7 +14,7 @@ export default class Plataforms {
         config.filters.offset = 0;
       }
       if (!config.filters.limit) {
-        config.filters.limit = 8;
+        config.filters.limit = 8; //Cambiar limit?
       }
       let query = `
         query getPlataformsAndCount {
@@ -45,84 +45,46 @@ export default class Plataforms {
         query getRestaurant {
           plataform(slug:"${slug}") {
             id
-            title
             slug
+            name
             description
-            streetAddress
-            reservePrice
-            city {
-              id
-              slug
-              name
-              country {
-                id
-                slug
-                name
-              }
-            }
+            price
+            rate 
           }
         }
       `;
-      return this._GQL.getAuth(query);
+      return this._GQL.getAuth(query); //El ._GQL se va a graphql.service a getauth (funcion autorizada) y le pasa la query y nos devuelve los datos ejecutados
     }
-  
-    getPlataformsByCity(city) {
+    getPlataforms(){
       let query = `
         query {
-          plataformsResults(slug:"${city}") {
-              id
-              slug
-              title
-              description
-              reservePrice
-              streetAddress
-              image
-            }
+          plataforms{
+            id
+            slug
+            name
+            description
+            price
+            rate
+          }
         }
       `;
-      return this._GQL.get(query);
-    }
-
-    destroy(slug) {
-      return this._$http({
-        url: this._AppConstants.api + '/plataforms/' + slug,
-        method: 'DELETE'
-      })
-    }
-  
-    save(plataform) {
-      let request = {};
-  
-      if (plataform.slug) {
-        request.url = `${this._AppConstants.api}/plataforms/${plataform.slug}`;  //O es .rest o es .api, voy a dejar de momento .api
-        request.method = 'PUT';
-        delete plataform.slug;
-  
-      } else {
-        request.url = `${this._AppConstants.api}/plataforms/`;
-        request.method = 'POST';
-      }
-  
-      request.data = { plataform: plataform };
-  
-      return this._$http(request).then((res) => res.data.plataform);
-    }
-  
-  
-    favorite(slug) {
-      return this._$http({
-        url: this._AppConstants.api + '/plataforms/' + slug + '/favorite',
-        method: 'POST'
-      })
-    }
-  
-    unfavorite(slug) {
-      return this._$http({
-        url: this._AppConstants.api + '/plataforms/' + slug + '/favorite',
-        method: 'DELETE'
-      })
-    }
-  
-  
+      return this._GQL.get(query); //Se va a graphql service a la funcion get (funcion sin autorizar) que recibe la query que hemos hecho arriba y la ejecuta y nos devuelve la consulta ejecutada
   }
   
+    // getPlataformsByCity(city) {
+    //   let query = `
+    //     query {
+    //       plataformsResults(slug:"${city}") {
+    //           id
+    //           slug
+    //           title
+    //           description
+    //           reservePrice
+    //           streetAddress
+    //           image
+    //         }
+    //     }
+    //   `;
+    //   return this._GQL.get(query);
+    // }
+  }

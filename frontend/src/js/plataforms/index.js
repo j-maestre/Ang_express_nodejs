@@ -1,5 +1,5 @@
 import angular from 'angular';
-let plataformsModule = angular.module('app.videojuegos',[]);
+let plataformsModule = angular.module('app.plataforms',[]);
 
 
 import PlataformsConfig from './plataforms.config';

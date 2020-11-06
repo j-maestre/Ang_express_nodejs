@@ -1,5 +1,5 @@
 class AuthCtrl {
-  constructor(User, Toastr,$state) {//,
+  constructor(User, Toastr,$state) {
     'ngInject';
 
     this._User = User;
@@ -12,7 +12,9 @@ class AuthCtrl {
   }
 
   submitForm() {
-    this._toastr.showToastr('success',"hola");
+    console.log("jusot antes del toastr login normal");
+    console.log(this._toastr);
+    this._toastr.showToastr('success',"Succesfuly logged!");
     this.isSubmitting = true;
 
     this._User.attemptAuth(this.authType, this.formData).then(

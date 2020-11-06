@@ -1,21 +1,25 @@
 
-function VideojuegosConfig($stateProvider) {
+function PlataformsConfig($stateProvider) {
     "ngInject";
   
     $stateProvider
   
-    .state("app.videojuegos", {
-      url: "/videojuegos",
-      controller: "VideojuegosCtrl",
+    .state("app.plataforms", {
+      url: "/plataforms",
+      controller: "PlataformsCtrl",
       controllerAs: "$ctrl",
-      templateUrl: "videojuegos/videojuegos.html",
-      title: "Videojuegos"
-      // resolve: {
-      //   videojuegos: function(Videojuegos) {
-      //     return Videojuegos.getVideojuegos().then(videojuegos =>videojuegos);
-      //     }
-      // }
+      templateUrl: "plataforms/plataforms.html",
+      title: "Plataforms",
+      resolve: {
+        plataforms: function(Plataforms) {
+          console.log("resolve");
+          // let prueba = Plataforms.getPlataforms().then(plataforms =>plataforms);
+          // console.log(prueba);
+          return Plataforms.getPlataforms().then(plataforms =>plataforms);
+          // return prueba;
+          }
+      }
     })
   };
   
-  export default VideojuegosConfig;
+  export default PlataformsConfig;

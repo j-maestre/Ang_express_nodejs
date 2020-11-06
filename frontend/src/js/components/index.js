@@ -28,6 +28,12 @@ componentsModule.component('videojuegosList',VideojuegosList);
 import VideojuegoPreview from './videojuegos-helpers/videojuego-preview.component';
 componentsModule.component('videojuegoPreview', VideojuegoPreview);
 
+import PlataformsList from './plataforms-helpers/plataforms-list.component';
+componentsModule.component('plataformsList',PlataformsList); 
+
+import PlataformPreview from './plataforms-helpers/plataform-preview.component';
+componentsModule.component('plataformPreview', PlataformPreview);
+
 // import VideojuegosDetails from './videojuegos-helpers/videojuegos-detail.component';
 // componentsModule.component('videojuegosDetails',VideojuegosDetails);
 
