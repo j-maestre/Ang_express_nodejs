@@ -1,11 +1,9 @@
-FROM ubuntu:latest
+FROM node:latest
 
-COPY ./* /rest/
+RUN mkdir /app
+WORKDIR /app
+COPY package.json /app/
 
-WORKDIR /rest
-RUN apt-get update -y && apt-get install node -y
-RUN apt-get install mongodb
 RUN npm install
 
-EXPOSE 3002
-CMD ["npm","run","dev"]
+CMD [ "npm", "start" ]
