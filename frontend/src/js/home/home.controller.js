@@ -1,8 +1,8 @@
 class HomeCtrl {
-  constructor(User, Tags, AppConstants, $scope, Plataforms) { //sectors
+  constructor(User, Tags, AppConstants, $scope) { //sectors  Plataforms
     'ngInject';
 
-    this.Plataforms=Plataforms;
+    // this.Plataforms=Plataforms;
     this.appName = AppConstants.appName;
     this._$scope = $scope;
 

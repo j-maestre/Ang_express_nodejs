@@ -146,7 +146,6 @@ router.post("/",auth.optional ,async function(req, res, next) {
                   }
                 }
                   `,
-          
         })
         let plataforms=resp.data.plataforms;
 
