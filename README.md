@@ -24,4 +24,68 @@ sudo apt-get install nodejs
 ```
 sudo apt-get install npm
 ```
+```
+sudo apt-get install gulp
+```
 
+### Instalación 🔧
+
+_Como iniciar la aplicación_
+
+_Instalacion del back-end rest_
+
+```
+cd /backend/rest
+```
+
+```
+npm install
+```
+
+```
+npm run dev
+```
+
+_Instalacion del back-end graphql_
+
+
+```
+cd /backend/graphql
+```
+
+```
+npm install
+```
+```
+npm run dev
+```
+
+_Instalacion del front-end_
+
+```
+cd /frontend
+```
+```
+npm install
+```
+```
+sudo gulp
+```
+
+## Despliegue 📦
+
+_Poniendo en marcha la aplicación_
+
+_Nos dirigimos a nuestro navegador y accedemos por el puerto 4000 a nuestra app_
+
+```
+localhost:4000
+```
+
+
+
+
+## Autores ✒️
+
+* **Xema Maestre** - *Trabajo Inicial* - [j-maestre](https://github.com/j-maestre)
+* **Xema Maestre** - *Documentación* - [j-maestre](https://github.com/j-maestre)
