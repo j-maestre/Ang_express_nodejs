@@ -1,9 +1,9 @@
 FROM node:latest
 
-COPY ./* /graphql/
+RUN mkdir /app
+WORKDIR /app
+COPY package.json /app/
 
-WORKDIR /graphql
 RUN npm install
 
-EXPOSE 3002
-CMD ["npm","run","dev"]
+CMD [ "npm", "start" ]

@@ -7,6 +7,8 @@ var User = mongoose.model('User');
 var auth = require('../auth');
 let videojuegosUtils = require('../utils/videojuegosUtils');
 let userUtils = require('../utils/usersUtils');
+// const axios = require('axios');
+const { createApolloFetch } = require('apollo-fetch');
 
 // Preload videojuego objects on routes with ':videojuego'
 router.param('videojuego', function(req, res, next, slug) {
@@ -125,6 +127,37 @@ router.post("/",auth.optional ,async function(req, res, next) {
 
       let videojuego = new Videojuego(req.body.videojuego);
       videojuego.author=user;
+     
+    //Conectando con backend de graphql 
+        const fetch = createApolloFetch({
+          uri: 'http://localhost:3002/api/graphql',
+        });
+
+        let resp = await fetch({
+                query: `
+                query {
+                  plataforms{
+                    id
+                    slug
+                    name
+                    description
+                    price
+                    rate
+                  }
+                }
+                  `,
+          
+        })
+        let plataforms=resp.data.plataforms;
+
+        //Buscamos la plataform con el mismo name que le hemos puesto en videojuego y devolvemos todo el objeto plataform
+        let result =plataforms.filter(element =>
+          element.name==videojuego.plataform
+        );
+
+        //Asignamos al campo plataform el id de la plataform de graphql 
+         videojuego.plataform=result[0].id;
+        
 
       await videojuego.save();
       await userUtils.UpdateKarma(user.id,40);

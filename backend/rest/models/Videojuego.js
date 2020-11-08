@@ -5,7 +5,6 @@ var User = mongoose.model('User');
 // var Plataform = mongoose.model('Plataform');
 // var VideojuegoComment = mongoose.model('VideojuegoComment');
 
-//Borrar la BD y vovler a insertar los videojuegos por las tablas de favoritos y coments que no estaban antes y por eso peta
 
 var VideojuegoSchema = new mongoose.Schema({
   slug: {type: String, lowercase: true, unique: true},
@@ -13,7 +12,7 @@ var VideojuegoSchema = new mongoose.Schema({
   title: String, //fake
   description: String, //fake
   plataform: String, //fake
-  // plataform:{ type: mongoose.Schema.Types.ObjectId, ref: 'Plataform' },
+  // plataform: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Plataform' }],
   body: String, //fake
   favoritesCount: {type: Number, default: 0},
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'VideojuegoComment' }],
