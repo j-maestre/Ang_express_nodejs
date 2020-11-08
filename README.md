@@ -82,8 +82,17 @@ _Nos dirigimos a nuestro navegador y accedemos por el puerto 4000 a nuestra app_
 localhost:4000
 ```
 
+## Tecnologias utilizadas ⚙️
 
+_Backend_
+* [NodeJS](https://nodejs.org/es/)
+* [GraphQL](https://graphql.org/)
 
+_Frontend_
+* [AngularJS](https://angularjs.org/)
+
+_Databases_
+* [MongoDB](https://www.mongodb.com/es)
 
 ## Autores ✒️
 
